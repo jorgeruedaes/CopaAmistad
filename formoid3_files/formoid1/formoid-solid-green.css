@@ -268,7 +268,6 @@ Not advised to edit stuff below this line
 .formoid-solid-green input[type=button],
 .formoid-solid-green input[type=submit]{
   display: inline-block;
-  padding: 4px 12px;
   margin-bottom: 1px;
   color: #fff;
   text-align: left;
@@ -284,7 +283,6 @@ Not advised to edit stuff below this line
   -webkit-transition: all 0.25s ease-in-out;
   transition: all 0.25s ease-in-out;
   border-radius:3px;
-  box-shadow: inset 0 -0.3em 0 rgba(0, 0, 0, 0.2);
 }
 
 .formoid-solid-green input[type=button][disabled] {
@@ -298,7 +296,6 @@ Not advised to edit stuff below this line
   color: #ffffff;
   border: none;
   right: 20px;
-  padding: 11px 41px;
 }
 
 .formoid-solid-green input[type=submit]:hover{
