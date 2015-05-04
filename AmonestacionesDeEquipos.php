@@ -103,6 +103,46 @@ style="width: 15px;">
 ?>
 </tbody>
 </table>
+<?php 
+$queryprueba= mysql_query("SELECT * FROM `tr_amonestacionxequipo` WHERE id_equipo=$id and estado_amonestacion='1' ");
+if(mysql_num_rows($queryprueba)>0){
+
+
+?>
+<br>
+<center><cite>Multas al equipo</cite></center>
+<table data-role="table" width="100%" style="font-size: small; margin: auto;" data-role="table" id="table-custom-2" data-mode="columntoggle" 
+class="ui-body-d ui-shadow table-stripe ui-responsive t" 
+data-column-btn-text="" >
+<thead>
+  <tr>
+    <th>Razón</th>
+    <th>Valor</th></tr>
+</thead>
+<tbody>
+
+<tr class="alt">
+  <?php
+  
+$nametor = mysql_query("SELECT nombre,valor FROM `tr_amonestacionxequipo`,tb_amonestaciones WHERE id_equipo=$id and estado_amonestacion='1' and amonestacion=id_amonestacion  ")or die(mysql_error());
+  while ($tor=mysql_fetch_array($nametor)) {
+
+
+        ?>
+
+  <td> <?php  echo $tor['nombre']; ?> </td>
+<td> <?php  echo $tor['valor']; ?> </td>
+  </tr>
+  <?php  
+}
+
+?>
+</tbody>
+</table>
+<?php 
+}
+?>
+
 </div>
 </div>
 </html>
