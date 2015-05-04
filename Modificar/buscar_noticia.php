@@ -184,7 +184,7 @@ while($busqueda = mysql_fetch_array($buscarnoticia))
 
 </div>
 
-<div class="element-textarea" style="margin-left:0;float:right;width:500px><label class="title"></label><textarea class="medium" name="textarea" cols="20" rows="5" readonly="readonly"><?php echo $titulo."\n".$fecha."\n".$texto;?></textarea>
+<div class="element-textarea" style="margin-left:0;float:right;width:500px"><label class="title"></label><textarea class="medium" name="textarea" cols="20" rows="5" readonly="readonly"><?php echo $titulo."\n".$fecha."\n".$texto;?></textarea>
 
 </div>
 
