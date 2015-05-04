@@ -71,7 +71,7 @@ $id = $_GET['id'];
 
                                 <td><?php echo $consultajugadores['nombre1'] . " " . $consultajugadores['apellido1']; ?></td>
                                 <?php
-                                $consulta1 = mysql_query("SELECT  distinct numero_fecha FROM tb_partidos");
+                                $consulta1 = mysql_query("SELECT  distinct numero_fecha FROM tb_partidos where Estado='2'");
                                 while ($asistenciasacrear = mysql_fetch_array($consulta1)) {
                                     ?>
                                     <td>
@@ -80,7 +80,7 @@ $id = $_GET['id'];
                                         $player1 = $consultajugadores['id_jugadores'];
                                         $fechaingreso = $consultajugadores['fecha_ingreso'];
                                         $pruebasconsulta = mysql_query("SELECT partido FROM tr_jugadoresxpartido WHERE jugador=$player1 AND partido 
-  In (SELECT id_partido FROM tb_partidos WHERE fecha>'$fechaingreso' ) ");
+  In (SELECT id_partido FROM tb_partidos WHERE fecha>'$fechaingreso' and Estado='2') ");
                                         while ($nuevaprueba = mysql_fetch_array($pruebasconsulta)) {
                                             $game1 = $nuevaprueba['partido'];
                                             $consulta3 = mysql_fetch_array(mysql_query("SELECT numero_fecha FROM tb_partidos WHERE id_partido=$game1"));
@@ -96,7 +96,8 @@ $id = $_GET['id'];
                                     <?php
                                 }
                                 ?>
-                                <td><?php
+                                     <td>
+                                <?php
                                     $partidosreales = mysql_query("SELECT id_partido FROM tb_partidos WHERE fecha>'$fechaingreso' AND (equipo1=$id || equipo2 =$id)  AND Estado='2'");
                                     $partidosuperreales = mysql_query("SELECT id_partido FROM tb_partidos WHERE  (equipo1=$id || equipo2 = $id) AND Estado='2'");
                                     $calculo1 = mysql_query("SELECT partido FROM tr_jugadoresxpartido WHERE jugador=$player1");
@@ -108,12 +109,14 @@ $id = $_GET['id'];
                                     } else {
 
                                         echo $fechasasistidas;
-                                        ?></td>
+                                        ?>
+                                    </td>
                                     <td><?php
                                         $mini = mysql_num_rows($partidosuperreales);
                                         $result = ($fechasasistidas / ((16 - ( $mini - $fechasHastaahora ))) * 100);
                                         echo round($result) . "%";
-                                        ?></td>
+                                        ?>
+                                    </td>
 
                                 </tr>
                                 <?php
