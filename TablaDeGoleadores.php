@@ -67,7 +67,8 @@ data-column-btn-text="+" >
   <tr class="ui-bar-d">
              <th style="width: 33%;">Equipo</th>
              <th style="width: 33%;" >Nombre</th>
-             <th style="width: 33%;" >Goles</th>
+             <th style="width: 17%;" >Goles</th>
+             <th data-priority="2" style="width: 16%;" >Eficiencia</th>
            </tr>
 </thead>
 <tbody>
@@ -79,12 +80,13 @@ $goleadores1=mysql_query("SELECT jugador,SUM(goles) AS goles1 from tr_jugadoresx
       $nombrej=mysql_fetch_array(mysql_query("SELECT nombre1,apellido1,equipo FROM tb_jugadores WHERE id_jugadores=$jugador "));
      $nueva=$nombrej['equipo'];
 $nombree=mysql_fetch_array(mysql_query("SELECT nombre_equipo FROM tb_equipos WHERE id_equipo=$nueva"));
-
+$numerodepartidosasistidos=mysql_num_rows(mysql_query("SELECT jugador FROM tr_jugadoresxpartido WHERE jugador=$jugador"));
     ?>
 <tr  width="100%">
 <td style="width: 33%;"> <?php echo $nombree['nombre_equipo'];  ?>  </td>
   <td style="width: 33%;"> <?php echo $nombrej['nombre1']." ".$nombrej['apellido1']   ; ?></td>
   <td style="width: 33%;"> <?php echo $numerodegoles['goles1']; ?> </td>
+  <td style="width: 33%;"> <?php echo round($numerodegoles['goles1']/$numerodepartidosasistidos,1); ?> </td>
 </tr>
 <?php
 
