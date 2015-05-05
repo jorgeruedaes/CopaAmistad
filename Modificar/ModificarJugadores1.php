@@ -149,15 +149,21 @@ while($listaprofesiones=mysql_fetch_array($profesiones)){
 ?>
 </select><i></i></span></div></div>
  <input type="hidden" value="<?php echo $datos['id_jugadores']?>" name="idjugador">
-<div class="element-input"><label class="title">Estado actual:</label><input class="medium" type="text" name="input1" readonly="readonly" value="<?php echo $res1['nombre']?>"/></div>
+<div class="element-input"><label class="title">Estado actual:</label></div>
 
-<div class="element-select"><label class="title">Estado del jugador: (Marcar el mismo si no hay cambio)</label><div class="large"><span><select name="estado" >
-   
+<div class="element-select"><div class="large"><span>
+<select name="estado" >
 <?php
-$estados=mysql_query("SELECT * from tb_estados_jugador");
-while($listaestados=mysql_fetch_array($estados)){
+if($res1['nombre']=="Activo"){
              ?>
-<option value="<?php echo $listaestados['id_estado'];  ?>" selected="selected"><?php echo $listaestados['nombre']; ?> </option>
+<option value="1" selected="selected">Activo</option>
+<option value="2">Inactivo</option>
+
+    <?php 
+}else{
+               ?>
+<option value="1" >Activo</option>
+<option value="2" selected="selected">Inactivo</option>
 
     <?php 
 }
