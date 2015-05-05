@@ -52,11 +52,10 @@ if (isset($_SESSION['admin'])) {
                 <b><a style="font-size:13px"class="cerrar" href="cerrarsesion.php">Cerrar sesión <img src="salir.png" width="30px" height="30px"></a></b>
 
             </div>
-
             <div id="navigation">
                 <div class="shell">
                     <div class="cl">&nbsp;</div>
-                    <ul>
+                    <ul class="nav">
                         <li><a href="#">Agregar</a>
                             <ul>
                                 <li><a href="Agregar/AgregarJugadores.php">Jugadores</a></li>
@@ -64,29 +63,39 @@ if (isset($_SESSION['admin'])) {
                                 <li><a href="Agregar/AgregarPartidoAlCalendario.php">Partidos</a></li>
                                 <li><a href="Agregar/form_noticias.php">Noticias</a></li>
                                 <li><a href="Agregar/AgregarResultados.php">Resultados</a></li>
+                                <li><a href="Agregar/AgregarAmonEquipos.php">Amonestaciones Equipos</a></li>
                             </ul>
                         </li>
 
                         <li> <a href="#">Modificar</a>
-
                             <ul id="navmodificar">	
                                 <li><a href="Modificar/ModificarJugadores.php">Jugadores</a></li>
                                 <li><a href="Modificar/ModificarEquipos.php">Equipos</a></li>
                                 <li><a href="Modificar/ModificarNoticias.php">Noticias</a></li>
                                 <li><a href="Modificar/ModificarResultados.php">Resultados</a></li>
-                                <li ><a href="#">Amonestaciones</a>
+                                <li><a href="#">Amonestaciones</a>
                                     <ul id="lista" style="
                                         display: inline-table;
                                         margin-top: 10px;
                                         margin-left: 20px;
-
                                         ">
-                                        <li ><a href="Modificar/ModificarAmonestaciones.php">Detalles</a></li>
+                                        <li><a>Jugadores</a>
+                                        <ul style="
+                                        margin-top: -50px;
+                                        margin-left: 100px;">                                             
+                                        <li><a href="Modificar/ModificarAmonestaciones.php">Detalles</a></li>
                                         <li><a href="Modificar/ModificarAmonestacionesDePartidos.php" >Por partido</a></li>
+                                        </ul>   
+                                        </li>                                     
+                                        <li ><a>Equipos</a>
+                                        <ul style="
+                                        margin-top: 20px;
+                                        margin-left: 85px;">                                            
+                                        <li ><a href="Modificar/ModificarAmonestacionesEquipo.php">Detalles</a></li>
+                                        </ul>  
+                                        </li>
                                     </ul>
                                 </li>
-
-
                                 <li><a href="Modificar/ModificarCalendario.php">Calendario</a></li>
                                 <li><a href="Modificar/ModificarAsistencia.php">Asistencia</a></li>
                             </ul>
