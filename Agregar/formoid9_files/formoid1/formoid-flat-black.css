@@ -1161,6 +1161,7 @@ bootstrap
   border-radius: 4px;
   display: none;
   z-index: 10;
+  position: inherit;
 }
 .datepicker:before {
   content: '';
