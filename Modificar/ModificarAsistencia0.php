@@ -135,7 +135,7 @@ while ($temp1=mysql_fetch_array($nombreequipo1)){
 
   while  ($temp2=mysql_fetch_array($nombreequipo2)){
 
-       print" <option value='".$temp["id_partido"]."'>".$temp1["nombre_equipo"]." vs ".$temp2["nombre_equipo"]."</option>\n";
+       print" <option value='".$temp["id_partido"]."'>".$temp1["nombre_equipo"]." vs ".$temp2["nombre_equipo"]." || De la fecha ".$temp['numero_fecha']."</option>\n";
       }}}
    echo" </select>\n";
 }

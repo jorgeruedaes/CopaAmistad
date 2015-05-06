@@ -109,7 +109,7 @@ $name=$caracteres['id_torneo'];
 
   <?php
 
-$equipos=mysql_query("SELECT * FROM tb_equipos");
+$equipos=mysql_query("SELECT * FROM tb_equipos order by nombre_equipo asc");
 
 if (mysql_num_rows($equipos) > 0)
   {
