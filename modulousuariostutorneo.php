@@ -64,6 +64,7 @@ if (isset($_SESSION['admin'])) {
                                 <li><a href="Agregar/form_noticias.php">Noticias</a></li>
                                 <li><a href="Agregar/AgregarResultados.php">Resultados</a></li>
                                 <li><a href="Agregar/AgregarAmonEquipos.php">Amonestaciones Equipos</a></li>
+                                <li><a href="Agregar/Profesion.php">Profesión</a></li>
                             </ul>
                         </li>
 
@@ -115,6 +116,7 @@ if (isset($_SESSION['admin'])) {
                                 <li><a href="Modificar/pdf1.php">Ficha técnica</a></li>
                                 <li><a href="Modificar/pdf2.php">Posiciones</a></li>
                                 <li><a href="Modificar/pdf3.php">Goleadores</a></li>
+                                <li><a href="Modificar/ListarProfesiones.php">Listar Profesiones</a></li>
                             </ul>
                     </ul>
                     <div class="cl">&nbsp;</div>
