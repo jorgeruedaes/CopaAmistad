@@ -3,7 +3,8 @@
 
 <?php 
 session_start();
-include('conexion.php');  
+include('conexion.php'); 
+include('Encabezado.html');
 
 if (isset($_SESSION['admin'])) {
 
@@ -42,63 +43,7 @@ $name=$caracteres['id_torneo'];
 </style>
 <body>
 	
-	<div id="header">
-		
-		<div class="shell">
-			<!-- Logo -->
-			<br>
-	    <h1 id="logo" class="notext"><a href="#">Tu torneo App</a></h1>
-			
-			<!-- End Logo -->
-		</div>
-	</div>
-	<!-- End Header -->
 	
-	<!-- Navigation -->
-	<div id="navigation">
-		<div class="shell">
-			<ul>
-				<li><a href="../modulousuariostutorneo.php"><img src="../home.png" width="20" height="20"></a></li>
-				<li><a href="#">Agregar</a>
-				 <ul>
-		<li><a href="AgregarJugadores.php">Jugadores</a></li>
-		<li><a href="AgregarEquipos.php">Equipos</a></li>
-		<li><a href="AgregarPartidoAlCalendario.php">Partidos</a></li>
-		<li><a href="form_noticias.php">Noticias</a></li>
-		<li><a href="AgregarResultados.php">Resultados</a></li>
-		</ul>
-	</li>
-
-				 <li><a href="#">Modificar</a>
-<ul>
-		<li><a href="../Modificar/ModificarJugadores.php">Jugadores</a></li>
-		<li><a href="../Modificar/ModificarEquipos.php">Equipos</a></li>
-		<li><a href="../Modificar/ModificarNoticias.php">Noticias</a></li>
-		<li><a href="../Modificar/ModificarResultados.php">Resultados</a></li>
-		<li><a href="../Modificar/ModificarAmonestaciones.php">Amonestaciones</a></li>
-		<li><a href="#">Calendario</a></li>
-		<li><a href="../Modificar/ModificarAsistencia.php">Asistencia</a></li></ul>
-
-			    </li>
-			    
-			    </li>
-			    
-			   <li><a href="Estadisticas.php">Estadísticas</a></li>
-
-			   <li><a href="ModuloTraspasos.php">Traspasos</a></li>
-			    <li><a href="#">Informes</a>
-			    <ul>	
-		
-		<li><a href="../Modificar/pdf.php">Amonestaciones</a></li>
-		<li><a href="../Modificar/pdf1.php">Ficha Técnica</a></li>
-		<li><a href="../Modificar/pdf2.php">Posiciones</a></li>
-		<li><a href="#">Goleadores</a></li>
-	</ul>
-			</ul>
-			
-
-
-</div>
 <br><br><br>
 <BR><BR>
 <link rel="stylesheet" href="formoid_files/formoid1/formoid-flat-black.css" type="text/css" />
@@ -132,9 +77,9 @@ if(isset($_POST['enviar'])){
 	//$imagen= $_POST['imagen'];
 	$puntos= $_POST['puntos'];
 	$torneo= $_POST['torneo'];
-	$query ="INSERT INTO `tb_equipos`(`id_equipo`, `nombre_equipo`, `tecnico1`, `tecnico2`, `puntos`, `torneo`, `imagen_escudo`) 
-	VALUES (NULL,'$nombre','$tecnico1','$tecnico2','$puntos','$torneo','xx');";
-$insertar=mysql_query($query);
+	$guardaramonestacion =  mysql_query("INSERT INTO `tb_equipos`(`id_equipo`, `nombre_equipo`, `tecnico1`, `tecnico2`, `puntos`, `torneo`, `imagen_escudo`) 
+	VALUES (NULL,'$nombre','$tecnico1','$tecnico2','$puntos','$torneo','xx')");
+
 	echo "<script language='JavaScript' type='text/javascript'>
 alert('Equipo Creado!');
 </script>";

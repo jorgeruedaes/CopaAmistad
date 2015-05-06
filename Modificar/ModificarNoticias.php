@@ -3,6 +3,7 @@
 <?php 
 session_start();
 include('conexion.php');  
+include('Encabezado.html');
 
 if (isset($_SESSION['admin'])) {
 
@@ -40,66 +41,7 @@ $name=$caracteres['id_torneo'];
 }
 </style>
 <body>
-  
-  <div id="header">
-   <br>
-    <div class="shell">
-      <!-- Logo -->
-      <h1 id="logo" class="notext"><a href="#">Tu torneo App</a></h1>
-      
-      <!-- End Logo -->
-    </div>
-  </div>
-  <!-- End Header -->
-  
-  <!-- Navigation -->
-  <div id="navigation">
-    <div class="shell">
-      <div class="cl">&nbsp;</div>
-      <ul>
-         <li><a href="../modulousuariostutorneo.php"><img src="../home.png" width="20" height="20"></a></li>
-       
-         <li><a href="#">Agregar</a>
-         <ul>
-           <li><a href="../Agregar/AgregarJugadores.php">Jugadores</a></li>
-    <li><a href="../Agregar/AgregarEquipos.php">Nuevos Equipos</a></li>
-    <li><a href="../Agregar/AgregarPartidoAlCalendario.php">Nuevos Partidos</a></li>
-    <li><a href="../Agregar/form_noticias.php">Noticias</a></li>
-    <li><a href="../Agregar/AgregarResultados.php">Resultados</a></li>
-    </ul>
-  </li>
 
-         <li><a href="#">Modificar</a>
-<ul>
-   <li><a href="../Modificar/ModificarJugadores.php">Jugadores</a></li>
-    <li><a href="../Modificar/ModificarEquipos.php">Equipos</a></li>
-    <li><a href="../Modificar/ModificarNoticias.php">Noticias</a></li>
-    <li><a href="../Modificar/ModificarResultados.php">Resultados</a></li>
-    <li><a href="../Modificar/ModificarAmonestaciones.php">Amonestaciones</a></li>
-    <li><a href="#">Calendario</a></li>
-    <li><a href="../Modificar/ModificarAsistencia.php">Asistencia</a></li>    </ul>
-
-          </li>
-          
-          </li>
-          
-         <li><a href="Estadisticas.php">Estadisticas</a></li>
-
-         <li><a href="ModuloTraspasos.php">Traspasos</a></li>
-             <li><a href="#">Informes</a>
-          <ul>  
-    
-    <li><a href="../Modificar/pdf.php">Amonestaciones Jugadores</a></li>
-    <li><a href="#">Amonestaciones Equipos</a></li>
-    <li><a href="../Modificar/pdf1.php">Ficha Técnica</a></li>
-    <li><a href="../Modificar/pdf2.php">Posiciones</a></li>
-    <li><a href="#">Goleadores</a></li>
-  </ul>
-      </ul>
-      <div class="cl">&nbsp;</div>
-    
-  </div>
-</div>
 <br><br>
 <form action="buscar_noticia.php" method="POST">
 

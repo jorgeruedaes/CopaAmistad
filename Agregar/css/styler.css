@@ -73,6 +73,10 @@ h1#logo a {display: block; background: url(images/EscudoTorneoN.png) no-repeat 0
 #navigation ul {float: right; list-style-type: none;}
 #navigation ul li { float: left; display: inline; padding-left: 23px; padding-right: 19px;}
 #navigation ul li a {color: #676767; font-family: tahoma, sans-serif; font-size: 13px; text-transform: uppercase; padding-top: 16px; display: block; height: 34px; float: left;}
+#navmodificar li ul li {display: none;}
+#navmodificar li ul li ul > li {display: none;}
+#navmodificar li:hover ul > li {display: block;}
+#navmodificar li ul li:hover ul li {display: block;}
 
 #heading {height: 340px; background: url(images/heading.jpg) repeat-x 0 0;}
 #heading .shell {width: 983px; position: relative;}
