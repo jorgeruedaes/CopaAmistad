@@ -139,7 +139,7 @@ $res1=mysql_fetch_array($nombreestado);
     <select name="profesion" >
    
 <?php
-$profesiones=mysql_query("SELECT * from tb_profesiones");
+$profesiones=mysql_query("SELECT * from tb_profesiones ORDER BY nombre asc");
 while($listaprofesiones=mysql_fetch_array($profesiones)){
              ?>
 <option value="<?php echo $listaprofesiones['id_profesion'];  ?>" selected="selected"><?php echo $listaprofesiones['nombre']; ?> </option>
