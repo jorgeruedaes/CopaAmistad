@@ -74,17 +74,16 @@ data-column-btn-text="+" >
 <tbody>
 
 <?php
-$goleadores1=mysql_query("SELECT jugador,SUM(goles) AS goles1 from tr_jugadoresxpartido WHERE goles>=1 GROUP BY jugador order by goles1 desc")or die(mysql_error());
-    while ($numerodegoles=mysql_fetch_array($goleadores1)) {
-      $jugador=$numerodegoles['jugador'];
-      $nombrej=mysql_fetch_array(mysql_query("SELECT nombre1,apellido1,equipo FROM tb_jugadores WHERE id_jugadores=$jugador "));
-     $nueva=$nombrej['equipo'];
-$nombree=mysql_fetch_array(mysql_query("SELECT nombre_equipo FROM tb_equipos WHERE id_equipo=$nueva"));
+$goleadores1=mysql_query("SELECT jugador,SUM(goles) AS goles1 ,nombre1,apellido1,nombre_equipo 
+  from tr_jugadoresxpartido,tb_jugadores,tb_equipos 
+  WHERE goles>=1 and jugador=id_jugadores and equipo=id_equipo GROUP BY jugador ORDER BY `goles1` DESC, nombre_equipo asc")or die(mysql_error());
+  while ($numerodegoles=mysql_fetch_array($goleadores1)) {
+$jugador=$numerodegoles['jugador'];
 $numerodepartidosasistidos=mysql_num_rows(mysql_query("SELECT jugador FROM tr_jugadoresxpartido WHERE jugador=$jugador"));
     ?>
 <tr  width="100%">
-<td style="width: 33%;"> <?php echo $nombree['nombre_equipo'];  ?>  </td>
-  <td style="width: 33%;"> <?php echo $nombrej['nombre1']." ".$nombrej['apellido1']   ; ?></td>
+<td style="width: 33%;"> <?php echo $numerodegoles['nombre_equipo'];  ?>  </td>
+  <td style="width: 33%;"> <?php echo $numerodegoles['nombre1']." ".$numerodegoles['apellido1']   ; ?></td>
   <td style="width: 33%;"> <?php echo $numerodegoles['goles1']; ?> </td>
   <td style="width: 33%;"> <?php echo round($numerodegoles['goles1']/$numerodepartidosasistidos,1); ?> </td>
 </tr>
