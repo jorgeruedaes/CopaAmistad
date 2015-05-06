@@ -86,9 +86,10 @@ html{
   height: 20em;
 }
 .formoid-flat-black textarea.medium{
-  width: 600px;
   *width: 94%;
   height: 8em;
+  width: 500px;
+  max-width: 500px;
 }
 .formoid-flat-black textarea.small{
   width: 100%;

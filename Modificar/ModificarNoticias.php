@@ -83,7 +83,7 @@ $name=$caracteres['id_torneo'];
 
 </form>
 <script type="text/javascript" src="formoid6_files/formoid1/formoid-flat-black.js"></script>
-
+<br><br>
 <?php
 }
 ?>
