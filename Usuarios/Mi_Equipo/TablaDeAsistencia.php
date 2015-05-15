@@ -1,6 +1,6 @@
 <?php
 session_start();
-include('../../conexion.php');
+include('conexion.php');
 $id = $_GET['id'];
 ?>
 
@@ -46,7 +46,7 @@ $id = $_GET['id'];
                 <?php
                 $a = mysql_query("SELECT nombre_equipo FROM tb_equipos where id_equipo=$id");
                 $asistencia = mysql_fetch_array($a);
-                $consulta1 = mysql_query("SELECT  distinct numero_fecha FROM tb_partidos WHERE Estado='2'");
+                $consulta1 = mysql_query("SELECT  distinct numero_fecha FROM tb_partidos WHERE Estado='2' AND (equipo1=$id or equipo2=$id)");
                 $consulta2 = mysql_query("SELECT * FROM tb_jugadores WHERE equipo=$id order by nombre1 asc, apellido1 asc  ");
                 ?>
                 <table style="font-size: small;" data-role="table" id="table-custom-2" data-mode="columntoggle" class="ui-body-d ui-shadow table-stripe ui-responsive t" 
@@ -72,7 +72,7 @@ $id = $_GET['id'];
 
                                 <td><?php echo $consultajugadores['nombre1'] . " " . $consultajugadores['apellido1']; ?></td>
                                 <?php
-                                $consulta1 = mysql_query("SELECT  distinct numero_fecha FROM tb_partidos where Estado='2'");
+                                $consulta1 = mysql_query("SELECT  distinct numero_fecha FROM tb_partidos where Estado='2'AND (equipo1=$id or equipo2=$id)");
                                 while ($asistenciasacrear = mysql_fetch_array($consulta1)) {
                                     ?>
                                     <td>
@@ -81,7 +81,7 @@ $id = $_GET['id'];
                                         $player1 = $consultajugadores['id_jugadores'];
                                         $fechaingreso = $consultajugadores['fecha_ingreso'];
                                         $pruebasconsulta = mysql_query("SELECT partido FROM tr_jugadoresxpartido WHERE jugador=$player1 AND partido 
-  In (SELECT id_partido FROM tb_partidos WHERE fecha>'$fechaingreso' and Estado='2') ");
+                        In (SELECT id_partido FROM tb_partidos WHERE fecha>'$fechaingreso' and Estado='2') ");
                                         while ($nuevaprueba = mysql_fetch_array($pruebasconsulta)) {
                                             $game1 = $nuevaprueba['partido'];
                                             $consulta3 = mysql_fetch_array(mysql_query("SELECT numero_fecha FROM tb_partidos WHERE id_partido=$game1"));
