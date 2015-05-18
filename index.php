@@ -1,7 +1,6 @@
 <?php
 session_start();
 include('conexion.php');
-/// Consulta de numero de equipos que han jugado para generar la Tabla de posiciones
 date_default_timezone_set('America/Bogota');
 ?>
 
@@ -75,7 +74,7 @@ date_default_timezone_set('America/Bogota');
                       Se crea otro parametro para la fecha inicial de mostrar los resultados acontinuacion
                      */
                     $primerafecha2 = date("Y-m-d");
-                    $nuevafecha2 = strtotime('-4 day', strtotime($primerafecha2));
+                    $nuevafecha2 = strtotime('-5 day', strtotime($primerafecha2));
                     $primerafecha2 = date('Y-m-j', $nuevafecha2);
                     /*
                       Se crea otro parametro para la fecha final de mostrar los resultados acontinuacion
@@ -263,8 +262,7 @@ date_default_timezone_set('America/Bogota');
                      * ******************************************************************************************
                      */
 
-                    $nametor = mysql_query("SELECT * FROM tb_partidos where  Estado='2' AND 
-  numero_fecha=$numerorealdelafecha ORDER BY fecha desc,hora asc")or die(mysql_error());
+                    $nametor = mysql_query("SELECT * FROM tb_partidos WHERE fecha BETWEEN '$primerafecha2' and '$lafechadehoy' AND Estado='2'  ORDER BY fecha desc,hora desc")or die(mysql_error());
                     while ($tor = mysql_fetch_array($nametor)) {
                         ?>
 
