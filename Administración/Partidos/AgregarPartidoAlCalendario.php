@@ -4,8 +4,8 @@
 session_start();
 include('../../conexion.php');  
 include('../Encabezado.html');
-
-if (isset($_SESSION['admin'])) {
+include('../RutinaDeLogueo.php');
+if ($pruebadeinicio==1 or $pruebadeinicio==2) {
 
 
 ?>
@@ -121,6 +121,17 @@ alert('Partido creado!');
                ";
 }
   }
+}else{
+      ?>
+<!-- CUANDO EL PERSONAJE NO ESTA AUTORIZADO PARA EL INGRESO-->
+<br><br>
+<center>
+    <div>
+        <label>Lo sentimos pero usted no tiene autorización para estar en este lugar.</label>
+    </div>
+</center>
+<center><button  type="submit" ><a href="iniciox.php">Volver</a></button></center>
+<?php
 }
 
 

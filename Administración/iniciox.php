@@ -1,11 +1,22 @@
 
 
 <?php
-
 session_start();
 include('../conexion.php');
 if (isset($_SESSION['admin'])) {
-    header("Location:modulousuariostutorneo.php");
+include('RutinaDeLogue.php');
+ if ($_SESSION['tipo_usuario'] == 1) {
+            header("location:modulosuperadmin.php");
+    } elseif ($_SESSION['tipo_usuario'] == 2) {
+        
+        header("location:modulousuariostutorneo.php");
+    } elseif ($_SESSION['tipo_usuario'] == 3) {
+        header("location:moduloplanillero.php");
+        $pruebadeinicio = 3;
+    } else {
+        echo "Usted no está autorizado para ingresar";
+        header("location:iniciox.php");
+    }
 } else {
     ?>
     <style type="text/css">

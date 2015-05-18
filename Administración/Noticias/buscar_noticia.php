@@ -2,8 +2,8 @@
 
 <?php
 session_start();
- include('conexion.php');
-include('Encabezado.html');
+ include('../../conexion.php');
+include('../Encabezado.html');
 
 ?>
  
@@ -15,7 +15,7 @@ include('Encabezado.html');
 <head>
   <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
   <title>Copa Amistad Profesional modulo de Administracion</title>
-  <link rel="stylesheet" href="css/styler.css" type="text/css" media="all" />
+  <link rel="stylesheet" href="../../css/styler.css" type="text/css" media="all" />
   <!--[if lte IE 6]><link rel="stylesheet" href="css/ie6.css" type="text/css" media="all" /><![endif]-->
 </head>
 <style type="text/css">

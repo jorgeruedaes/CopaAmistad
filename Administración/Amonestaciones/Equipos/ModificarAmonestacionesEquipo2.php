@@ -1,8 +1,9 @@
 
 <?php
 session_start();
-include('../../../conexion.php');  
-if (isset($_SESSION['admin'])) {
+include('../../../conexion.php');
+include('../../RutinaDeLogueo.php');
+if ($pruebadeinicio==1 or $pruebadeinicio==2) {
     
 if(isset($_POST['guardar'])){
     $numerodemultas=$_POST['numerodemultas'];
@@ -33,6 +34,17 @@ if(isset($_POST['guardar'])){
 </script>
 <?php
   }
+}else{
+  ?>
+<!-- CUANDO EL PERSONAJE NO ESTA AUTORIZADO PARA EL INGRESO-->
+<br><br>
+<center>
+    <div>
+        <label>Lo sentimos pero usted no tiene autorización para estar en este lugar.</label>
+    </div>
+</center>
+<center><button  type="submit" ><a href="iniciox.php">Volver</a></button></center>
+<?php
 }
 
 ?>

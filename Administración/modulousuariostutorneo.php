@@ -1,20 +1,11 @@
-﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-
+﻿    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    <html xmlns="http://www.w3.org/1999/xhtml">
 <?php
 session_start();
 include('../conexion.php');
-
-if (isset($_SESSION['admin'])) {
-
-    $letras = $_SESSION['admin'];
-    $numeros = mysql_query("select * from tb_torneo where usuario='$letras'")or die(mysql_error());
-    $caracteres = mysql_fetch_array($numeros);
-    $name = $caracteres['id_torneo'];
+include('RutinaDeLogueo.php');
+if ($pruebadeinicio==2) {
     ?>
-
-
-    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-    <html xmlns="http://www.w3.org/1999/xhtml">
         <head>
             <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
             <title>Copa Amistad Profesional modulo de administracion</title>
@@ -133,5 +124,16 @@ if (isset($_SESSION['admin'])) {
         </body>
     </html>
     <?php
+}else{
+?>
+<!-- CUANDO EL PERSONAJE NO ESTA AUTORIZADO PARA EL INGRESO-->
+<br><br>
+<center>
+    <div>
+        <label>Lo sentimos pero usted no tiene autorización para estar en este lugar.</label>
+    </div>
+</center>
+<center><button  type="submit" ><a href="iniciox.php">Volver</a></button></center>
+<?php
 }
 ?>

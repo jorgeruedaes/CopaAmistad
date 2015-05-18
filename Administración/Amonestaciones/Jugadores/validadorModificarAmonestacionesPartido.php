@@ -2,7 +2,8 @@
 <?php
 session_start();
 include('../../../conexion.php');
-if (isset($_SESSION['admin'])) {
+include('../../RutinaDeLogueo.php');
+if ($pruebadeinicio==1 or $pruebadeinicio==2) {
 
 if (isset($_POST['guardar'])) {
 

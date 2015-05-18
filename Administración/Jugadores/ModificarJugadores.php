@@ -4,7 +4,8 @@
 session_start();
 include('../../conexion.php');  
 include('../Encabezado.html');
-if (isset($_SESSION['admin'])) {
+include('../RutinaDeLogueo.php');
+if ($pruebadeinicio==1 or $pruebadeinicio==2 or $pruebadeinicio==4) {
 
 $letras=$_SESSION['admin'];
 $numeros=mysql_query("SELECT * from tb_torneo where usuario='$letras'")or die(mysql_error());
@@ -79,6 +80,17 @@ if (mysql_num_rows($equipos) > 0)
 
 
 ?>
+<?php
+}else{
+    ?>
+<!-- CUANDO EL PERSONAJE NO ESTA AUTORIZADO PARA EL INGRESO-->
+<br><br>
+<center>
+    <div>
+        <label>Lo sentimos pero usted no tiene autorización para estar en este lugar.</label>
+    </div>
+</center>
+<center><button  type="submit" ><a href="iniciox.php">Volver</a></button></center>
 <?php
 }
 
