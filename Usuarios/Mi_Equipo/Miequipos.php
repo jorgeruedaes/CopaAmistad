@@ -21,7 +21,7 @@ $id = $_GET['id'];
 
     <div data-role="page" id="pagina5">   <!--Pagina Pirnicpal Mi Equipo -->
         <body style="font-family: Century Gothic;">
-            <div style="position: fixed;top: 0px;z-index: 10;width: 100%;" data-role="header">
+            <div  data-role="header">
                 <a href="../../index.php" style="
                    background-color: #8cc63f;
                    border-color: #8cc63f;
