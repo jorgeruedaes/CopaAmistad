@@ -1,0 +1,57 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<?php 
+session_start();
+date_default_timezone_set('America/Bogota');
+include('../../conexion.php'); 
+include('../../Administración/RutinaDeLogueo.php');
+$id = $_GET['id'];
+if ($pruebadeinicio==1 or $pruebadeinicio==2 or $pruebadeinicio==3) {
+	?>
+	<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1,maximun-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<link rel="stylesheet" type="text/css" href="../../js/jquery.mobile-1.4.3.css">
+<script type="text/javascript" src="../../js/jquery-1.11.1.js"></script>
+<link rel="stylesheet" href="../../themes/nuevarevolucion1.css"/>
+<link rel="stylesheet" href="../../themes/jquery.mobile.icons.min.css"/>
+<script type="text/javascript" src="../../js/jquery.mobile-1.4.3.js"></script>
+ <!--- AQUI AGREGAN SUS SCRIPTS -->
+ <!-- ///////////////////////// -->
+</head>
+<body>
+
+<div data-role="page" id="pageone">
+  <div data-role="header">
+   <a href="../../index.php" style="
+    background-color: #8cc63f;
+    border-color: #8cc63f;
+" class="ui-btn ui-btn-inline ui-icon-back ui-btn-icon-notext ui-corner-all ui-shadow ui-nodisc-icon ui-alt-icon" ></a>
+    <h1>Modúlo Planillero</h1>
+    <a style="
+    background-color: #8cc63f;
+    border-color: #8cc63f;
+" href="../../Administración/cerrarsesion.php" class="ui-btn ui-btn-inline ui-icon-delete ui-btn-icon-notext ui-corner-all ui-shadow ui-nodisc-icon ui-alt-icon"></a>
+  </div>
+  <div data-role="main" class="ui-content">
+</div> 
+
+</body>
+</html>
+
+<?php
+}else{
+	      ?>
+<!-- CUANDO EL PERSONAJE NO ESTA AUTORIZADO PARA EL INGRESO-->
+<br><br>
+<center>
+    <div>
+        <label>Lo sentimos pero usted no tiene autorización para estar en este lugar.</label>
+    </div>
+</center>
+<center><button  type="submit" ><a href="iniciox.php">Volver</a></button></center>
+<?php
+}
