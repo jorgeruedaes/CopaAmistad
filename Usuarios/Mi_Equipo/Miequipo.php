@@ -5,14 +5,14 @@ include('../../conexion.php');
 
 <html>
     <head>
-<meta name="viewport" content="width=device-width, initial-scale=1,maximun-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1,maximun-scale=1">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-<link rel="stylesheet" type="text/css" href="../../js/jquery.mobile-1.4.3.css">
-<script type="text/javascript" src="../../js/jquery-1.11.1.js"></script>
-<link rel="stylesheet" href="../../themes/nuevarevolucion1.css"/>
-<link rel="stylesheet" href="../../themes/jquery.mobile.icons.min.css"/>
-<script type="text/javascript" src="../../js/jquery.mobile-1.4.3.js"></script>
+        <link rel="stylesheet" type="text/css" href="../../js/jquery.mobile-1.4.3.css">
+        <script type="text/javascript" src="../../js/jquery-1.11.1.js"></script>
+        <link rel="stylesheet" href="../../themes/nuevarevolucion1.css"/>
+        <link rel="stylesheet" href="../../themes/jquery.mobile.icons.min.css"/>
+        <script type="text/javascript" src="../../js/jquery.mobile-1.4.3.js"></script>
 
     </head>
     <div data-role="page" id="pagina10">
@@ -39,6 +39,7 @@ include('../../conexion.php');
                            " href="Miequipos.php?id=<?php echo $tor['id_equipo'] ?>"><?php echo $tor['nombre_equipo']; ?></a></li>
                         <?php
                     }
+                    mysql_close($con);
                     ?>
             </ul>
         </div>

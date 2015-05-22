@@ -168,35 +168,35 @@ while ($identificaciones = mysql_fetch_array($equiposquehanjugado)) {
                 </thead>
                 <tbody>
                     <tr >
-<?php
+                        <?php
 // Ordenar matriz
-$eliminaciondeinfoanterio = mysql_query("DELETE FROM te_posiciones");
+                        $eliminaciondeinfoanterio = mysql_query("DELETE FROM te_posiciones");
 
-for ($i = 0; $i < $numerodeequiposparaeltamañodelamatriz; $i++) {
-    $matriz[$i]['8'] = $matriz[$i]['6'] + $matriz[$i]['7'] + $matriz[$i]['5'];
-    $matriz[$i]['9'] = $matriz[$i]['3'] - $matriz[$i]['4'];
-    $matriz[$i]['10'] = $i + 1;
+                        for ($i = 0; $i < $numerodeequiposparaeltamañodelamatriz; $i++) {
+                            $matriz[$i]['8'] = $matriz[$i]['6'] + $matriz[$i]['7'] + $matriz[$i]['5'];
+                            $matriz[$i]['9'] = $matriz[$i]['3'] - $matriz[$i]['4'];
+                            $matriz[$i]['10'] = $i + 1;
 
-    $variable1 = $matriz[$i]['1'];  // nombre equipo
-    $variable2 = (($matriz[$i]['6'] * 2) + $matriz[$i]['7']);  // puntos
+                            $variable1 = $matriz[$i]['1'];  // nombre equipo
+                            $variable2 = (($matriz[$i]['6'] * 2) + $matriz[$i]['7']);  // puntos
 
-    $variable3 = $matriz[$i]['8'];  // partidos jugados
-    $variable4 = $matriz[$i]['6'];  // partidos ganados
-    $variable5 = $matriz[$i]['7'];  // empates
-    $variable6 = $matriz[$i]['5'];  // partidos perdidos
-    $variable7 = $matriz[$i]['3'];  // goles a favor
-    $variable8 = $matriz[$i]['4'];  // goles en contra
-    $variable9 = $matriz[$i]['9'];  // diferencia de Gol
+                            $variable3 = $matriz[$i]['8'];  // partidos jugados
+                            $variable4 = $matriz[$i]['6'];  // partidos ganados
+                            $variable5 = $matriz[$i]['7'];  // empates
+                            $variable6 = $matriz[$i]['5'];  // partidos perdidos
+                            $variable7 = $matriz[$i]['3'];  // goles a favor
+                            $variable8 = $matriz[$i]['4'];  // goles en contra
+                            $variable9 = $matriz[$i]['9'];  // diferencia de Gol
 
-    mysql_query("INSERT INTO `te_posiciones`(`equipo`, `puntos`, `pj`, `pg`, `pe`, `pp`, `gf`, `gc`, `dg`)
+                            mysql_query("INSERT INTO `te_posiciones`(`equipo`, `puntos`, `pj`, `pg`, `pe`, `pp`, `gf`, `gc`, `dg`)
   VALUES ('$variable1','$variable2','$variable3','$variable4','$variable5','$variable6','$variable7','$variable8','$variable9');")or die(mysql_error());
-}
+                        }
 
-$queryimprimir = mysql_query("SELECT * FROM te_posiciones order by  puntos desc, pg desc,dg desc,gf desc")or die(mysql_error());
-$contador = 1;
-while ($datos = mysql_fetch_array($queryimprimir)) {
-    7
-    ?>
+                        $queryimprimir = mysql_query("SELECT * FROM te_posiciones order by  puntos desc, pg desc,dg desc,gf desc")or die(mysql_error());
+                        $contador = 1;
+                        while ($datos = mysql_fetch_array($queryimprimir)) {
+                            7
+                            ?>
 
                             <td  class="posicion" id="<?php echo $contador; ?>">  <?php echo $contador; ?> </td>
                             <td>  <?php echo $datos['equipo']; ?> </td>
@@ -212,10 +212,11 @@ while ($datos = mysql_fetch_array($queryimprimir)) {
                             </td>
                         </tr>
 
-    <?php
-    $contador = $contador + 1;
-}
-?>
+                        <?php
+                        $contador = $contador + 1;
+                    }
+                    mysql_close($con);
+                    ?>
                 </tbody>
             </table>
         </div>

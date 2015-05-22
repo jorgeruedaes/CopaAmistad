@@ -85,6 +85,7 @@ include('../../conexion.php');
                             </tr>
                             <?php
                         }
+                        mysql_close($con);
                         ?>
                     </tbody>
                 </table>   

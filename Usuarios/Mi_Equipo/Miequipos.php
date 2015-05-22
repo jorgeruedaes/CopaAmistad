@@ -6,14 +6,14 @@ $id = $_GET['id'];
 
 <html>
     <head>
-<meta name="viewport" content="width=device-width, initial-scale=1,maximun-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1,maximun-scale=1">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-<link rel="stylesheet" type="text/css" href="../../js/jquery.mobile-1.4.3.css">
-<script type="text/javascript" src="../../js/jquery-1.11.1.js"></script>
-<link rel="stylesheet" href="../../themes/nuevarevolucion1.css"/>
-<link rel="stylesheet" href="../../themes/jquery.mobile.icons.min.css"/>
-<script type="text/javascript" src="../../js/jquery.mobile-1.4.3.js"></script>
+        <link rel="stylesheet" type="text/css" href="../../js/jquery.mobile-1.4.3.css">
+        <script type="text/javascript" src="../../js/jquery-1.11.1.js"></script>
+        <link rel="stylesheet" href="../../themes/nuevarevolucion1.css"/>
+        <link rel="stylesheet" href="../../themes/jquery.mobile.icons.min.css"/>
+        <script type="text/javascript" src="../../js/jquery.mobile-1.4.3.js"></script>
 
 
     </head>
@@ -148,7 +148,7 @@ $id = $_GET['id'];
                                 }
                             }
                             ?> </div> 
-                    <!--  numero de la fecha vigente para que aparesca en calendario -->
+                        <!--  numero de la fecha vigente para que aparesca en calendario -->
                         <?php
                         $nametor = mysql_query("SELECT * from tb_partidos where  Estado!='2'   AND fecha='$numeroparalafecha'  AND (equipo1=$id  or equipo2=$id) ")or die(mysql_error());
                         while ($tor = mysql_fetch_array($nametor)) {
@@ -327,15 +327,15 @@ $id = $_GET['id'];
                                     <tr width="100%">
                                         <!--  GOLES TABLA DE GOLES TABLA DE GoLES -->
                                         <td width="50%">
-    <?php
-    $id_partido = $tor['id_partido'];
-    $id_equipo1 = $tor['equipo1'];
-    $id_equipo2 = $tor['equipo2'];
-    $query = mysql_query("SELECT jugador,goles FROM tr_jugadoresxpartido WHERE partido=$id_partido AND goles>0 
+                                            <?php
+                                            $id_partido = $tor['id_partido'];
+                                            $id_equipo1 = $tor['equipo1'];
+                                            $id_equipo2 = $tor['equipo2'];
+                                            $query = mysql_query("SELECT jugador,goles FROM tr_jugadoresxpartido WHERE partido=$id_partido AND goles>0 
   AND jugador IN ( SELECT jugador FROM tb_jugadores WHERE equipo=$id_equipo1) ");
-    $afectadas = mysql_num_rows($query);
-    while ($consulta2 = mysql_fetch_array($query)) {
-        ?>
+                                            $afectadas = mysql_num_rows($query);
+                                            while ($consulta2 = mysql_fetch_array($query)) {
+                                                ?>
 
                                                 <?php
                                                 $jugador1 = $consulta2['jugador'];
@@ -348,14 +348,14 @@ $id = $_GET['id'];
                                                         <?php
                                                     }
                                                     ?>
-            <?php
-        } else {
-            ?>
-                                            <tr align="center"  width="50%">No hubieron</tr>
                                                     <?php
-                                                }
-                                            }
-                                            ?>
+                                                } else {
+                                                    ?>
+                                            <tr align="center"  width="50%">No hubieron</tr>
+                                            <?php
+                                        }
+                                    }
+                                    ?>
                                     </td>
                                 <td width="50%">
                                     <?php
@@ -383,10 +383,10 @@ $id = $_GET['id'];
                                         } else {
                                             ?>
                                         <tr align="center"  width="50%">No hubieron</tr>
-                                            <?php
-                                        }
+                                        <?php
                                     }
-                                    ?>
+                                }
+                                ?>
                                 </td>
                                 </tr>
                                 </tbody>
@@ -406,15 +406,15 @@ $id = $_GET['id'];
                                     <tr width="100%">
                                         <!--  GOLES TABLA DE GOLES TABLA DE GOLES -->
                                         <td width="50%">
-    <?php
-    $id_partido = $tor['id_partido'];
-    $id_equipo1 = $tor['equipo1'];
-    $id_equipo2 = $tor['equipo2'];
-    $query = mysql_query("SELECT jugador,amonestacion FROM tr_jugadoresxpartido WHERE partido=$id_partido AND amonestacion!=5 
+                                            <?php
+                                            $id_partido = $tor['id_partido'];
+                                            $id_equipo1 = $tor['equipo1'];
+                                            $id_equipo2 = $tor['equipo2'];
+                                            $query = mysql_query("SELECT jugador,amonestacion FROM tr_jugadoresxpartido WHERE partido=$id_partido AND amonestacion!=5 
   AND jugador IN ( SELECT jugador FROM tb_jugadores WHERE equipo=$id_equipo1) ");
-    $afectadas = mysql_num_rows($query);
-    while ($consulta2 = mysql_fetch_array($query)) {
-        ?>
+                                            $afectadas = mysql_num_rows($query);
+                                            while ($consulta2 = mysql_fetch_array($query)) {
+                                                ?>
 
                                                 <?php
                                                 $jugador1 = $consulta2['jugador'];
@@ -425,69 +425,69 @@ $id = $_GET['id'];
                                                         ?>
                                                         <div align="center" > <span width="50%"><?php echo $consultar['nombre1'] . " " . $consultar['apellido1']; ?>
                                                             </span><span width="50%" style="font-size: larger;font-weight: bold; "><?php
-                                                        if ($amonestacio4 == 1) {
-                                                            ?>
+                                                                if ($amonestacio4 == 1) {
+                                                                    ?>
                                                                     <span><img src="../../images/amarilla.png" style="width: 15px;"></span>
-                                                            <?php
-                                                        } elseif ($amonestacio4 == 2) {
-                                                            ?>
+                                                                    <?php
+                                                                } elseif ($amonestacio4 == 2) {
+                                                                    ?>
                                                                     <span><img src="../../images/roja.png" style="width: 15px;"></span>
+                                                                    <?php
+                                                                }
+                                                                ?></span></div>
                                                             <?php
                                                         }
-                                                        ?></span></div>
-                                                                <?php
-                                                            }
-                                                            ?>
-                                                            <?php
-                                                        } else {
-                                                            ?>
-                                            <tr align="center"  width="50%">No hubieron</tr>
-                                                            <?php
-                                                        }
-                                                    }
-                                                    ?>
-                                    </td>
-                                <td width="50%">
-                                                    <?php
-                                                    $id_partido = $tor['id_partido'];
-                                                    $id_equipo1 = $tor['equipo1'];
-                                                    $id_equipo2 = $tor['equipo2'];
-                                                    $query = mysql_query("SELECT jugador,amonestacion FROM tr_jugadoresxpartido WHERE partido=$id_partido AND amonestacion!=5
-  AND jugador IN ( SELECT jugador FROM tb_jugadores WHERE equipo=$id_equipo2) ");
-                                                    $afectadas = mysql_num_rows($query);
-                                                    while ($consulta2 = mysql_fetch_array($query)) {
                                                         ?>
-
-                                                    <?php
-                                                    $jugador1 = $consulta2['jugador'];
-                                                    $amonestacio4 = $consulta2['amonestacion'];
-                                                    if ($afectadas != 0) {
-                                                        $consulta12 = mysql_query("SELECT nombre1,apellido1 FROM tb_jugadores WHERE id_jugadores=$jugador1  AND equipo=$id_equipo2");
-                                                        while ($consultar = mysql_fetch_array($consulta12)) {
-                                                            ?>
-                                                <div align="center" > <span width="50%"><?php echo $consultar['nombre1'] . " " . $consultar['apellido1']; ?>
-                                                    </span><span width="50%" style="font-size: larger;font-weight: bold; "><?php
-                                                if ($amonestacio4 == 1) {
-                                                    ?>
-                                                            <span><img src="../../images/amarilla.png" style="width: 15px;"></span>
-                                                    <?php
-                                                } elseif ($amonestacio4 == 2) {
-                                                    ?>
-                                                            <span><img src="../../images/roja.png" style="width: 15px;"></span>
-                                                    <?php
-                                                }
-                                                ?>                                    </span></div>
-                                                <?php
-                                            }
-                                            ?>
-                                            <?php
-                                        } else {
-                                            ?>
-                                        <tr align="center"  width="50%">No hubieron</tr>
+                                                        <?php
+                                                    } else {
+                                                        ?>
+                                            <tr align="center"  width="50%">No hubieron</tr>
                                             <?php
                                         }
                                     }
                                     ?>
+                                    </td>
+                                <td width="50%">
+                                    <?php
+                                    $id_partido = $tor['id_partido'];
+                                    $id_equipo1 = $tor['equipo1'];
+                                    $id_equipo2 = $tor['equipo2'];
+                                    $query = mysql_query("SELECT jugador,amonestacion FROM tr_jugadoresxpartido WHERE partido=$id_partido AND amonestacion!=5
+  AND jugador IN ( SELECT jugador FROM tb_jugadores WHERE equipo=$id_equipo2) ");
+                                    $afectadas = mysql_num_rows($query);
+                                    while ($consulta2 = mysql_fetch_array($query)) {
+                                        ?>
+
+                                        <?php
+                                        $jugador1 = $consulta2['jugador'];
+                                        $amonestacio4 = $consulta2['amonestacion'];
+                                        if ($afectadas != 0) {
+                                            $consulta12 = mysql_query("SELECT nombre1,apellido1 FROM tb_jugadores WHERE id_jugadores=$jugador1  AND equipo=$id_equipo2");
+                                            while ($consultar = mysql_fetch_array($consulta12)) {
+                                                ?>
+                                                <div align="center" > <span width="50%"><?php echo $consultar['nombre1'] . " " . $consultar['apellido1']; ?>
+                                                    </span><span width="50%" style="font-size: larger;font-weight: bold; "><?php
+                                                        if ($amonestacio4 == 1) {
+                                                            ?>
+                                                            <span><img src="../../images/amarilla.png" style="width: 15px;"></span>
+                                                            <?php
+                                                        } elseif ($amonestacio4 == 2) {
+                                                            ?>
+                                                            <span><img src="../../images/roja.png" style="width: 15px;"></span>
+                                                                <?php
+                                                            }
+                                                            ?>                                    </span></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                            } else {
+                                                ?>
+                                        <tr align="center"  width="50%">No hubieron</tr>
+                                        <?php
+                                    }
+                                }
+                                ?>
                                 </td>
                                 </tr>
                                 </tbody>
@@ -496,10 +496,11 @@ $id = $_GET['id'];
                             </p>
                         </div>
                     </ul>  
-                                                <?php
-                                                /// fin de resultados por EQUIPO
-                                            }
-                                            ?>
+                    <?php
+                    /// fin de resultados por EQUIPO
+                }
+                mysql_close($con);
+                ?>
             </div>
     </div>
 </body>

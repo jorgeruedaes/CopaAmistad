@@ -521,6 +521,7 @@ date_default_timezone_set('America/Bogota');
                             <?php
                         }
                     }
+                    mysql_close($con);
                     ?>
                 </div> 
             </div>

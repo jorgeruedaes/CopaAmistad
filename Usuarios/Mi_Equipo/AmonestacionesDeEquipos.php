@@ -6,14 +6,14 @@ $id = $_GET['id'];
 <html>
     <head>
         <title>Copa Amistad Profesional</title>
-<meta name="viewport" content="width=device-width, initial-scale=1,maximun-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1,maximun-scale=1">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-<link rel="stylesheet" type="text/css" href="../../js/jquery.mobile-1.4.3.css">
-<script type="text/javascript" src="../../js/jquery-1.11.1.js"></script>
-<link rel="stylesheet" href="../../themes/nuevarevolucion1.css"/>
-<link rel="stylesheet" href="../../themes/jquery.mobile.icons.min.css"/>
-<script type="text/javascript" src="../../js/jquery.mobile-1.4.3.js"></script>
+        <link rel="stylesheet" type="text/css" href="../../js/jquery.mobile-1.4.3.css">
+        <script type="text/javascript" src="../../js/jquery-1.11.1.js"></script>
+        <link rel="stylesheet" href="../../themes/nuevarevolucion1.css"/>
+        <link rel="stylesheet" href="../../themes/jquery.mobile.icons.min.css"/>
+        <script type="text/javascript" src="../../js/jquery.mobile-1.4.3.js"></script>
     </head>
     <body>
 
@@ -112,22 +112,23 @@ $id = $_GET['id'];
                         <tbody>
 
                             <tr class="alt">
-    <?php
-    $nametor = mysql_query("SELECT nombre,valor FROM `tr_amonestacionxequipo`,tb_amonestaciones WHERE id_equipo=$id and estado_amonestacion='1' and amonestacion=id_amonestacion  ")or die(mysql_error());
-    while ($tor = mysql_fetch_array($nametor)) {
-        ?>
+                                <?php
+                                $nametor = mysql_query("SELECT nombre,valor FROM `tr_amonestacionxequipo`,tb_amonestaciones WHERE id_equipo=$id and estado_amonestacion='1' and amonestacion=id_amonestacion  ")or die(mysql_error());
+                                while ($tor = mysql_fetch_array($nametor)) {
+                                    ?>
 
                                     <td> <?php echo $tor['nombre']; ?> </td>
                                     <td> <?php echo $tor['valor']; ?> </td>
                                 </tr>
-        <?php
-    }
-    ?>
+                                <?php
+                            }
+                            ?>
                         </tbody>
                     </table>
-                            <?php
-                        }
-                        ?>
+                    <?php
+                }
+                mysql_close($con);
+                ?>
 
             </div>
         </div>

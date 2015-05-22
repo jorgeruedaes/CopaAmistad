@@ -6,14 +6,14 @@ $id = $_GET['id'];
 
 <html>
     <head>
-<meta name="viewport" content="width=device-width, initial-scale=1,maximun-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1,maximun-scale=1">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-<link rel="stylesheet" type="text/css" href="../../js/jquery.mobile-1.4.3.css">
-<script type="text/javascript" src="../../js/jquery-1.11.1.js"></script>
-<link rel="stylesheet" href="../../themes/nuevarevolucion1.css"/>
-<link rel="stylesheet" href="../../themes/jquery.mobile.icons.min.css"/>
-<script type="text/javascript" src="../../js/jquery.mobile-1.4.3.js"></script>
+        <link rel="stylesheet" type="text/css" href="../../js/jquery.mobile-1.4.3.css">
+        <script type="text/javascript" src="../../js/jquery-1.11.1.js"></script>
+        <link rel="stylesheet" href="../../themes/nuevarevolucion1.css"/>
+        <link rel="stylesheet" href="../../themes/jquery.mobile.icons.min.css"/>
+        <script type="text/javascript" src="../../js/jquery.mobile-1.4.3.js"></script>
     </head>
 
     <body>
@@ -70,11 +70,11 @@ $id = $_GET['id'];
                                 <td> <?php echo $fe['nombre1'] . " " . $fe['apellido1']; ?> </td>
                                 <td> <?php echo $fe['fecha_nacimiento']; ?> </td>
                                 <td> <?php
-                            $tiempoahora = date_default_timezone_set('America/Bogota');
-                            $horanow = date("Y-m-d");
-                            $edadreal = $horanow - $fe['fecha_nacimiento'];
-                            if ($edadreal >= 40) {
-                                    ?>
+                                    $tiempoahora = date_default_timezone_set('America/Bogota');
+                                    $horanow = date("Y-m-d");
+                                    $edadreal = $horanow - $fe['fecha_nacimiento'];
+                                    if ($edadreal >= 40) {
+                                        ?>
                                         <img src="../../images/verde.png" whith="10px" heigth="10px" style="
                                              width: 15px;">
                                              <?php
@@ -101,6 +101,7 @@ $id = $_GET['id'];
                             </tr>
                             <?php
                         }
+                        mysql_close($con);
                         ?>
                     </tbody>
                 </table>
