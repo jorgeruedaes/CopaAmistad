@@ -11,7 +11,7 @@ include('RutinaDeLogue.php');
         
         header("location:modulousuariostutorneo.php");
     } elseif ($_SESSION['tipo_usuario'] == 3) {
-        header("location:moduloplanillero.php");
+        header("location:../Usuarios/Planilleros/moduloplanilla.php");
         $pruebadeinicio = 3;
     } else {
         echo "Usted no está autorizado para ingresar";

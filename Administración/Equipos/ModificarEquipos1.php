@@ -5,7 +5,7 @@ session_start();
 include('../../conexion.php');  
 include('../Encabezado.html');
 include('../RutinaDeLogueo.php');
-if (i$pruebadeinicio==1 or $pruebadeinicio==2){
+if ($pruebadeinicio==1 or $pruebadeinicio==2){
 
 $letras=$_SESSION['admin'];
 $numeros=mysql_query("select * from tb_torneo where usuario='$letras'")or die(mysql_error());

@@ -39,6 +39,11 @@ date_default_timezone_set('America/Bogota');
                    margin-bottom: 10px;"
                    href="Usuarios/Menú_Lateral/Acercade.php" data-icon="info"  data-transition="Flip"><img src="images/icons-png/gear-white.png" style="margin-right: 10%;">
                     Acerca de<img src="images/icons-png/carat-r-white.png" style="margin-left: 43%;"></a>
+                    <a style="text-decoration: initial;color: white;font-weight: 400;font-size:smaller; margin-top: 10px;
+                   margin-bottom: 10px;"
+                   href="Usuarios/Planilleros/logueo.php" data-icon="info"  data-transition="Flip"><img src="images/icons-png/gear-white.png" style="margin-right: 10%;">
+                    Planilla<img src="images/icons-png/carat-r-white.png" style="margin-left: 43%;"></a>
+                    
                 </p>
             </div>
 
@@ -46,7 +51,7 @@ date_default_timezone_set('America/Bogota');
                 <a href="#panel4" style="
                    background-color: #8cc63f;
                    border-color: #8cc63f;
-                   " class="ui-btn ui-btn-inline ui-corner-all ui-shadow" ><img src="images/icons-png/panel.png"></a>
+                   " class="ui-btn ui-btn-inline ui-corner-all ui-shadow" ><img src="images/icons-png/bars-white.png"></a>
                 <h1 style="height: 2%;margin: auto;">Copa Amistad Profesional</h1>
                 <div id="iconos" style="height: 8%;">
                     <center> 

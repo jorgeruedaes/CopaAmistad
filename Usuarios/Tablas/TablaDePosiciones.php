@@ -172,14 +172,14 @@ while ($identificaciones = mysql_fetch_array($equiposquehanjugado)) {
 // Ordenar matriz
                         $eliminaciondeinfoanterio = mysql_query("DELETE FROM te_posiciones");
 
-                        for ($i = 0; $i < $numerodeequiposparaeltamañodelamatriz; $i++) {
-                            $matriz[$i]['8'] = $matriz[$i]['6'] + $matriz[$i]['7'] + $matriz[$i]['5'];
-                            $matriz[$i]['9'] = $matriz[$i]['3'] - $matriz[$i]['4'];
-                            $matriz[$i]['10'] = $i + 1;
+for ($i = 0; $i < $numerodeequiposparaeltamañodelamatriz; $i++) {
+
+    $matriz[$i]['8'] = $matriz[$i]['6'] + $matriz[$i]['7'] + $matriz[$i]['5'];
+    $matriz[$i]['9'] = $matriz[$i]['3'] - $matriz[$i]['4'];
+    $matriz[$i]['10'] = $i + 1;
 
                             $variable1 = $matriz[$i]['1'];  // nombre equipo
                             $variable2 = (($matriz[$i]['6'] * 2) + $matriz[$i]['7']);  // puntos
-
                             $variable3 = $matriz[$i]['8'];  // partidos jugados
                             $variable4 = $matriz[$i]['6'];  // partidos ganados
                             $variable5 = $matriz[$i]['7'];  // empates
@@ -187,6 +187,18 @@ while ($identificaciones = mysql_fetch_array($equiposquehanjugado)) {
                             $variable7 = $matriz[$i]['3'];  // goles a favor
                             $variable8 = $matriz[$i]['4'];  // goles en contra
                             $variable9 = $matriz[$i]['9'];  // diferencia de Gol
+    if($matriz[$i]['0']==18 or $matriz[$i]['0']==20){
+        if($matriz[$i]['0']==18){
+$variable4=$variable4+1;
+$variable5=$variable5-1;
+ $variable2= $variable2+1;
+
+        }else{
+             $variable2= $variable2-1;
+             $variable5=$variable5-1;
+             $variable6=$variable6+1;
+        }
+    }
 
                             mysql_query("INSERT INTO `te_posiciones`(`equipo`, `puntos`, `pj`, `pg`, `pe`, `pp`, `gf`, `gc`, `dg`)
   VALUES ('$variable1','$variable2','$variable3','$variable4','$variable5','$variable6','$variable7','$variable8','$variable9');")or die(mysql_error());

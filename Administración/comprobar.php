@@ -44,7 +44,7 @@ header("location:modulousuariostutorneo.php");
       $_SESSION['identificacion']=$var['torneo'];
       $_SESSION['tipo_usuario']=$var['tipo'];
       $_SESSION['torneo']=$var['torneo'];
-header("location:moduloplanillero.php");
+header("location:../Usuarios/Planilleros/moduloplanilla.php");
 
         	}
 
