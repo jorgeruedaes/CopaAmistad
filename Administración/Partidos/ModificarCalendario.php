@@ -45,7 +45,7 @@ $name=$caracteres['id_torneo'];
 <body>
 
 
-<br><br>
+    <br><br><br><br><br>
 <center><div class="title"><h2>Listado de partidos</h2></div></center>
 <br>
   

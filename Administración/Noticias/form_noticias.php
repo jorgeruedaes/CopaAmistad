@@ -46,7 +46,7 @@ $name=$caracteres['id_torneo'];
   
 
 <br><br>
-
+<br><br><br>
 
 <link rel="stylesheet" href="../../Formularios/formoid1_files/formoid1/formoid-flat-black.css" type="text/css" />
 <script type="text/javascript" src="../../Formularios/formoid1_files/formoid1/jquery.min.js"></script>

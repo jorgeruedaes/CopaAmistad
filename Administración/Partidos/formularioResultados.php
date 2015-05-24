@@ -38,7 +38,7 @@ if ($pruebadeinicio==1 or $pruebadeinicio==2) {
         </style>
         <body>
 
-            <br><br>
+            <br><br><br><br><br>
 
 
         <link rel="stylesheet" href="../../Formularios/formoid5_files/formoid1/formoid-solid-dark.css" type="text/css" />

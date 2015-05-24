@@ -38,7 +38,7 @@ if (isset($_SESSION['admin'])) {
         </style>
         <body>
 
-            <br><br>
+            <br><br><br><br><br>
         <link rel="stylesheet" href="../../Formularios/formoid5_files/formoid1/formoid-solid-dark.css" type="text/css" />
         <script type="text/javascript" src="../../Formularios/formoid5_files/formoid1/jquery.min.js"></script>
 

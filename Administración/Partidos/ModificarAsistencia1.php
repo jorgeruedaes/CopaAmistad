@@ -38,7 +38,7 @@ $name=$caracteres['id_torneo'];
 </style>
 <body>
 
-<br><br>
+    <br><br><br><br><br>
 <?php
 if (isset($_POST['buscar'])) {
 	$partido=$_POST['partido1'];

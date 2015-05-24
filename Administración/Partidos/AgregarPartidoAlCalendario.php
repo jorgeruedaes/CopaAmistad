@@ -39,7 +39,7 @@ if ($pruebadeinicio==1 or $pruebadeinicio==2) {
 <body>
   
   
-<br><br>
+    <br><br><br><br><br>
 <link rel="stylesheet" href="../../Formularios/formoid9_files/formoid1/formoid-flat-black.css" type="text/css" />
 <script type="text/javascript" src="../../Formularios/formoid9_files/formoid1/jquery.min.js"></script>
 <script type="text/javascript" src="../../Formularios/formoid9_files/formoid1/formoid-flat-black.js"></script>

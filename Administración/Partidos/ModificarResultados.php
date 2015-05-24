@@ -45,7 +45,7 @@ $name=$caracteres['id_torneo'];
 </style>
 <body>
   
- <br><br>
+    <br><br><br><br><br>
 <script type="text/javascript" src="../../Formularios/formoid15_files/formoid1/jquery.min.js"></script>
 <form class="formoid-flat-black" style="background-color:#FFFFFF;font-size:14px;font-family:'Lato', sans-serif;color:#666666;max-width:480px;min-width:150px" method="post"><center><div class="title"><h2>Selecciona la fecha:</h2></div></center>
 <br><center>

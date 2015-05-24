@@ -71,7 +71,7 @@ $nombreequipo1=$res2['nombre_equipo'];
 $nombreequipo2=$res3['nombre_equipo'];
 
 ?>
-
+<br><br><br><br>
 
 <form  id="principal" action="ModificarResultados2.php"
  class="formoid-solid-dark" style="background-color:#FFFFFF;font-size:14px;font-family:'Roboto',

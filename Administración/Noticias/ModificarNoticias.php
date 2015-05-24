@@ -42,7 +42,7 @@ if ($pruebadeinicio==1 or $pruebadeinicio==2) {
         </style>
         <body>
 
-            <br><br>
+            <br><br><br><br><br>
             <form action="buscar_noticia.php" method="POST">
 
                 <b><label style="margin-left:130px">Búsqueda por fecha:</label><b>

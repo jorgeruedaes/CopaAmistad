@@ -46,7 +46,7 @@ $imagen= $mostrada['imagen'];
 <body>
 
 
-<br><br>
+    <br><br><br><br><br>
 
 <link rel="stylesheet" href="../../Formularios/formoid7_files/formoid1/formoid-flat-black.css" type="text/css" />
 <script type="text/javascript" src="../../Formularios/formoid7_files/formoid1/jquery.min.js"></script>

@@ -45,7 +45,7 @@ $name=$caracteres['id_torneo'];
 <body>
   
 
-<br><br>
+    <br><br><br><br><br>
 <form action="ModificarAsistencia0.php"class="formoid-flat-black" style="background-color:#FFFFFF;font-size:14px;font-family:'Lato', sans-serif;color:#666666;max-width:480px;min-width:150px" method="post">
 
 <center>  <div class="title"><h2>Seleccione el equipo:</h2></div></center>

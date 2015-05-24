@@ -43,7 +43,7 @@ $name=$caracteres['id_torneo'];
 <body>
   
   
-<br><br>
+    <br><br><br><br><br>
 
 
 <?php

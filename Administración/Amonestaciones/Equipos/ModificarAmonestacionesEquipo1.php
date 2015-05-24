@@ -3,7 +3,7 @@
 <?php 
 session_start();
 include('../../../conexion.php');  
-include('../Encabezado.html');
+include('../../EncabezadoEspecial.html');
 include('../../RutinaDeLogueo.php');
 if ($pruebadeinicio==1 or $pruebadeinicio==2) {
 
@@ -48,7 +48,7 @@ $name=$caracteres['id_torneo'];
 </style>
 <body>
   
-<br><br>
+    <br><br><br><br><br>
 <?php
 
  $equipo = $_POST['equipo'];

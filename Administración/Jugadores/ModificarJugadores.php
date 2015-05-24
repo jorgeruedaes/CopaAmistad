@@ -43,7 +43,7 @@ $name=$caracteres['id_torneo'];
 <body>
   
  <br><br>
-
+ <br><br><br>
 <link rel="stylesheet" href="../../Formularios/formoid10_files/formoid1/formoid-flat-black.css" type="text/css" />
 <script type="text/javascript" src="../../Formularios/formoid10_files/formoid1/jquery.min.js"></script>
 <form action="ModificarJugadores0.php"class="formoid-flat-black" style="background-color:#FFFFFF;font-size:14px;font-family:'Lato', sans-serif;color:#666666;max-width:480px;min-width:150px" method="post">

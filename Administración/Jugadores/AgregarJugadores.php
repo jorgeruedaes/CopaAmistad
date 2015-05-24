@@ -41,7 +41,7 @@ if ($pruebadeinicio==1 or $pruebadeinicio==2 or $pruebadeinicio==4) {
         </style>
         <body>
             
-                <br><br><br>
+            <br><br><br><br><br>
 
         <link rel="stylesheet" href="../../Formularios/formoid9_files/formoid1/formoid-flat-black.css" type="text/css" />
                 <script type="text/javascript" src="../../Formularios/formoid9_files/formoid1/jquery.min.js"></script>

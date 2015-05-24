@@ -44,7 +44,7 @@ $name=$caracteres['id_torneo'];
 </style>
 <body>
  
-
+    <br><br><br><br>
 <link rel="stylesheet" href="../../Formularios/formoid3_files/formoid1/formoid-flat-black.css" type="text/css" />
 <script type="text/javascript" src="../../Formularios/formoid3_files/formoid1/jquery.min.js"></script>
 <center><div class="title"><h2>Listado de equipos</h2></div></center>

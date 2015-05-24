@@ -3,7 +3,7 @@
 <?php 
 session_start();
 include('../../../conexion.php');  
-include('../../Encabezado.html');
+include('../../EncabezadoEspecial.html');
 include('../../RutinaDeLogueo.php');
 if ($pruebadeinicio==1 or $pruebadeinicio==2) {
 
@@ -45,7 +45,7 @@ $name=$caracteres['id_torneo'];
 <body>
   
  
-<br><br>
+    <br><br><br><br><br>
 
 <link rel="stylesheet" href="../../../Formularios/formoid13_files/formoid1/formoid-flat-black.css" type="text/css" />
 <script type="text/javascript" src="../../../Formularios/formoid13_files/formoid1/jquery.min.js"></script>

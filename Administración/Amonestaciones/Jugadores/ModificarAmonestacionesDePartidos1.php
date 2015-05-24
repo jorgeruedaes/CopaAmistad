@@ -3,7 +3,7 @@
 <?php 
 session_start();
 include('../../../conexion.php'); 
-include('../../Encabezado.html');
+include('../../EncabezadoEspecial.html');
 include('../../RutinaDeLogueo.php');
 if ($pruebadeinicio==1 or $pruebadeinicio==2) {
 
@@ -39,7 +39,7 @@ $name=$caracteres['id_torneo'];
 <body>
   
 
-  <br><br>
+    <br><br<br><br><br><br>
 <?php
 if (isset($_POST['buscar'])) {
   $partido=$_POST['partido1'];
@@ -58,6 +58,7 @@ $nombredelequipo=$nombredelquipo['nombre_equipo'];
     font: message-box;
     font-weight: 700;
 "><?php echo $nombredelequipo ?></span></center>
+<br>
 <form  id="principal" action="validadorModificarAmonestacionesPartido.php" 
  class="formoid-solid-dark" style="background-color:#FFFFFF;font-size:14px;font-family:'Roboto',
  Arial,Helvetica,sans-serif;color:#34495E;max-width:800px;min-width:150px" method="POST">

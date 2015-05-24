@@ -6,7 +6,7 @@
  */
 session_start();
 include('../../../conexion.php');
-include('../../Encabezado.html');
+include('../../EncabezadoEspecial.html');
 include('../../RutinaDeLogueo.php');
 if ($pruebadeinicio==1 or $pruebadeinicio==2) {
 
