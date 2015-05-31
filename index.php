@@ -51,11 +51,12 @@ date_default_timezone_set('America/Bogota');
                 <a href="#panel4" style="
                    background-color: #8cc63f;
                    border-color: #8cc63f;
-                   " class="ui-btn ui-btn-inline ui-corner-all ui-shadow" ><img src="images/icons-png/bars-white.png"></a>
+                   " class="ui-btn ui-btn-inline ui-corner-all ui-shadow" ><img src="images/icons-png/bars-black.png"></a>
                 <h1 style="height: 2%;margin: auto;">Copa Amistad Profesional</h1>
                 <div id="iconos" style="height: 8%;">
                     <center> 
-                        <span><a href="index.php"><img style="margin-right: 8%;margin-left: 15%;" src="images/icons-png/calendario.png"></a></span>
+                        <span><a href="Usuarios/Finales/Cuadro.php"  ><img style="width: 30px;margin-right: 8%;margin-left: 13%;" src="images/icons-png/star.png"></a></span>
+                       <span><a href="index.php"><img style="margin-right: 8%;" src="images/icons-png/calendario.png"></a></span>
                         <span><a href="Usuarios/Tablas/TablaDePosiciones.php"  ><img style="margin-right: 8%;" src="images/icons-png/posiciones.png"></a></span>
                         <span><a href="Usuarios/Tablas/TablaDeGoleadores.php"  ><img style="margin-right: 8%;" src="images/icons-png/goleadores.png"></a></span>
                         <span><a href="Usuarios/Mi_Equipo/Miequipo.php"  ><img style="margin-right: 8%;" src="images/icons-png/miequipo.png"></a></span>
@@ -79,7 +80,7 @@ date_default_timezone_set('America/Bogota');
                       Se crea otro parametro para la fecha inicial de mostrar los resultados acontinuacion
                      */
                     $primerafecha2 = date("Y-m-d");
-                    $nuevafecha2 = strtotime('-5 day', strtotime($primerafecha2));
+                    $nuevafecha2 = strtotime('-4 day', strtotime($primerafecha2));
                     $primerafecha2 = date('Y-m-j', $nuevafecha2);
                     /*
                       Se crea otro parametro para la fecha final de mostrar los resultados acontinuacion
