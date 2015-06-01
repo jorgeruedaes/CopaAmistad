@@ -13,7 +13,7 @@ if(!isset($_SESSION['admin']))
    { 
      session_destroy();
        //echo "Has cerrado la sesion";
-echo "<meta content='0;URL=iniciox.php' http-equiv='REFRESH'> </meta>";
+header("location:../index.php");
        
    }
 

@@ -3,6 +3,8 @@
 session_start();
 date_default_timezone_set('America/Bogota');
 include('../../conexion.php');
+include('../../Administración/RutinaDeLogueo.php');
+if($pruebadeinicio==1 or $pruebadeinicio==2 or $pruebadeinicio==3){
       $lafechadehoy = date("Y-m-d");
 	?>
 	<html>
@@ -42,7 +44,7 @@ include('../../conexion.php');
                      * ************INICIO PARTIDOS POR EMPEZAR*************************************************
                      * ******************************************************************************************
                      */
-                      $nametor = mysql_query("SELECT * FROM tb_partidos WHERE fecha='2015-05-18'  AND Estado='1'  ORDER BY fecha desc,hora desc")or die(mysql_error());
+                      $nametor = mysql_query("SELECT * FROM tb_partidos WHERE fecha='$lafechadehoy'  AND Estado='1'  ORDER BY fecha desc,hora desc")or die(mysql_error());
                     while ($tor = mysql_fetch_array($nametor)) {
                         ?>
 
@@ -66,9 +68,9 @@ include('../../conexion.php');
                                 </table>
                             </h1>
                             <p>
-<a  style="font-size: small;  background-color: rgb(50, 192, 63);text-shadow: none;" id="pop" href="#popupDialog" data-rel="popup" data-position-to="window" data-transition="pop" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-check ui-btn-icon-right ui-btn-b">Activar</a>
+<a  style="color:white;font-size: small;  background-color:#34495E;text-shadow: none;" id="pop" href="#popupDialog" data-rel="popup" data-position-to="window" data-transition="pop" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-check ui-btn-icon-right ui-btn-b">Activar</a>
 <div  class="activar" data-role="popup" id="popupDialog" data-dismissible="false" style="max-width:400px;">
-    <div data-role="header" data-theme="a">
+    <div >
     <h1></h1>
     </div>
     <div role="main" class="ui-content">
@@ -91,7 +93,7 @@ include('../../conexion.php');
                  <div align="center" data-role="list-divider" style="color: black;height: 30px;margin-top: 3px;padding-top: 5px; font-family: sans-serif;
                      font-weight: 700;" >Partidos Jugandose</div>
                      <?php
-                      $nametor = mysql_query("SELECT * FROM tb_partidos WHERE fecha='2015-05-18'  AND Estado='5'  ORDER BY fecha desc,hora desc")or die(mysql_error());
+                      $nametor = mysql_query("SELECT * FROM tb_partidos WHERE fecha='$lafechadehoy'   AND Estado='5'  ORDER BY fecha desc,hora desc")or die(mysql_error());
                     while ($tor = mysql_fetch_array($nametor)) {
                         ?>
 
@@ -114,37 +116,33 @@ include('../../conexion.php');
 
                                 </table>
                             </h1>
-                   <p>
-                       
-<a data-partido="<?php echo $tor['id_partido'];?>" href="EditarMarcador.php?id=<?php echo $tor['id_partido'];?>" style="-webkit-border-radius: 200px; font-size: small;background-color: lightblue;text-shadow: none;" data-inline="true" data-mini="true" data-role="button" data-iconpos="right" data-icon="gear">Editar</a>
+                            <p>
+
+<a data-partido="<?php echo $tor['id_partido'];?>" href="EditarMarcador.php?id=<?php echo $tor['id_partido'];?>" style="-webkit-border-radius: 200px; font-size: small;background-color: #ECF0F1;text-shadow: none;" data-inline="true" data-mini="true" data-role="button" data-iconpos="right" data-icon="gear">Editar</a>
 <!--- INFORMAR -->
-<a style="   -webkit-border-radius: 200px; font-size: small;text-shadow: none;background-color: rgb(245, 253, 95);" href="#popupLogin" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-check ui-btn-icon-left ui-btn-a" data-transition="pop">Informar</a>
+<a style="   -webkit-border-radius: 200px; font-size: small;text-shadow: none;background-color: #34495E;color:white;" href="#popupLogin" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-check ui-btn-icon-left ui-btn-a" data-transition="pop">Informar</a>
 <div data-role="popup" id="popupLogin" data-theme="a" class="ui-corner-all">
     <form>
         <div style="padding:10px 20px;">
-            <h3>Por favor seleccione el nuevo estado</h3>
+            <h3>Por favor seleccione el nuevo estado:</h3>
            <select name="select1" id="select-custom-1" data-native-menu="false">
         <option value="3">Aplazado</option>
         <option value="4">Suspendido</option>
+        <option value="2">Terminado</option>
     </select>
-            <button  data-partido="<?php echo $tor['id_partido'];?>" style="  background-color: rgb(50, 192, 63);" type="submit" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-icon-right ui-icon-check aceptarinformar">Aceptar</button>
+    <center>
+            <button  data-partido="<?php echo $tor['id_partido'];?>" style="  background-color: #34495E;
+  width: 100px;
+  font-size: small;
+  color: white;
+  text-shadow: none;" type="submit"
+              class="ui-btn ui-corner-all ui-shadow 
+              ui-btn-b ui-btn-icon-right ui-icon-check aceptarinformar">Aceptar</button>
+        </center>
         </div>
     </form>
-</div>
-
-
-
-<!-- TERMINAR -->
-<a   style=" -webkit-border-radius: 200px; font-size: small;background-color: #F05B56;font-style: none;text-shadow: none;" id="pop" href="#popupDialog1" data-rel="popup" data-position-to="window" data-transition="pop" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-check ui-btn-icon-right ui-btn-b">Terminar</a>
-<div class="terminar" data-role="popup" id="popupDialog1" data-dismissible="false" style="max-width:400px;">
-    <div role="main" class="ui-content">
-        <h3 class="ui-title">¿Desea terminar el partido?</h3>
-        <a   class="cancelarterminar ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b" data-rel="back">Cancelar</a>
-        <a  data-partido="<?php echo $tor['id_partido'];  ?>" class="aceptarterminar ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b" data-rel="back" data-transition="flow">Aceptar</a>
-    </div>
-</div>
-               
-                   
+</div>           
+       </p>            
   </div>
   <?php
 }
@@ -158,7 +156,7 @@ include('../../conexion.php');
                  <div align="center" data-role="list-divider" style="color: black;height: 30px;margin-top: 3px;padding-top: 5px; font-family: sans-serif;
                      font-weight: 700;" >Partidos Terminados</div>
                      <?php
-                      $nametor = mysql_query("SELECT * FROM tb_partidos WHERE fecha='2015-05-18'  AND Estado='2'  ORDER BY fecha desc,hora desc")or die(mysql_error());
+                      $nametor = mysql_query("SELECT * FROM tb_partidos WHERE fecha='$lafechadehoy'  AND Estado='2'  ORDER BY fecha desc,hora desc")or die(mysql_error());
                     while ($tor = mysql_fetch_array($nametor)) {
                         ?>
 
@@ -298,3 +296,17 @@ $('.aceptarinformar').off('click').on('click',function(){
  app.Eventos();
 });
 </script>
+<?php
+}else{
+  ?>
+<!-- CUANDO EL PERSONAJE NO ESTA AUTORIZADO PARA EL INGRESO-->
+<br><br>
+<center>
+    <div>
+        <label>Lo sentimos pero usted no tiene autorización para estar en este lugar.</label>
+    </div>
+</center>
+<center><button  type="submit" ><a href="../../index.php">Volver</a></button></center>
+<?php
+}
+?>

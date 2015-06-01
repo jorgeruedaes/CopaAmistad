@@ -37,12 +37,16 @@ date_default_timezone_set('America/Bogota');
                 <br><br>
                 <a style="text-decoration: initial;color: white;font-weight: 400;font-size:smaller; margin-top: 10px;
                    margin-bottom: 10px;"
-                   href="Usuarios/Menú_Lateral/Acercade.php" data-icon="info"  data-transition="Flip"><img src="images/icons-png/gear-white.png" style="margin-right: 10%;">
+                   href="Usuarios/Menú_Lateral/Acercade.php" data-icon="info"  data-transition="Flip">
+                    <img src="images/icons-png/gear-white.png" style="margin-right: 10%;">
                     Acerca de<img src="images/icons-png/carat-r-white.png" style="margin-left: 43%;"></a>
-                    <a style="text-decoration: initial;color: white;font-weight: 400;font-size:smaller; margin-top: 10px;
-                   margin-bottom: 10px;"
-                   href="Usuarios/Planilleros/logueo.php" data-icon="info"  data-transition="Flip"><img src="images/icons-png/gear-white.png" style="margin-right: 10%;">
-                    Planilla<img src="images/icons-png/carat-r-white.png" style="margin-left: 43%;"></a>
+                    <br><br>
+                    <a style=" text-decoration: initial;color: white;font-weight:
+                     400;font-size:smaller; margin-top: 10px;
+                   margin-bottom: 10px; "
+                   href="Usuarios/Planilleros/logueo.php" data-icon="info"  data-transition="Flip">
+                   <img style="  margin-right: 25px;width:15px;"src="images/icons-png/planillero.png" style="margin-right: 15%;">
+                    Planilla<img src="images/icons-png/carat-r-white.png" style="margin-left: 50%;"></a>
                     
                 </p>
             </div>
@@ -55,11 +59,11 @@ date_default_timezone_set('America/Bogota');
                 <h1 style="height: 2%;margin: auto;">Copa Amistad Profesional</h1>
                 <div id="iconos" style="height: 8%;">
                     <center> 
-                        <span><a href="Usuarios/Finales/Cuadro.php"  ><img style="width: 30px;margin-right: 8%;margin-left: 13%;" src="images/icons-png/star.png"></a></span>
-                       <span><a href="index.php"><img style="margin-right: 8%;" src="images/icons-png/calendario.png"></a></span>
-                        <span><a href="Usuarios/Tablas/TablaDePosiciones.php"  ><img style="margin-right: 8%;" src="images/icons-png/posiciones.png"></a></span>
-                        <span><a href="Usuarios/Tablas/TablaDeGoleadores.php"  ><img style="margin-right: 8%;" src="images/icons-png/goleadores.png"></a></span>
-                        <span><a href="Usuarios/Mi_Equipo/Miequipo.php"  ><img style="margin-right: 8%;" src="images/icons-png/miequipo.png"></a></span>
+                        <span><a href="Usuarios/Finales/Cuadro.php"  ><img style="width: 30px;margin-right: 8%;margin-left: 7%;" src="images/icons-png/star.png"></a></span>
+                       <span><a href="index.php"><img style="width: 30px;margin-right: 8%;" src="images/icons-png/calendario.png"></a></span>
+                        <span><a href="Usuarios/Tablas/TablaDePosiciones.php"  ><img style="width: 30px;margin-right: 8%;" src="images/icons-png/posiciones.png"></a></span>
+                        <span><a href="Usuarios/Tablas/TablaDeGoleadores.php"  ><img style="width: 30px;margin-right: 8%;" src="images/icons-png/goleadores.png"></a></span>
+                        <span><a href="Usuarios/Mi_Equipo/Miequipo.php"  ><img style="width: 30px;margin-right: 8%;" src="images/icons-png/miequipo.png"></a></span>
                     </center>
                 </div>
             </div>
