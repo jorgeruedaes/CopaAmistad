@@ -13,7 +13,7 @@ if(!isset($_SESSION['admin']))
    { 
      session_destroy();
        //echo "Has cerrado la sesion";
-header("location:../index.php");
+header("location:../Administración/iniciox.php");
        
    }
 

@@ -51,14 +51,14 @@ header("location:../Usuarios/Planilleros/moduloplanilla.php");
 }else{
 
 echo "<script language='JavaScript' type='text/javascript'>
-alert('Usuario y/o contraseña incorrectos, intenta de nuevo!');
+alert('Usuario y/o contraseña incorrectos, intenta de nuevo.');
   $(location).attr('href','iniciox.php'); 
 </script>";
 
 }
 }
 echo "<script language='JavaScript' type='text/javascript'>
-alert('Usuario y/o contraseña incorrectos, intenta de nuevo!');
+alert('Usuario y/o contraseña incorrectos, intenta de nuevo.');
   $(location).attr('href','iniciox.php'); 
 </script>";
 

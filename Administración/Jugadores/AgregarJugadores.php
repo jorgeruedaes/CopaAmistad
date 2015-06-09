@@ -1,11 +1,10 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <?php
 session_start();
 include('../../conexion.php');
-include('../Encabezado.html');
 include('../RutinaDeLogueo.php');
-if ($pruebadeinicio==1 or $pruebadeinicio==2 or $pruebadeinicio==4) {
+
+if ($pruebadeinicio == 1 or $pruebadeinicio == 2 or $pruebadeinicio == 4) {
 
     $letras = $_SESSION['admin'];
     $numeros = mysql_query("SELECT * from tb_torneo where usuario='$letras'")or die(mysql_error());
@@ -13,146 +12,214 @@ if ($pruebadeinicio==1 or $pruebadeinicio==2 or $pruebadeinicio==4) {
     $name = $caracteres['id_torneo'];
     ?>
 
-    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
     <html xmlns="http://www.w3.org/1999/xhtml">
         <head>
             <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-            <title>Copa Amistad Profesional modulo de Administracion</title>
+            <title>Módulo Admin</title>
             <link rel="stylesheet" href="../../css/styler.css" type="text/css" media="all" />
-        </head>
-        <style type="text/css">
-            #bienvenido{
+            <script type="text/javascript" src="../../js/jquery-1.3.2.min.js"></script>
+            <link rel="stylesheet" href="../../bootstrap/css/bootstrap.css">
+                    <link rel="stylesheet" href="../../bootstrap/css/bootstrap-theme.css">
+                        <script src="../../bootstrap/js/bootstrap.min.js"></script>
+                        </head>
+                        <style type="text/css">
+                            #bienvenido{
 
-                width: auto;
-                margin-left: 0px;
-                margin-right: 15px;
-                margin-top: 0px;
-                float: right;
-                color: black;
+                                width: auto;
+                                margin-left: 0px;
+                                margin-right: 15px;
+                                margin-top: 0px;
+                                float: right;
+                                color: black;
 
-            }
-            .cerrar{
+                            }
+                            .cerrar{
 
-                color: #000000;
-                float: right;
-                clear: right;
-                padding-right:  15px;
-            }
-        </style>
-        <body>
-            
-            <br><br><br><br><br>
+                                color: #000000;
+                                float: right;
+                                clear: right;
+                                padding-right:  15px;
+                            }
+                            .contenido{
 
-        <link rel="stylesheet" href="../../Formularios/formoid9_files/formoid1/formoid-flat-black.css" type="text/css" />
-                <script type="text/javascript" src="../../Formularios/formoid9_files/formoid1/jquery.min.js"></script>
-                <script type="text/javascript" src="../../Formularios/formoid9_files/formoid1/formoid-flat-black.js"></script>
-                <form action="AgregarJugadores.php"enctype="multipart/form-data" class="formoid-flat-black" style="background-color:#FFFFFF;font-size:14px;font-family:'Lato', sans-serif;color:#666666;max-width:500px;min-width:150px" method="post">
-                    <div class="title"><h2>Nuevo jugador</h2></div>
-                    <div class="element-input"><label class="title">Primer nombre:</label><input class="medium" type="text" name="primernombre" required/></div>
-                    <div class="element-input"><label class="title">Segundo nombre:</label><input class="medium" type="text" name="segundonombre" /></div>
-                    <div class="element-input"><label class="title">Primer apellido:</label><input class="large" type="text" name="primerapellido" required/></div>
-                    <div class="element-input"><label class="title">Segundo apellido:</label><input class="large" type="text" name="segundoapellido" /></div>
-                    <div class="element-date"><label class="title">Fecha de nacimiento:</label><input class="large" data-format="yyyy-mm-dd" type="date" name="fecha_nacimiento" placeholder="yyyy-mm-dd" required/></div>
-                    <div class="element-email"><label class="title">E-mail:</label><input class="large" type="email" name="email" value="" /></div>
-                    <div class="element-phone"><label class="title">Télefono/celular:</label><input class="medium" type="tel" pattern="[+]?[\.\s\-\(\)\*\#0-9]{3,}" maxlength="24" name="telefono"  value="" required/></div>
-                    <div ><label >Profesión:</label><div ><span><select name="profesion" >
+                                /*width: 1000px;*/
+                                margin: 0 auto;
+                            }
+                        </style>
+                        <body>
 
-                                    <?php
-                                    $profesiones = mysql_query("SELECT * from tb_profesiones ORDER BY nombre asc");
-                                    while ($listaprofesiones = mysql_fetch_array($profesiones)) {
-                                        ?>
-                                        <option  value="<?php echo $listaprofesiones['id_profesion']; ?>" ><?php echo $listaprofesiones['nombre']; ?>
-                                        </option>
+                            <div class="contenido">
+                                <?php include('../Encabezado.html'); ?>
+                                <div class="row">
+                                    <div class="col-md-10 col-md-offset-1">
+                                        <form method="post"> 
+                                            <div class="row">
+                                                <div class="col-md-8 col-md-offset-2">
+                                                    <h2 style="color:#27AE60;">Nuevo jugador</h2><hr>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-8 col-md-offset-2"></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-4 col-md-offset-2"> 
+                                                    <label>Primer nombre:</label>
+                                                    <input type="text" class="form-control" name="nombre1" required>
+                                                </div>
+                                                <div class="col-md-4 "> 
+                                                    <label>Segundo nombre:</label>
+                                                    <input type="text" class="form-control" name="nombre2">
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-8 col-md-offset-2">
+                                                    <br>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-4 col-md-offset-2"> 
+                                                    <label>Primer apellido:</label>
+                                                    <input type="text" class="form-control" name="apellido1" required>
+
+                                                </div>
+                                                <div class="col-md-4"> 
+                                                    <label>Segundo apellido:</label>
+                                                    <input type="text" class="form-control" name="apellido2">
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-8 col-md-offset-2">
+                                                    <br>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-4 col-md-offset-2"> 
+                                                    <label>Télefono/celular:</label>
+                                                    <input type="tel" class="form-control" name="tel">
+                                                </div>
+                                                <div class="col-md-4 "> 
+                                                    <label>E-mail:</label>
+                                                    <input type="email" class="form-control" name="correo">
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-8 col-md-offset-2">
+                                                    <br>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-4 col-md-offset-2"> 
+                                                    <label>Fecha de nacimiento:</label>
+                                                    <input type="date" class="form-control" style="" id="exampleInputPassword1" name="fechanac" required>
+                                                </div>   
+
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-8 col-md-offset-2">
+                                                    <br>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-4 col-md-offset-2"> 
+                                                    <label>Fecha de inscripción:</label>
+                                                    <input type="date" data-format="yyyy-mm-dd" class="form-control" style="" id="exampleInputPassword1" name="fechainsc" required>
+                                                </div>   
+
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-8 col-md-offset-2">
+                                                    <br>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-4 col-md-offset-2"> 
+                                                    <label>Profesión:</label>
+
+                                                    <select class="form-control" style="" required="required" name="profesion">
+                                                        <option value="" selected></option>
+                                                        <?php
+                                                        $profesiones = mysql_query("SELECT * from tb_profesiones ORDER BY nombre asc");
+                                                        while ($listaprofesiones = mysql_fetch_array($profesiones)) {
+                                                            ?>
+                                                            <option value="<?php echo $listaprofesiones['id_profesion']; ?>"><?php echo $listaprofesiones['nombre']; ?> </option>
+
+                                                            <?php
+                                                        }
+                                                        ?>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-4"> 
+                                                    <label>Equipo:</label>
+                                                    <select class="form-control" style="" required="required" name="equipo">
+                                                        <option value="" selected></option>
+                                                        <?php
+                                                        $equipos = mysql_query("SELECT * from tb_equipos where torneo='1' ORDER BY nombre_equipo asc ");
+                                                        while ($listaequipos = mysql_fetch_array($equipos)) {
+                                                            ?>
+                                                            <option value="<?php echo $listaequipos['id_equipo']; ?>"><?php echo $listaequipos['nombre_equipo']; ?> </option>
+
+                                                            <?php
+                                                        }
+                                                        ?>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-8 col-md-offset-2">
+                                                    <br>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-8 col-md-offset-2 text-right"> 
+                                                    <button type="reset" class="btn btn-default">Limpiar</button>
+                                                    <button type="submit" name="enviar" class="btn btn-success">Enviar</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <br><br><br>
+                                        <script>
+                                        </script>
+                                        </body>
+                                        </html>
+
 
                                         <?php
                                     }
-                                    ?>
 
-                                </select></span></div></div>
-                    <div class="element-file"><label class="title">Foto:</label><label class="large" ><div class="button">Seleccionar archivo</div><input type="file" class="file_input" name="foto" /><div class="file_text">Ningún archivo seleccionado</div></label></div>
+                                    if (isset($_POST['enviar'])) {
 
-                    <div ><label >Equipo:</label><div ><span><select name="equipo">
 
-                                    <?php
-                                    $equipos = mysql_query("SELECT * from tb_equipos where torneo='1' ORDER BY nombre_equipo asc ");
-                                    while ($listaequipos = mysql_fetch_array($equipos)) {
-                                        ?>
-                                        <option value="<?php echo $listaequipos['id_equipo']; ?>" selected="selected"><?php echo $listaequipos['nombre_equipo']; ?> </option>
+                                        $primnom = $_POST["nombre1"];
+                                        $segnom = $_POST["nombre2"];
+                                        $primape = $_POST["apellido1"];
+                                        $segape = $_POST["apellido2"];
+                                        $tel = $_POST["tel"];
+                                        $correo = $_POST["correo"];
+                                        $fechanac = $_POST["fechanac"];
+                                        $fechainsc = $_POST["fechainsc"];
+                                        $profesion = $_POST["profesion"];
+                                        $equipo = $_POST["equipo"];
 
-                                        <?php
+
+                                        $guardarjugador = mysql_query("INSERT INTO tb_jugadores VALUES ('null','$primnom','$segnom','$primape','$segape','$fechanac',
+	'$correo','$equipo','" . 'xxx' . "','$fechainsc','1','$tel','$profesion')");
+
+                                        if ($guardarjugador === FALSE) {
+                                            alert("No se pudo agregar el jugador.");
+                                        } else {
+                                            ?>
+                                            <script>
+
+                                                alert("Jugador agregado.");
+
+                                            </script>
+
+                                            <?php
+                                        }
                                     }
                                     ?>
-                                </select><i></i></span></div></div>
-
-                    <div style="text-align:center" class="submit"><input type="submit" value="Crear" name="crear"/></div>
-                </form>
-
-        </body>
-    </html>
-
-
-    <?php
-}
-
-if (isset($_POST['crear'])) {
-
-    $primernombre = $_POST['primernombre'];
-    $segundonombre = $_POST['segundonombre'];
-    $primerapellido = $_POST['primerapellido'];
-    $segundoapellido = $_POST['segundoapellido'];
-    $fecha_nacimiento = $_POST['fecha_nacimiento'];
-    $correo = $_POST['email'];
-    date_default_timezone_set("America/Bogota");
-    $fecha = date('Y-m-d');
-    $telefono = $_POST['telefono'];
-    $profesion = $_POST['profesion'];
-    $ruta = "../Modificar/Imagenes";
-    $archivo = $_FILES['foto']['tmp_name'];
-    $nombreArchivo = $_FILES['foto']['name'];
-    move_uploaded_file($archivo, $ruta . "/" . $nombreArchivo);
-    $ruta = $ruta . "/" . $nombreArchivo;
-    $equipo = $_POST['equipo'];
-
-
-    $guardarjugador = mysql_query("INSERT INTO tb_jugadores VALUES ('null','$primernombre','$segundonombre','$primerapellido','$segundoapellido','$fecha_nacimiento',
-	'$correo','$equipo','" . $ruta . "','$fecha','1','$telefono','$profesion')");
-
-    if ($guardarjugador === FALSE) {
-        
-    } else {
-        ?>
-        <script>
-
-            alert("Jugador agregado!")
-
-        </script>
-
-        <?php
-    }
-}
-?>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+    

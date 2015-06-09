@@ -11,7 +11,7 @@ html{
 .formoid-flat-black>.title{
   margin: 8px;
 }
-.formoid-flat-black .error-field .required{
+/*.formoid-flat-black .error-field .required{
   color:#FF9999;
 }
 .formoid-flat-black .error-field input,
@@ -53,7 +53,7 @@ html{
   top: -2px;
   right: -21px;
   line-height: 20px;
-}
+}*/
 .formoid-flat-black .column{
   float:left; 
 }
@@ -170,7 +170,7 @@ Flat style
   font-style: normal;
 }
 .formoid-flat-black{
-  border: 2px solid #bdc3c7;
+  /*border: 2px solid #bdc3c7;*/
   font-size: 1em;
   line-height: 1.231;
   border-radius:6px;
@@ -189,6 +189,7 @@ Flat style
   color: #666;
   outline: none;
   font-size: 1.2em;
+  font:  oblique 120% sans-serif;
 }
 .formoid-flat-black>div{
   
@@ -243,11 +244,15 @@ Not advised to edit stuff below this line
   border-radius: 0 0 6px 6px;
 }
 .formoid-flat-black div.title{
-  background-color: #BCC3CA;
+  /*background-color: #BCC3CA;*/
   text-align: center;
 }
 .formoid-flat-black div.title h2{
-  color:#000;
+  color: #27AE60;
+  font: bold oblique 120% sans-serif bold;
+  font-size: 28px;
+  text-align: left;
+  padding-left: 20px;
  
 }
 
@@ -294,6 +299,7 @@ Not advised to edit stuff below this line
 
 .formoid-flat-black input[type=submit]:hover{
   text-decoration: none;
+  font: bold oblique 120% sans-serif;
 }
 .formoid-flat-black input[type=submit]:active{
 }
@@ -484,23 +490,20 @@ Not advised to edit stuff below this line
 .formoid-flat-black textarea,
 .formoid-flat-black .element-file .file_text,
 .formoid-flat-black select{
+   
   border-style: solid;
-  border-width: 2px;
-  border-color: #bdc3c7;
+  border-width: 1px;
+  border-color: #95A5A6;
   -webkit-transition: border-color 0.6s;
   transition: border-color 0.6s;
-  border-radius:6px;
-
+  border-radius: 5px;
   padding: 6px 10px;
-  
-  outline:none;
+  outline: none;
   -o-box-sizing: border-box;
   box-sizing: border-box;
-
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: normal;
-  
   font-size: 1em;
 }
 .formoid-flat-black .element-address input[type=text],
@@ -591,7 +594,7 @@ Not advised to edit stuff below this line
 }
 
 /* ERRORs */
-.formoid-flat-black .error,
+/*.formoid-flat-black .error,
 .formoid-flat-black .error #recaptcha_widget_div{
   background-color: #e74c3c;
   color: #fff;
@@ -600,12 +603,9 @@ Not advised to edit stuff below this line
   border: none;
   padding: 5px 20px 5px 20px;
   margin-left: 25px;
-}
-.tooltip {
-  position: relative;
-  margin-top: 4px;
-}
-.tooltip-arrow {
+}*/
+
+/*.tooltip-arrow {
   position: absolute;
   width: 0;
   height: 0;
@@ -618,7 +618,7 @@ Not advised to edit stuff below this line
   left: 20px;
   border-bottom-color: #e74c3c;
   border-width: 0 8px 8px;
-}
+}*/
 .alert {
   padding: 8px 35px 8px 14px;
   margin-bottom: 20px;
@@ -654,11 +654,11 @@ Not advised to edit stuff below this line
   color: #468847;
 }
 
-.alert-error {
+/*.alert-error {
   color: #b94a48;
   background-color: #f2dede;
   border-color: #eed3d7;
-}
+}*/
 
 .alert-info {
   color: #3a87ad;
@@ -1029,7 +1029,7 @@ bootstrap
 /* element-submit + element-text */
 .formoid-flat-black > .submit,
 .formoid-flat-black > .title {
-  background-color: #bcc3ca;
+  /*background-color: #bcc3ca;*/
 }
 .formoid-flat-black > .submit{
   background-color: #edeff1;
