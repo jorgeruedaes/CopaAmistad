@@ -19,7 +19,19 @@ if ($pruebadeinicio==1 or $pruebadeinicio==2) {
             <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
             <title>Copa Amistad Profesional modulo de Administracion</title>
             <link rel="stylesheet" href="../../css/styler.css" type="text/css" media="all" />
-            <!--[if lte IE 6]><link rel="stylesheet" href="css/ie6.css" type="text/css" media="all" /><![endif]-->
+  <script type="text/javascript" src="../../js/jquery-1.3.2.min.js"></script>
+            <!--<link rel="stylesheet" type="text/css" href="../../DataTables-1.10.7/media/css/jquery.dataTables.css">-->
+
+
+            <script type="text/javascript" charset="utf8" src="../../DataTables-1.10.7/media/js/jquery.js"></script>
+
+            <!-- DataTables -->
+            <script type="text/javascript" charset="utf8" src="../../DataTables-1.10.7/media/js/jquery.dataTables.js"></script>
+            <script type="text/javascript" charset="utf8" src="../../DataTables-1.10.7/media/js/dataTables.bootstrap.js"></script>
+            <link rel="stylesheet" href="../../bootstrap/css/bootstrap.css">
+            <link rel="stylesheet" href="../../bootstrap/css/bootstrap-theme.css">
+            <link rel="stylesheet" href="../../DataTables-1.10.7/media/css/dataTables.bootstrap.css">
+            <script src="../../bootstrap/js/bootstrap.min.js"></script>
         </head>
         <style type="text/css">
             #bienvenido{
@@ -41,54 +53,88 @@ if ($pruebadeinicio==1 or $pruebadeinicio==2) {
             }
         </style>
         <body>
+ <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2"><br></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2"><br></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            <table id="tablanoticias" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th>Título</th>
+                                        <th>Imagen</th>
+                                        <th>Descripción</th>
+                                        <th>Fecha creación</th>
+                                        <th>Opciones</th>
+                                        
+                                    </tr>
+                                </thead>
+                                <tbody>
 
-            <br><br><br><br><br>
-            <form action="buscar_noticia.php" method="POST">
-
-                <b><label style="margin-left:130px">Búsqueda por fecha:</label><b>
-                        <input type="date" name="fecha">
-                        &nbsp&nbsp
-                        <input style="width:60px;background-color:#E0FFFF;height:25px;border-radius:8px"type="submit" name="buscar" value="Buscar">
-                        </form>
-                        <center><div class="title"><h2>Noticias Recientes</h2></div></center>
-                        <?php
-                        $datos = mysql_query("select * FROM tb_noticias where torneo='1' ORDER BY fecha DESC");
-                        while ($noticias = mysql_fetch_array($datos)) {
-
-                            $imagen = $noticias['imagen'];
-                            $titulo = $noticias['titulo'];
-                            $texto = $noticias['texto'];
-                            $fecha = $noticias['fecha'];
-                            ?>
-
-
-
-                            <link rel="stylesheet" href="../../Formularios/formoid6_files/formoid1/formoid-flat-black.css" type="text/css" />
-                            <script type="text/javascript" src="../../Formularios/formoid6_files/formoid1/jquery.min.js"></script>
-                            <form action="editarnoticia.php"class="formoid-flat-black" style="height:150px;background-color:#FFFFFF;font-size:14px;font-family:'Lato', sans-serif;color:#666666;max-width:1100px;min-width:150px" method="post">
-
-                                <td><img style='margin-left:15px;margin-top:10px' src='../../<?php echo $imagen ?>' width='120' height='100'></td>
-
-                                <div style="float:right;margin-left:0;margin-right:0;margin-top:80px"><input type="submit" value="Editar noticia" name="editar"/>
-                                    <input type="submit" value="Eliminar noticia" name="eliminar"/>
-                                    <input type="hidden" name="idnoticia" id="idnoticia" value="<?php echo $noticias['id_noticias']; ?>">        
-
-                                </div>
-
-                                <div class="element-textarea" style="margin-left:0;float:right;width:500px"><label class="title"></label><textarea class="medium" name="textarea" cols="20" rows="5" readonly="readonly"><?php echo $titulo . "\n" . $fecha . "\n" . $texto; ?></textarea>
-
-        </div>
+                                    <?php
+                                    $consulta = mysql_query("SELECT * FROM tb_noticias");
 
 
-        </form>
-        <script type="text/javascript" src="../../Formularios/formoid6_files/formoid1/formoid-flat-black.js"></script>
-        <br><br>
-                            <?php
+                                    while ($listanoticias = mysql_fetch_array($consulta)) {
+                                     $imagen = $listanoticias["imagen"];
+                                        ?>
+                                        <tr class="default caja">
+                                            <td><?php echo $listanoticias["titulo"]?></td>
+                                            <td style="text-align:center"><img src='<?php echo $imagen ?>' style="" width="150" height="150" /></td>
+                                            <td><?php echo $listanoticias["texto"]?></td>
+                                            <td><?php echo $listanoticias["fecha"]?></td>
+                                            <td><a class="editar">Editar</a></td>
+
+                                    </tr>
+
+                                    <?php
+                                }
+                                ?>
+
+                                </tbody>
+                            </table>
+
+                        </div></div>
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2"><br></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2"><br></div>
+                    </div>
+                </div></div>
+    
+
+     <script>
+                $(document).ready(function () {
+                    $('#tablanoticias').DataTable({
+                        "language": {
+                            "lengthMenu": "Mostrar _MENU_",
+                            "search": "Buscar:",
+                            "info": "Mostrando _START_ a _END_ de _TOTAL_ entradas",
+                            "loadingRecords": "Cargando...",
+                            "processing": "Procesando...",
+                            "zeroRecords": "No se encontraron resultados",
+                            "infoEmpty": "Mostrando 0 a 0 de 0 entradas",
+                            "infoFiltered": "(filtrado de _MAX_ entradas)",
+                            "paginate": {
+                                "first": "Primera",
+                                "last": "Última",
+                                "next": "Siguiente",
+                                "previous": "Anterior"
+                            }
                         }
-                        ?>
 
-    </body>
-    </html>
+                    });
+
+                });
+
+
+            </script>
                         <?php
                     }else{
 
@@ -105,5 +151,6 @@ if ($pruebadeinicio==1 or $pruebadeinicio==2) {
                     }
                     ?>
 
-
+        </body>
+    </html>
 

@@ -21,12 +21,12 @@ if ($pruebadeinicio == 1 or $pruebadeinicio == 2 or $pruebadeinicio == 4) {
             <script type="text/javascript" src="../../js/jquery-1.3.2.min.js"></script>
             <!--<link rel="stylesheet" type="text/css" href="../../DataTables-1.10.7/media/css/jquery.dataTables.css">-->
 
-             
-            <script type="text/javascript" charset="utf8" src="../../DataTables-1.10.7/media/js/jquery.js"></script>
 
+            <script type="text/javascript" charset="utf8" src="../../DataTables-1.10.7/media/js/jquery.js"></script>
             <!-- DataTables -->
             <script type="text/javascript" charset="utf8" src="../../DataTables-1.10.7/media/js/jquery.dataTables.js"></script>
             <script type="text/javascript" charset="utf8" src="../../DataTables-1.10.7/media/js/dataTables.bootstrap.js"></script>
+            
             <link rel="stylesheet" href="../../bootstrap/css/bootstrap.css">
             <link rel="stylesheet" href="../../bootstrap/css/bootstrap-theme.css">
             <link rel="stylesheet" href="../../DataTables-1.10.7/media/css/dataTables.bootstrap.css">
@@ -55,7 +55,7 @@ if ($pruebadeinicio == 1 or $pruebadeinicio == 2 or $pruebadeinicio == 4) {
         <body>
 
             <?php
-            $i = 0;
+            $i = 1;
             ?>
 
             <div class="row">
@@ -87,31 +87,18 @@ if ($pruebadeinicio == 1 or $pruebadeinicio == 2 or $pruebadeinicio == 4) {
                                         $equipo = $listajugadores["equipo"];
                                         $consultaequipo = mysql_query("SELECT * FROM tb_equipos WHERE id_equipo='$equipo' ");
                                         $equipos = mysql_fetch_array($consultaequipo);
-
-                                        if ($i % 2 == 0) {
-                                            ?>
-                                            <tr class="default caja">
-                                                <th scope="row"><?php echo $i ?></th> 
-                                                <td><?php echo $listajugadores["nombre1"] . " " . $listajugadores["nombre2"] . " " . $listajugadores["apellido1"] . " " . $listajugadores["apellido2"] ?></td>
-                                                <td><?php echo $equipos["nombre_equipo"] ?></td>
-                                        <input value="<?php echo $listajugadores["id_jugadores"] ?>"type="hidden"/>
-                                        <td><a class="editar">Editar</a></td>
-
-                                        </tr>
-                                        <?php
-                                    } else {
                                         ?>
-
                                         <tr class="default caja">
-                                            <th scope="row"><?php echo $i ?></th>
-                                            <td><?php echo $listajugadores["nombre1"] ?></td>
+                                            <th scope="row"><?php echo $i ?></th> 
+                                            <td><?php echo $listajugadores["nombre1"] . " " . $listajugadores["nombre2"] . " " . $listajugadores["apellido1"] . " " . $listajugadores["apellido2"] ?></td>
                                             <td><?php echo $equipos["nombre_equipo"] ?></td>
-                                        <input value="<?php echo $listajugadores["id_jugadores"] ?>"type="hidden"/>
-                                        <td><a class="editar">Editar</a></td>
+                                    <input value="<?php echo $listajugadores["id_jugadores"] ?>"type="hidden"/>
+                                    <td><a class="editar">Editar</a></td>
 
-                                        </tr>
-                                        <?php
-                                    }$i++;
+                                    </tr>
+
+                                    <?php
+                                    $i++;
                                 }
                                 ?>
 
@@ -148,10 +135,10 @@ if ($pruebadeinicio == 1 or $pruebadeinicio == 2 or $pruebadeinicio == 4) {
                         }
 
                     });
-                    
+
                 });
-                
-        
+
+
             </script>
             <?php
         } else {
