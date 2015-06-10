@@ -1,107 +1,159 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
-<?php 
+<?php
 session_start();
-include('../../conexion.php');  
+include('../../conexion.php');
 include('../Encabezado.html');
 include('../RutinaDeLogueo.php');
-if ($pruebadeinicio==1 or $pruebadeinicio==2) {
+if ($pruebadeinicio == 1 or $pruebadeinicio == 2) {
 
-$letras=$_SESSION['admin'];
-$numeros=mysql_query("select * from tb_torneo where usuario='$letras'")or die(mysql_error());
-$caracteres=mysql_fetch_array($numeros);
-$name=$caracteres['id_torneo'];
-?>
-
-
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-  <title>Copa Amistad Profesional modulo de Administracion</title>
-  <link rel="stylesheet" href="../../css/styler.css" type="text/css" media="all" />
-</head>
-<style type="text/css">
-#bienvenido{
-
-    width: auto;
-    margin-left: 0px;
-    margin-right: 15px;
-    margin-top: 0px;
-    float: right;
-    color: black;
-
-}
-.cerrar{
-
-  color: #000000;
-  float: right;
-  clear: right;
-  padding-right:  15px;
-}
-</style>
-<body>
-  
-
-    <br><br><br><br><br>
-
-<link rel="stylesheet" href="../../Formularios/formoid13_files/formoid1/formoid-flat-black.css" type="text/css" />
-<script type="text/javascript" src="../../Formularios/formoid13_files/formoid1/jquery.min.js"></script>
+    $letras = $_SESSION['admin'];
+    $numeros = mysql_query("select * from tb_torneo where usuario='$letras'")or die(mysql_error());
+    $caracteres = mysql_fetch_array($numeros);
+    $name = $caracteres['id_torneo'];
+    ?>
 
 
-<?php
-if(isset($_POST['buscar']))
-  $equipo=$_POST['equipo'];
-{
-  ?>
-<form action="ModificarAsistencia1.php"class="formoid-flat-black" style="background-color:#FFFFFF;font-size:14px;font-family:'Lato', sans-serif;color:#666666;max-width:480px;min-width:150px" method="post">
-<input type="hidden" name="equipo" value="<?php echo $equipo ?>">
-<center>  <div class="title"><h2>Seleccione el partido:</h2></div></center>
-  <?php
+
+    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    <html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+            <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+            <title>Copa Amistad Profesional modulo de Administracion</title>
+            <link rel="stylesheet" href="../../css/styler.css" type="text/css" media="all" />
+            <script type="text/javascript" src="../../js/jquery-1.3.2.min.js"></script>
+            <script type="text/javascript" charset="utf8" src="../../DataTables-1.10.7/media/js/jquery.js"></script>
+            <!-- DataTables -->
+            <script type="text/javascript" charset="utf8" src="../../DataTables-1.10.7/media/js/jquery.dataTables.js"></script>
+            <script type="text/javascript" charset="utf8" src="../../DataTables-1.10.7/media/js/dataTables.bootstrap.js"></script>
+            <link rel="stylesheet" href="../../bootstrap/css/bootstrap.css">
+            <link rel="stylesheet" href="../../bootstrap/css/bootstrap-theme.css">
+            <link rel="stylesheet" href="../../DataTables-1.10.7/media/css/dataTables.bootstrap.css">
+            <script src="../../bootstrap/js/bootstrap.min.js"></script></head>
+    </head>
+    <style type="text/css">
+        #bienvenido{
+
+            width: auto;
+            margin-left: 0px;
+            margin-right: 15px;
+            margin-top: 0px;
+            float: right;
+            color: black;
+
+        }
+        .cerrar{
+
+            color: #000000;
+            float: right;
+            clear: right;
+            padding-right:  15px;
+        }
+    </style>
+    <body>
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2"><br></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2"><br></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <table id="tablaasistencia" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                            <thead>
+                                <tr>
+                                    <th>Equipo 1</th>
+                                    <th>Equipo 2</th>
+                                    <th>Fecha</th>
+                                    <th>Opciones</th>
+                                </tr>
+                            </thead>
+                            <tbody> 
+                                <?php
+                                $i = 1;
+                                if (isset($_POST["buscar"])) {
+                                    $equipo = $_POST["equipo"];
+
+                                    $consulta = mysql_query("SELECT * FROM tb_partidos WHERE Estado = '2' AND equipo1 ='$equipo' OR equipo2='$equipo'");
+                                    while ($listapartidos = mysql_fetch_array($consulta)) {
+
+                                        $equipo1 = $listapartidos["equipo1"];
+                                        $equipo2 = $listapartidos["equipo2"];
+
+                                        $consultanom1 = mysql_query("SELECT * from tb_equipos WHERE id_equipo='$equipo1'");
+                                        $consultanom2 = mysql_query("SELECT * from tb_equipos WHERE id_equipo='$equipo2'");
+
+                                        $connom1 = mysql_fetch_array($consultanom1);
+                                        $connom2 = mysql_fetch_array($consultanom2);
+                                        ?>
+
+                                        <tr class="default caja">
+                                            <td><?php echo $connom1["nombre_equipo"] ?></td>
+                                            <td><?php echo $connom2["nombre_equipo"] ?></td>
+                                            <td><?php echo $listapartidos["numero_fecha"] ?></td>
+                                            <td><button type="button" class="btn btn-success">Editar asistencia</button></td>
+                                        </tr>
+
+                                        <?php
+                                        $i++;
+                                    }
+                                }
+                                ?>
+                            </tbody>
+
+                        </table>
+                    </div></div>
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2"><br></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2"><br></div>
+                </div>
+            </div></div>
+        <script>
+            $(document).ready(function () {
+                $('#tablaasistencia').DataTable({
+                    "language": {
+                        "lengthMenu": "Mostrar _MENU_",
+                        "search": "Buscar:",
+                        "info": "Mostrando _START_ a _END_ de _TOTAL_ entradas",
+                        "loadingRecords": "Cargando...",
+                        "processing": "Procesando...",
+                        "zeroRecords": "No se encontraron resultados",
+                        "infoEmpty": "Mostrando 0 a 0 de 0 entradas",
+                        "infoFiltered": "(filtrado de _MAX_ entradas)",
+                        "paginate": {
+                            "first": "Primera",
+                            "last": "Última",
+                            "next": "Siguiente",
+                            "previous": "Anterior"
+                        }
+                    }
+
+                });
+
+            });
 
 
-$partidos=mysql_query("SELECT * FROM tb_partidos where Estado='2' and equipo1='$equipo' or equipo2='$equipo'");
+        </script>
 
-if (mysql_num_rows($partidos) > 0)
-  {
-   echo "<select name='partido1'>\n ";
 
-    while ($temp = mysql_fetch_array($partidos)){
-      $idequipo1= $temp['equipo1'];
-      $idequipo2= $temp['equipo2'];
-      $nombreequipo1= mysql_query("select * from tb_equipos where id_equipo=$idequipo1");
-      $nombreequipo2= mysql_query("select * from tb_equipos where id_equipo=$idequipo2");
+        <?php
+    } else {
+        ?>
+        <!-- CUANDO EL PERSONAJE NO ESTA AUTORIZADO PARA EL INGRESO-->
+        <br><br>
+        <center>
+            <div>
+                <label>Lo sentimos pero usted no tiene autorización para estar en este lugar.</label>
+            </div>
+        </center>
+        <center><button  type="submit" ><a href="iniciox.php">Volver</a></button></center>
+        <?php
+    }
+    ?>
 
-while ($temp1=mysql_fetch_array($nombreequipo1)){
-
-  while  ($temp2=mysql_fetch_array($nombreequipo2)){
-
-       print" <option value='".$temp["id_partido"]."'>".$temp1["nombre_equipo"]." vs ".$temp2["nombre_equipo"]." || De la fecha ".$temp['numero_fecha']."</option>\n";
-      }}}
-   echo" </select>\n";
-}
-  else
-     {
-      echo"No hay datos";
-     }
-?>
-<div class="submit"><input type="submit" value="Buscar" name="buscar"/></div></form><script type="text/javascript" src="../../Formularios/formoid13_files/formoid1/formoid-flat-black.js"></script>
 </body>
 </html>
-
-<?php
-
-}}else{
-      ?>
-<!-- CUANDO EL PERSONAJE NO ESTA AUTORIZADO PARA EL INGRESO-->
-<br><br>
-<center>
-    <div>
-        <label>Lo sentimos pero usted no tiene autorización para estar en este lugar.</label>
-    </div>
-</center>
-<center><button  type="submit" ><a href="iniciox.php">Volver</a></button></center>
-<?php
-}
-?>
