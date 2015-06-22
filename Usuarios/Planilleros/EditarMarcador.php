@@ -45,20 +45,20 @@ $id = $_GET['id'];
                 $nom = mysql_fetch_array(mysql_query("SELECT nombre_equipo FROM tb_equipos WHERE id_equipo=$equipo1"));
                 $nom1 = mysql_fetch_array(mysql_query("SELECT nombre_equipo FROM tb_equipos WHERE id_equipo=$equipo2"));
                 ?>
-                <form >
+                <form  action="PeticionesPlanillero.php" data-ajax="false" method="post">
                     <div style="  width: 50%;text-align: center;  float: right;">
                         <label><?php echo $nom['nombre_equipo'] ?></label>
-                        <input style="text-align:center;" id="primero"type="number" value="<?php echo $resultado1 ?>" min="0"/>
+                        <input style="text-align:center;" name="primero" id="primero"type="number" value="<?php echo $resultado1 ?>" min="0"/>
                     </div>
                     <div style="  width: 50%;text-align: center;">
                         <label><?php echo $nom1['nombre_equipo'] ?></label>
-                        <input style="text-align:center;" id="segundo" type="number" value="<?php echo $resultado2 ?>" min="0"/>
+                        <input style="text-align:center;" name="segundo" id="segundo" type="number" value="<?php echo $resultado2 ?>" min="0"/>
                     </div>
-                    <input id="partido" type="hidden" value="<?php echo $id ?>"/>
-
+                    <input id="idPartido" name="idPartido" type="hidden" value="<?php echo $id ?>"/>
+                    <input type="hidden" name="Bandera" value="EditarMarcador"/>
 
                     <center>
-                        <input data-mini="true" type="button"  name="submit" id="submit" value="Guardar">
+                        <input data-mini="true" type="submit"  name="submit" id="submit" value="Guardar">
                     </center>
                 </form>
                 <center>
@@ -122,3 +122,8 @@ $id = $_GET['id'];
                 
     </script>
 </html>
+
+<?php
+mysql_close($con);
+
+?>

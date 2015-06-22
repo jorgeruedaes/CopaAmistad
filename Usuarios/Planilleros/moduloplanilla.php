@@ -32,7 +32,7 @@ if($pruebadeinicio==1 or $pruebadeinicio==2 or $pruebadeinicio==3){
                     <a style="
                        background-color: #8cc63f;
                        border-color: #8cc63f;
-                       " href="../../Administración/cerrarsesion.php" class="ui-btn ui-btn-inline ui-icon-delete ui-btn-icon-notext ui-corner-all ui-shadow ui-nodisc-icon ui-alt-icon"></a>
+                       " href="../../index.php" class="ui-btn ui-btn-inline ui-icon-delete ui-btn-icon-notext ui-corner-all ui-shadow ui-nodisc-icon ui-alt-icon"></a>
                 </div>
 
   <div data-role="main" class="ui-content" id="principal">
@@ -57,7 +57,7 @@ if($pruebadeinicio==1 or $pruebadeinicio==2 or $pruebadeinicio==3){
                         $nome1 = mysql_fetch_array($nom1);
                         ?>
                         <div  align="center" data-role="collapsible" data-collapsed-icon="arrow-d" data-expanded-icon="arrow-u" data-iconpos="right">
-                            <h1  style="font-size: small " align: "center" >
+                            <h1  style="font-size: small "  >
                                  <table width="100%" aling="center"  style="font-size: small ">
                                     <tr width="100%">
                                         <td align="center" width="33%"> <?php echo $nome['nombre_equipo']; ?> </td>
@@ -68,8 +68,8 @@ if($pruebadeinicio==1 or $pruebadeinicio==2 or $pruebadeinicio==3){
                                 </table>
                             </h1>
                             <p>
-<a  style="color:white;font-size: small;  background-color:#34495E;text-shadow: none;" id="pop" href="#popupDialog" data-rel="popup" data-position-to="window" data-transition="pop" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-check ui-btn-icon-right ui-btn-b">Activar</a>
-<div  class="activar" data-role="popup" id="popupDialog" data-dismissible="false" style="max-width:400px;">
+<a  data-partido="<?php echo $tor['id_partido'];  ?>"  style="color:white;font-size: small;  background-color:#34495E;text-shadow: none;" id="pop" href="#popupDialog<?php echo $tor['id_partido'];  ?>" data-rel="popup" data-position-to="window" data-transition="pop" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-check ui-btn-icon-right ui-btn-b">Activar</a>
+<div  class="activar" data-role="popup" id="popupDialog<?php echo $tor['id_partido'];  ?>" data-dismissible="false" style="max-width:400px;">
     <div >
     <h1></h1>
     </div>
@@ -120,15 +120,16 @@ if($pruebadeinicio==1 or $pruebadeinicio==2 or $pruebadeinicio==3){
 
 <a data-partido="<?php echo $tor['id_partido'];?>" href="EditarMarcador.php?id=<?php echo $tor['id_partido'];?>" style="-webkit-border-radius: 200px; font-size: small;background-color: #ECF0F1;text-shadow: none;" data-inline="true" data-mini="true" data-role="button" data-iconpos="right" data-icon="gear">Editar</a>
 <!--- INFORMAR -->
-<a style="   -webkit-border-radius: 200px; font-size: small;text-shadow: none;background-color: #34495E;color:white;" href="#popupLogin" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-check ui-btn-icon-left ui-btn-a" data-transition="pop">Informar</a>
-<div data-role="popup" id="popupLogin" data-theme="a" class="ui-corner-all">
+<a style="   -webkit-border-radius: 200px; font-size: small;text-shadow: none;background-color: #34495E;color:white;" href="#popupLogin<?php echo $tor['id_partido'];?>" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-check ui-btn-icon-left ui-btn-a" data-transition="pop">Informar</a>
+<div data-role="popup" id="popupLogin<?php echo $tor['id_partido'];?>" data-theme="a" class="ui-corner-all">
     <form>
         <div style="padding:10px 20px;">
             <h3>Por favor seleccione el nuevo estado:</h3>
-           <select name="select1" id="select-custom-1" data-native-menu="false">
+           <select name="select1" class="selector" id="select-custom-1" data-native-menu="false">
         <option value="3">Aplazado</option>
         <option value="4">Suspendido</option>
         <option value="2">Terminado</option>
+        <option value="1">No ha empezado</option>
     </select>
     <center>
             <button  data-partido="<?php echo $tor['id_partido'];?>" style="  background-color: #34495E;
@@ -265,7 +266,7 @@ $('.aceptarterminar').off('click').on('click',function(){
   });
 $('.aceptarinformar').off('click').on('click',function(){
  var partido = $(this).data('partido');
- var seleccion =$('select option:selected').val();
+ var seleccion =$('.selector option:selected').val();
  $.ajax({
         url:'PeticionesPlanillero.php',
         type:"POST",

@@ -30,7 +30,7 @@ while ($identificaciones = mysql_fetch_array($equiposquehanjugado)) {
 
 // // saber en que lugar esta si en el equipo1 o equipo2 para tomar los valores de los goles 
     $lugardentrodelospartidos = mysql_query("SELECT  distinct equipo1,equipo2,resultado1,resultado2
- FROM  tb_partidos WHERE tb_partidos.Estado='2'
+ FROM  tb_partidos WHERE tb_partidos.Estado='2' AND numero_fecha <17
  ");
 
     while ($equipoparticipante = mysql_fetch_array($lugardentrodelospartidos)) {
@@ -140,11 +140,11 @@ while ($identificaciones = mysql_fetch_array($equiposquehanjugado)) {
             <h1 style="height: 2%;margin: auto;">Copa Amistad Profesional</h1>
             <div id="iconos" style="height: 8%;">
                 <center> 
-                      <span><a href="../Finales/Cuadro.php"  ><img style="width: 30px;margin-right: 8%;margin-left: 13%;" src="../../images/icons-png/star.png"></a></span>
-                       <span><a href="../../index.php"><img style="margin-right: 8%;" src="../../images/icons-png/calendario.png"></a></span>
-                    <span><a href="TablaDePosiciones.php"  ><img style="margin-right: 8%;" src="../../images/icons-png/posiciones.png"></a></span>
-                    <span><a href="TablaDeGoleadores.php"  ><img style="margin-right: 8%;" src="../../images/icons-png/goleadores.png"></a></span>
-                    <span><a href="../Mi_Equipo/Miequipo.php"  ><img style="margin-right: 8%;" src="../../images/icons-png/miequipo.png"></a></span>
+                      <span><a href="../Finales/Cuadro.php"  ><img style="width: 30px;width: 30px;margin-right: 8%;margin-left: 7%;" src="../../images/icons-png/star.png"></a></span>
+                       <span><a href="../../index.php"><img style="width: 30px;margin-right: 8%;" src="../../images/icons-png/calendario.png"></a></span>
+                    <span><a href="TablaDePosiciones.php"  ><img style="width: 30px;margin-right: 8%;" src="../../images/icons-png/posiciones.png"></a></span>
+                    <span><a href="TablaDeGoleadores.php"  ><img style="width: 30px;margin-right: 8%;" src="../../images/icons-png/goleadores.png"></a></span>
+                    <span><a href="../Mi_Equipo/Miequipo.php"  ><img style="width: 30px;margin-right: 8%;" src="../../images/icons-png/miequipo.png"></a></span>
                 </center>
             </div>
         </div>

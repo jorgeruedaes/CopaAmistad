@@ -34,12 +34,12 @@ $id = $_GET['id'];
                 </h1>
                 <div id="iconos" style="height: 8%;">
                     <center> 
-                        <span><a href="Miequipos.php?id=<?php echo $id ?>"><img style=" margin-right: 8%;margin-left: 5%;" src="../../images/icons-png/calendario.png"></a></span>
-                        <span><a href="AmonestacionesDeEquipos.php?id=<?php echo $id ?>"  ><img style="margin-right: 5%;" src="../../images/icons-png/amonestaciones.png"></a></span>
-                        <span><a href="TablaAmonestacionesHistorico.php?id=<?php echo $id ?>"  ><img style="margin-right: 5%;" src="../../images/icons-png/icon-his.png"></a></span>
-                        <span><a href="TablaDeGoleadoresDeEquipo.php?id=<?php echo $id ?>"  ><img style="margin-right: 5%;" src="../../images/icons-png/goleadores.png"></a></span>
-                        <span><a href="JugadoresDeEquipo.php?id=<?php echo $id ?>"  ><img style="margin-right: 5%;" src="../../images/icons-png/jugadores.png"></a></span>
-                        <span><a href="TablaDeAsistencia.php?id=<?php echo $id ?>"  ><img style="margin-right: 5%;" src="../../images/icons-png/asistencia.png"></a></span>
+                        <span><a href="Miequipos.php?id=<?php echo $id ?>"><img style="width: 30px; margin-right: 5%;margin-left: 5%;" src="../../images/icons-png/calendario.png"></a></span>
+                        <span><a href="AmonestacionesDeEquipos.php?id=<?php echo $id ?>"  ><img style="width: 30px;margin-right: 5%;" src="../../images/icons-png/amonestaciones.png"></a></span>
+                        <span><a href="TablaAmonestacionesHistorico.php?id=<?php echo $id ?>"  ><img style="width: 30px;margin-right: 5%;" src="../../images/icons-png/icon-his.png"></a></span>
+                        <span><a href="TablaDeGoleadoresDeEquipo.php?id=<?php echo $id ?>"  ><img style="width: 30px;margin-right: 5%;" src="../../images/icons-png/goleadores.png"></a></span>
+                        <span><a href="JugadoresDeEquipo.php?id=<?php echo $id ?>"  ><img style="width: 30px;margin-right: 5%;" src="../../images/icons-png/jugadores.png"></a></span>
+                        <span><a href="TablaDeAsistencia.php?id=<?php echo $id ?>"  ><img style="width: 30px;margin-right: 5%;" src="../../images/icons-png/asistencia.png"></a></span>
                     </center>
                 </div>
             </div>

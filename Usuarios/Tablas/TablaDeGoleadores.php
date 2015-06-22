@@ -46,11 +46,11 @@ include('../../conexion.php');
                 <h1 style="height: 2%;margin: auto;">Copa Amistad Profesional</h1>
                 <div id="iconos" style="height: 8%;">
                     <center> 
-                        <span><a href="../Finales/Cuadro.php"  ><img style="width: 30px;margin-right: 8%;margin-left: 13%;" src="../../images/icons-png/star.png"></a></span>
-                       <span><a href="../../index.php"><img style="margin-right: 8%;" src="../../images/icons-png/calendario.png"></a></span>
-                        <span><a href="TablaDePosiciones.php"  ><img style="margin-right: 8%;" src="../../images/icons-png/posiciones.png"></a></span>
-                        <span><a href="TablaDeGoleadores.php"  ><img style="margin-right: 8%;" src="../../images/icons-png/goleadores.png"></a></span>
-                        <span><a href="../Mi_Equipo/Miequipo.php"  ><img style="margin-right: 8%;" src="../../images/icons-png/miequipo.png"></a></span>
+                        <span><a href="../Finales/Cuadro.php"  ><img style="width: 30px;width: 30px;margin-right: 8%;margin-left: 7%;" src="../../images/icons-png/star.png"></a></span>
+                       <span><a href="../../index.php"><img style="width: 30px;margin-right: 8%;" src="../../images/icons-png/calendario.png"></a></span>
+                        <span><a href="TablaDePosiciones.php"  ><img style="width: 30px;margin-right: 8%;" src="../../images/icons-png/posiciones.png"></a></span>
+                        <span><a href="TablaDeGoleadores.php"  ><img style="width: 30px;margin-right: 8%;" src="../../images/icons-png/goleadores.png"></a></span>
+                        <span><a href="../Mi_Equipo/Miequipo.php"  ><img style="width: 30px;margin-right: 8%;" src="../../images/icons-png/miequipo.png"></a></span>
                     </center>
                 </div>
             </div>

@@ -65,217 +65,84 @@ include('../../conexion.php');
             <div data-role="main" class="ui-content">
                 <div align="center" data-role="list-divider" style="color: black;height: 
                 30px;margin-top: 3px;padding-top: 5px; font-family: 
-                sans-serif;font-weight: 700;" >Fase final del torneo</div>
-               <cite style="  font-family: Century Gothic;
-  font-size: smaller;">Cada llave representa un camino hacia la gran final.</cite>
-                <div align="center" data-role="list-divider" style="color: black;height: 30px;margin-top: 3px;padding-top: 5px; font-family: sans-serif;font-weight: 700;" > Llave A</div>
-
+                sans-serif;font-weight: 700;" >Gran Final</div>
+               
+              
 <!--  RENGLON INICIA   -->
 <table style="width:100%;">
 <tr>
 <td>
-<div style="width:80%;  
+</td>
+<td style="width: 100%;margin-left: 0;margin-right: 0;"><div style="width:80%;  
   border-width: thin;
   border-color: black;margin: auto;  margin-top: 2px;margin-bottom: 2px;"class="ui-body ui-body-a ui-corner-all">
   <p>
   <table style="width: 100%;">
   <tr>
- <td style="text-align:center;  font-size: smaller;font-weight: bolder;" width="80%">UIS A</td>
+ <td style="text-align:center;  font-weight: bolder;" width="100%">Tecnológico</td>
  <td style="text-align: center;  font-weight: 800;" width="20"></td>
   </tr>
     <tr>
       <td style="text-align:center;">vs</td>
   </tr>
   <tr>
- <td style="text-align:center;font-size: smaller;font-weight: bolder;" width="80%">Deportivo R.G.C</td>
+ <td style="text-align:center;font-weight: bolder;" width="100%">Amigos del Fútbol</td>
  <td style="text-align: center;  font-weight: 800;" width="20%"></td>
   </tr>
   </table>
   </p>
-</div>
-</td>
-<td style="width: 10%;margin-left: 0;margin-right: 0;"><hr></td>
+</div></td>
 <td>
 <!---  -->
-<div style="width:80%; 
-  border-width: thin;
-  border-color: black;margin: auto;  margin-top: 2px;margin-bottom: 2px;"class="ui-body ui-body-a ui-corner-all">
-  <p>
-  <table style="width: 100%;">
-  <tr>
- <td style="text-align:center;  font-size: smaller;font-weight: bolder;" width="80%">Deportivo Unión</td>
- <td style="text-align: center;  font-weight: 800;" width="20"></td>
-  </tr>
-    <tr>
-      <td style="text-align:center;">vs</td>
-  </tr>
-  <tr>
- <td style="text-align:center;font-size: smaller;font-weight: bolder;" width="80%">Profesores UIS</td>
- <td style="text-align: center;  font-weight: 800;" width="20%"></td>
-  </tr>
-  </table>
-  </p>
-</div>
+
 </td>
 </tr>
 </table>
 <!--- FINALIZA RENGLON -->
+                <div align="center" data-role="list-divider" style="color: black;height: 
+                30px;margin-top: 3px;padding-top: 5px; font-family: 
+                sans-serif;font-weight: 700;" >Tercer Puesto</div>
+               
+              
 <!--  RENGLON INICIA   -->
 <table style="width:100%;">
 <tr>
 <td>
-<div style="width:80%;  
+</td>
+<td style="width: 100%;margin-left: 0;margin-right: 0;"><div style="width:80%; 
   border-width: thin;
   border-color: black;margin: auto;  margin-top: 2px;margin-bottom: 2px;"class="ui-body ui-body-a ui-corner-all">
   <p>
   <table style="width: 100%;">
   <tr>
- <td style=" width: 100%;text-align:center;  font-size: smaller;font-weight: bolder;" width="80%">Sergom LTDA</td>
+ <td style="text-align:center;  font-size: smaller;font-weight: bolder;" width="100%">Deportivo Unión</td>
  <td style="text-align: center;  font-weight: 800;" width="20"></td>
   </tr>
     <tr>
       <td style="text-align:center;">vs</td>
   </tr>
   <tr>
- <td style="text-align:center;font-size: smaller;font-weight: bolder;" width="80%">Copower</td>
+ <td style="text-align:center;font-size: smaller;font-weight: bolder;" width="100%">Tercer Tiempo Aguila</td>
  <td style="text-align: center;  font-weight: 800;" width="20%"></td>
   </tr>
   </table>
   </p>
-</div>
-</td>
-<td style="width: 10%;margin-left: 0;margin-right: 0;"><hr></td>
+</div></td>
 <td>
 <!---  -->
-<div style="width:80%; 
-  border-width: thin;
-  border-color: black;margin: auto;  margin-top: 2px;margin-bottom: 2px;"class="ui-body ui-body-a ui-corner-all">
-  <p>
-  <table style="width: 100%;">
-  <tr>
- <td style=" width: 100%;text-align:center;  font-size: smaller;font-weight: bolder;" width="80%">Amigos del Fútbol</td>
- <td style="text-align: center;  font-weight: 800;" width="20"></td>
-  </tr>
-    <tr>
-      <td style="text-align:center;">vs</td>
-  </tr>
-  <tr>
- <td style="text-align:center;font-size: smaller;font-weight: bolder;" width="80%">Abogados</td>
- <td style="text-align: center;  font-weight: 800;" width="20%"></td>
-  </tr>
-  </table>
-  </p>
-</div>
+
 </td>
 </tr>
 </table>
+<!--  RENGLON INICIA   -->
 
 <!--- FINALIZA RENGLON -->
 
 <!---  INICIA LLAVE  -->
 
-<div align="center" data-role="list-divider" style="color: black;height: 30px;margin-top: 3px;padding-top: 5px; font-family: sans-serif;font-weight: 700;" > Llave B</div>
-
-<!--  RENGLON INICIA   -->
-<table style="width:100%;">
-<tr>
-<td>
-<div style="width:80%;  
-  border-width: thin;
-  border-color: black;margin: auto;  margin-top: 2px;margin-bottom: 2px;"class="ui-body ui-body-a ui-corner-all">
-  <p>
-  <table style="width: 100%;">
-  <tr>
- <td style="width: 100%; text-align:center; font-size: smaller;font-weight: bolder;" width="80%">Tecnológico</td>
- <td style="text-align: center;  font-weight: 800;" width="20"></td>
-  </tr>
-    <tr>
-      <td style="text-align:center;">vs</td>
-  </tr>
-  <tr>
- <td style="text-align:center;font-size: smaller;font-weight: bolder;" width="80%">Terminal de Transportes</td>
- <td style="text-align: center;  font-weight: 800;" width="20%"></td>
-  </tr>
-  </table>
-  </p>
-</div>
-</td>
-<td style="width: 10%;margin-left: 0;margin-right: 0;"><hr></td>
-<td>
-<!---  -->
-<div style="width:80%; 
-  border-width: thin;
-  border-color: black;margin: auto;  margin-top: 2px;margin-bottom: 2px;"class="ui-body ui-body-a ui-corner-all">
-  <p>
-  <table style="width: 100%;">
-  <tr>
- <td style="width: 100%;text-align:center;  font-size: smaller;font-weight: bolder;" width="80%">UTS</td>
- <td style="text-align: center;  font-weight: 800;" width="20"></td>
-  </tr>
-    <tr>
-      <td style="text-align:center;">vs</td>
-  </tr>
-  <tr>
- <td style="text-align:center;font-size: smaller;font-weight: bolder;" width="80%">Fortaleza profesional</td>
- <td style="text-align: center;  font-weight: 800;" width="20%"></td>
-  </tr>
-  </table>
-  </p>
-</div>
-</td>
-</tr>
-</table>
 <!--- FINALIZA RENGLON -->
 <!--  RENGLON INICIA   -->
-<table style="width:100%;">
-<tr>
-<td>
-<div style="width:80%;  
-  border-width: thin;
-  border-color: black;margin: auto;  margin-top: 2px;margin-bottom: 2px;"class="ui-body ui-body-a ui-corner-all">
-  <p>
-  <table style="width: 100%;">
-  <tr>
- <td style="width: 100%; text-align:center; font-size: smaller;font-weight: bolder;" width="80%">Tercer Tiempo-Aguila</td>
- <td style="text-align: center;  font-weight: 800;" width="20"></td>
-  </tr>
-  <tr>
-      <td style="text-align:center;">vs</td>
-  </tr>
-  <tr>
- <td style="text-align:center;font-size: smaller;font-weight: bolder;" width="80%">Real Sociedad</td>
- <td style="text-align: center;  font-weight: 800;" width="20%"></td>
-  </tr>
-  </table>
-  </p>
-</div>
-</td>
-<td style="width: 10%;margin-left: 0;margin-right: 0;"><hr></td>
-<td>
-<td>
-<!---  -->
-<div style="width:80%; 
-  border-width: thin;
-  border-color: black;margin: auto;  margin-top: 2px;margin-bottom: 2px;"class="ui-body ui-body-a ui-corner-all">
-  <p>
-  <table style="width: 100%;">
-  <tr>
- <td style="width: 100%; text-align:center; font-size: smaller;font-weight: bolder;" width="80%">Nueva Generación</td>
- <td style="text-align: center;  font-weight: 800;" width="20"></td>
-  </tr>
-    <tr>
-      <td style="text-align:center;">vs</td>
-  </tr>
-  <tr>
- <td style="text-align:center;font-size: smaller;font-weight: bolder;" width="80%">Fundesan</td>
- <td style="text-align: center;  font-weight: 800;" width="20%"></td>
-  </tr>
-  </table>
-  </p>
-</div>
-</td>
-</tr>
-</table>
+
 <!--- FINALIZA RENGLON -->
 
             </div>

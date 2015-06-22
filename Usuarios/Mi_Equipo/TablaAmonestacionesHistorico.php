@@ -33,12 +33,12 @@ $id = $_GET['id'];
                 </h1>
                 <div id="iconos" style="height: 8%;">
                     <center> 
-                        <span><a href="Miequipos.php?id=<?php echo $id ?>"><img style=" margin-right: 8%;margin-left: 5%;" src="../../images/icons-png/calendario.png"></a></span>
-                        <span><a href="AmonestacionesDeEquipos.php?id=<?php echo $id ?>"  ><img style="margin-right: 5%;" src="../../images/icons-png/amonestaciones.png"></a></span>
-                        <span><a href="TablaAmonestacionesHistorico.php?id=<?php echo $id ?>"  ><img style="margin-right: 5%;" src="../../images/icons-png/icon-his.png"></a></span>
-                        <span><a href="TablaDeGoleadoresDeEquipo.php?id=<?php echo $id ?>"  ><img style="margin-right: 5%;" src="../../images/icons-png/goleadores.png"></a></span>
-                        <span><a href="JugadoresDeEquipo.php?id=<?php echo $id ?>"  ><img style="margin-right: 5%;" src="../../images/icons-png/jugadores.png"></a></span>
-                        <span><a href="TablaDeAsistencia.php?id=<?php echo $id ?>"  ><img style="margin-right: 5%;" src="../../images/icons-png/asistencia.png"></a></span>
+                        <span><a href="Miequipos.php?id=<?php echo $id ?>"><img style="width: 30px; margin-right: 5%;margin-left: 5%;" src="../../images/icons-png/calendario.png"></a></span>
+                        <span><a href="AmonestacionesDeEquipos.php?id=<?php echo $id ?>"  ><img style="width: 30px;margin-right: 5%;" src="../../images/icons-png/amonestaciones.png"></a></span>
+                        <span><a href="TablaAmonestacionesHistorico.php?id=<?php echo $id ?>"  ><img style="width: 30px;margin-right: 5%;" src="../../images/icons-png/icon-his.png"></a></span>
+                        <span><a href="TablaDeGoleadoresDeEquipo.php?id=<?php echo $id ?>"  ><img style="width: 30px;margin-right: 5%;" src="../../images/icons-png/goleadores.png"></a></span>
+                        <span><a href="JugadoresDeEquipo.php?id=<?php echo $id ?>"  ><img style="width: 30px;margin-right: 5%;" src="../../images/icons-png/jugadores.png"></a></span>
+                        <span><a href="TablaDeAsistencia.php?id=<?php echo $id ?>"  ><img style="width: 30px;margin-right: 5%;" src="../../images/icons-png/asistencia.png"></a></span>
                     </center>
                 </div>
             </div>
@@ -77,9 +77,33 @@ $id = $_GET['id'];
                                     ?>
                                     <td> <?php echo $fe['nombre1'] . " " . $fe['apellido1']; ?> </td>
                                     <td> <?php
-                            $Cantidad = mysql_fetch_array(mysql_query("SELECT COUNT(amonestacion)AS Numero from tr_amonestacionesxjugador WHERE  amonestacion!='5' AND "
+                            $Cantidad = mysql_fetch_array(mysql_query("SELECT COUNT(amonestacion)AS Numero,Max(jornada_amonestacion)as jornada_amonestacion FROM tr_amonestacionesxjugador WHERE  amonestacion!='5' AND "
                                             . "amonestacion='1' AND jugador=$col"));
+                 
+                            if($Cantidad['Numero']<5){
                             echo $Cantidad['Numero'];
+                                
+                            }else{
+                              
+                                if($Cantidad['Numero']==5){
+                               $fechas = $Cantidad['jornada_amonestacion'];
+                                    $existencia = mysql_query("SELECT * FROM tb_partidos WHERE numero_fecha>$fechas AND Estado=2 and (equipo1 IN (SELECT equipo FROM tb_jugadores WHERE id_jugadores=$col)  or equipo2 IN (SELECT equipo FROM tb_jugadores WHERE id_jugadores=$col))");
+                                    if(mysql_num_rows($existencia)>0){
+                                        echo 0;
+                                    }else{
+                                        echo 5;
+                                    }
+                                }else{
+                                   $total=$Cantidad['Numero']/5;
+                                    $decimales = explode(".",$total);
+                                    $numero ="0.".$decimales[1];
+                                    echo $numero*5;
+//                                    
+                                }
+                              }
+                            
+                            
+                            
                                     ?>
                                     </td>
                                     <td> 
@@ -94,7 +118,9 @@ $id = $_GET['id'];
                                 <?php
                             }
                         }
-                        mysql_close($con);
+                        
+                            
+                        mysql_close($con);    
                         ?>
                     </tbody>
                 </table>

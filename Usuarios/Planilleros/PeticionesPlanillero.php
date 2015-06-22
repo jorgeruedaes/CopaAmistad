@@ -38,19 +38,22 @@ $resultado.='"Mensaje":false';
 }
 else if($Bandera==="EditarMarcador"){
 $idpartido=$_POST['idPartido'];
-$primero = $_POST['Primero'];
-$segundo = $_POST['Segundo'];
+$primero = $_POST['primero'];
+$segundo = $_POST['segundo'];
 $query=mysql_query("UPDATE `tb_partidos` SET resultado1=$primero,resultado2=$segundo WHERE id_partido='$idpartido'");
 if($query){
-$resultado.='"Mensaje":true';
+	header("location:moduloplanilla.php");
 	}else{
-$resultado.='"Mensaje":false';
+	header("location:moduloplanilla.php");
 	}
 
 	$resultado.='}';
 }
 echo ($resultado);
 
+?>
 
+<?php
+mysql_close($con);
 
 ?>

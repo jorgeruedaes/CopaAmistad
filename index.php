@@ -1,5 +1,4 @@
 <?php
-session_start();
 include('conexion.php');
 date_default_timezone_set('America/Bogota');
 ?>
@@ -84,7 +83,7 @@ date_default_timezone_set('America/Bogota');
                       Se crea otro parametro para la fecha inicial de mostrar los resultados acontinuacion
                      */
                     $primerafecha2 = date("Y-m-d");
-                    $nuevafecha2 = strtotime('-4 day', strtotime($primerafecha2));
+                    $nuevafecha2 = strtotime('-6 day', strtotime($primerafecha2));
                     $primerafecha2 = date('Y-m-j', $nuevafecha2);
                     /*
                       Se crea otro parametro para la fecha final de mostrar los resultados acontinuacion
@@ -261,8 +260,15 @@ date_default_timezone_set('America/Bogota');
                     ?>
 
                 </ul>
+                <?php
+                  $nametor = mysql_query("SELECT * FROM tb_partidos WHERE fecha BETWEEN '$primerafecha2' and '$lafechadehoy' AND Estado='2'  ORDER BY fecha desc,hora desc")or die(mysql_error());
+                  if(mysql_num_rows($nametor)>0){
+                  ?>
                 <div align="center" data-role="list-divider" style="color: black;height: 30px;margin-top: 3px;padding-top: 5px; font-family: sans-serif;
                      font-weight: 700;" >Resultados de la última fecha</div>
+                     <?php
+                     }
+                     ?>
                 <ul data-role="listview" data-inset="true">
 
                     <?php
@@ -316,7 +322,6 @@ date_default_timezone_set('America/Bogota');
                                             $afectadas = mysql_num_rows($query);
                                             while ($consulta2 = mysql_fetch_array($query)) {
                                                 ?>
-
                                                 <?php
                                                 $jugador1 = $consulta2['jugador'];
                                                 if ($afectadas != 0) {
