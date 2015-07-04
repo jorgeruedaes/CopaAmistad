@@ -61,7 +61,7 @@ $id = $_GET['id'];
 
                         <tr class="alt">
                             <?php
-                            $nametor = mysql_query("SELECT * from tr_amonestacionesxjugador WHERE  amonestacion!=5 GROUP BY jugador")or die(mysql_error());
+                            $nametor = mysql_query("SELECT * from tr_jugadoresxpartido WHERE  amonestacion!=5 and partido IN(SELECT id_partido FROM tb_partidos WHERE Estado=2) GROUP BY jugador")or die(mysql_error());
                             while ($tor = mysql_fetch_array($nametor)) {
                                 $col = $tor['jugador'];                           // Para el nombre del jugador
                                 $nomju = mysql_query("SELECT * from tb_jugadores where id_jugadores=$col");  // para el nombre del jugador
@@ -101,8 +101,6 @@ $id = $_GET['id'];
 //                                    
                                 }
                               }
-                            
-                            
                             
                                     ?>
                                     </td>

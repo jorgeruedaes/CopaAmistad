@@ -60,7 +60,7 @@ $id = $_GET['id'];
 
                         <?php
                         $id = $_GET['id'];
-                        $goleadores1 = mysql_query("SELECT jugador,SUM(goles) AS goles1 from tr_jugadoresxpartido WHERE goles!=0 GROUP BY jugador order by goles1 desc")or die(mysql_error());
+                        $goleadores1 = mysql_query("SELECT jugador,SUM(goles) AS goles1 from tr_jugadoresxpartido WHERE goles!=0  and partido IN(SELECT id_partido FROM tb_partidos WHERE Estado=2) GROUP BY jugador order by goles1 desc")or die(mysql_error());
                         while ($numerodegoles = mysql_fetch_array($goleadores1)) {
                             $jugador = $numerodegoles['jugador'];
                             $prueba = mysql_query("SELECT nombre1,apellido1,equipo FROM tb_jugadores WHERE id_jugadores=$jugador AND equipo=$id ");

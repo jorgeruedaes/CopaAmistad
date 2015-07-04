@@ -125,7 +125,7 @@ if($pruebadeinicio==1 or $pruebadeinicio==2 or $pruebadeinicio==3){
     <form>
         <div style="padding:10px 20px;">
             <h3>Por favor seleccione el nuevo estado:</h3>
-           <select name="select1" class="selector" id="select-custom-1" data-native-menu="false">
+           <select name="select1" class="selector <?php echo $tor['id_partido'];?>" id="select-custom-1" data-native-menu="false">
         <option value="3">Aplazado</option>
         <option value="4">Suspendido</option>
         <option value="2">Terminado</option>
@@ -266,7 +266,7 @@ $('.aceptarterminar').off('click').on('click',function(){
   });
 $('.aceptarinformar').off('click').on('click',function(){
  var partido = $(this).data('partido');
- var seleccion =$('.selector option:selected').val();
+ var seleccion =$(this).parent().parent().children().find('.selector option:selected').val();
  $.ajax({
         url:'PeticionesPlanillero.php',
         type:"POST",

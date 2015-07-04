@@ -140,8 +140,8 @@ while ($identificaciones = mysql_fetch_array($equiposquehanjugado)) {
             <h1 style="height: 2%;margin: auto;">Copa Amistad Profesional</h1>
             <div id="iconos" style="height: 8%;">
                 <center> 
-                      <span><a href="../Finales/Cuadro.php"  ><img style="width: 30px;width: 30px;margin-right: 8%;margin-left: 7%;" src="../../images/icons-png/star.png"></a></span>
-                       <span><a href="../../index.php"><img style="width: 30px;margin-right: 8%;" src="../../images/icons-png/calendario.png"></a></span>
+                  <!--<span><a href="../Finales/Cuadro.php"  ><img style="width: 30px;width: 30px;margin-right: 8%;margin-left: 7%;" src="../../images/icons-png/star.png"></a></span> -->    
+                       <span><a href="../../index.php"><img style="width: 30px;margin-right: 8%;margin-left: 7%;" src="../../images/icons-png/calendario.png"></a></span>
                     <span><a href="TablaDePosiciones.php"  ><img style="width: 30px;margin-right: 8%;" src="../../images/icons-png/posiciones.png"></a></span>
                     <span><a href="TablaDeGoleadores.php"  ><img style="width: 30px;margin-right: 8%;" src="../../images/icons-png/goleadores.png"></a></span>
                     <span><a href="../Mi_Equipo/Miequipo.php"  ><img style="width: 30px;margin-right: 8%;" src="../../images/icons-png/miequipo.png"></a></span>
@@ -188,18 +188,8 @@ for ($i = 0; $i < $numerodeequiposparaeltamañodelamatriz; $i++) {
                             $variable7 = $matriz[$i]['3'];  // goles a favor
                             $variable8 = $matriz[$i]['4'];  // goles en contra
                             $variable9 = $matriz[$i]['9'];  // diferencia de Gol
-    if($matriz[$i]['0']==18 or $matriz[$i]['0']==20){
-        if($matriz[$i]['0']==18){
-$variable4=$variable4+1;
-$variable5=$variable5-1;
- $variable2= $variable2+1;
 
-        }else{
-             $variable2= $variable2-1;
-             $variable5=$variable5-1;
-             $variable6=$variable6+1;
-        }
-    }
+
 
                             mysql_query("INSERT INTO `te_posiciones`(`equipo`, `puntos`, `pj`, `pg`, `pe`, `pp`, `gf`, `gc`, `dg`)
   VALUES ('$variable1','$variable2','$variable3','$variable4','$variable5','$variable6','$variable7','$variable8','$variable9');")or die(mysql_error());

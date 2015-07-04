@@ -58,8 +58,8 @@ date_default_timezone_set('America/Bogota');
                 <h1 style="height: 2%;margin: auto;">Copa Amistad Profesional</h1>
                 <div id="iconos" style="height: 8%;">
                     <center> 
-                        <span><a href="Usuarios/Finales/Cuadro.php"  ><img style="width: 30px;margin-right: 8%;margin-left: 7%;" src="images/icons-png/star.png"></a></span>
-                       <span><a href="index.php"><img style="width: 30px;margin-right: 8%;" src="images/icons-png/calendario.png"></a></span>
+                   <!--  <span><a href="Usuarios/Finales/Cuadro.php"  ><img style="width: 30px;margin-right: 8%;margin-left: 7%;" src="images/icons-png/star.png"></a></span> -->    
+                       <span><a href="index.php"><img style="width: 30px;margin-right: 8%;margin-left: 7%;" src="images/icons-png/calendario.png"></a></span>
                         <span><a href="Usuarios/Tablas/TablaDePosiciones.php"  ><img style="width: 30px;margin-right: 8%;" src="images/icons-png/posiciones.png"></a></span>
                         <span><a href="Usuarios/Tablas/TablaDeGoleadores.php"  ><img style="width: 30px;margin-right: 8%;" src="images/icons-png/goleadores.png"></a></span>
                         <span><a href="Usuarios/Mi_Equipo/Miequipo.php"  ><img style="width: 30px;margin-right: 8%;" src="images/icons-png/miequipo.png"></a></span>

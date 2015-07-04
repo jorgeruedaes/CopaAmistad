@@ -101,20 +101,18 @@ $id = $_GET['id'];
                                     <?php
                                     $partidosreales = mysql_query("SELECT id_partido FROM tb_partidos WHERE fecha>'$fechaingreso' AND (equipo1=$id || equipo2 =$id)  AND Estado='2'");
                                     $partidosuperreales = mysql_query("SELECT id_partido FROM tb_partidos WHERE  (equipo1=$id || equipo2 = $id) AND Estado='2'");
-                                    $calculo1 = mysql_query("SELECT partido FROM tr_jugadoresxpartido WHERE jugador=$player1");
-                                    $fechasasistidas = mysql_num_rows($calculo1);
-
+                                    $calculo1 = mysql_query("SELECT * FROM tr_jugadoresxpartido  WHERE jugador=$player1 and partido IN (SELECT id_partido FROM tb_partidos WHERE Estado='2')");
                                     $fechasHastaahora = mysql_num_rows($partidosreales);
                                     if ($fechasHastaahora == 0) {
                                         echo $resultado = 0;
                                     } else {
 
-                                        echo $fechasasistidas;
+                                        echo mysql_num_rows($calculo1);
                                         ?>
                                     </td>
                                     <td><?php
                                         $mini = mysql_num_rows($partidosuperreales);
-                                        $result = ($fechasasistidas / ((16 - ( $mini - $fechasHastaahora ))) * 100);
+                                        $result = (   mysql_num_rows($calculo1)/ ((16 - ( $mini - $fechasHastaahora ))) * 100);
                                         echo round($result) . "%";
                                         ?>
                                     </td>

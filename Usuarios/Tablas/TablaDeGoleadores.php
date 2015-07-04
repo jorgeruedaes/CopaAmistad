@@ -46,8 +46,8 @@ include('../../conexion.php');
                 <h1 style="height: 2%;margin: auto;">Copa Amistad Profesional</h1>
                 <div id="iconos" style="height: 8%;">
                     <center> 
-                        <span><a href="../Finales/Cuadro.php"  ><img style="width: 30px;width: 30px;margin-right: 8%;margin-left: 7%;" src="../../images/icons-png/star.png"></a></span>
-                       <span><a href="../../index.php"><img style="width: 30px;margin-right: 8%;" src="../../images/icons-png/calendario.png"></a></span>
+                     <!-- <span><a href="../Finales/Cuadro.php"  ><img style="width: 30px;width: 30px;margin-right: 8%;margin-left: 7%;" src="../../images/icons-png/star.png"></a></span> -->  
+                       <span><a href="../../index.php"><img style="width: 30px;margin-right: 8%;margin-left: 7%;" src="../../images/icons-png/calendario.png"></a></span>
                         <span><a href="TablaDePosiciones.php"  ><img style="width: 30px;margin-right: 8%;" src="../../images/icons-png/posiciones.png"></a></span>
                         <span><a href="TablaDeGoleadores.php"  ><img style="width: 30px;margin-right: 8%;" src="../../images/icons-png/goleadores.png"></a></span>
                         <span><a href="../Mi_Equipo/Miequipo.php"  ><img style="width: 30px;margin-right: 8%;" src="../../images/icons-png/miequipo.png"></a></span>
@@ -73,10 +73,10 @@ include('../../conexion.php');
                         <?php
                         $goleadores1 = mysql_query("SELECT jugador,SUM(goles) AS goles1 ,nombre1,apellido1,nombre_equipo 
   from tr_jugadoresxpartido,tb_jugadores,tb_equipos 
-  WHERE goles>=1 and jugador=id_jugadores and equipo=id_equipo GROUP BY jugador ORDER BY `goles1` DESC, nombre_equipo asc")or die(mysql_error());
+  WHERE goles>=1 and jugador=id_jugadores and equipo=id_equipo and partido IN (SELECT id_partido FROM tb_partidos WHERE Estado=2 ) GROUP BY jugador ORDER BY `goles1` DESC, nombre_equipo asc")or die(mysql_error());
                         while ($numerodegoles = mysql_fetch_array($goleadores1)) {
                             $jugador = $numerodegoles['jugador'];
-                            $numerodepartidosasistidos = mysql_num_rows(mysql_query("SELECT jugador FROM tr_jugadoresxpartido WHERE jugador=$jugador"));
+                            $numerodepartidosasistidos = mysql_num_rows(mysql_query("SELECT jugador FROM tr_jugadoresxpartido WHERE jugador=$jugador and partido In (SELECT id_partido FROM tb_partidos WHERE Estado=2)  "));
                             ?>
                             <tr  width="100%">
                                 <td style="width: 33%;"> <?php echo $numerodegoles['nombre_equipo']; ?>  </td>
