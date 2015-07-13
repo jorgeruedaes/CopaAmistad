@@ -62,7 +62,7 @@ if ($pruebadeinicio == 1 or $pruebadeinicio == 2) {
                                 <th>#</th>
                                 <th>Equipo 1</th>
                                 <th>Equipo 2</th>
-                                <th>Opciones</th>
+                                <th style="width:100px">Opciones</th>
                             </tr>
                         </thead>
                         <tbody>

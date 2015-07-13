@@ -3,94 +3,117 @@
 
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <link rel="stylesheet" href="../css/styler.css" type="text/css" media="all" />
+        <link rel="stylesheet" href="../../../css/styler.css" type="text/css" media="all" />
+        <script type="text/javascript" charset="utf8" src="../../../DataTables-1.10.7/media/js/jquery.js"></script>
+        <!-- DataTables -->
+        <script type="text/javascript" charset="utf8" src="../../../DataTables-1.10.7/media/js/jquery.dataTables.js"></script>
+        <script type="text/javascript" charset="utf8" src="../../../DataTables-1.10.7/media/js/dataTables.bootstrap.js"></script>
+        <link rel="stylesheet" href="../../../bootstrap/css/bootstrap.css">
+        <link rel="stylesheet" href="../../../bootstrap/css/bootstrap-theme.css">
+        <link rel="stylesheet" href="../../../DataTables-1.10.7/media/css/dataTables.bootstrap.css">
+        <script src="../../../bootstrap/js/bootstrap.min.js"></script>
     </head>
     <body>
         <div id="header">
-            <div class="shell">
-                <br>
-                <h1 id="logo" class="notext"><a href="#"></a></h1>
-            </div>
+            <br>
+            <div><img src="../../../images/Logo.png" style="padding-left: 30px;width: 100px;height: 100px;padding-right: 400px"/></div>
+
         </div>
-              <div id="navigation">
-                <div class="shell">
-                    <div class="cl">&nbsp;</div>
-                    <ul class="nav">
-                        <li><a href="../../modulousuariostutorneo.php"><img src="../../../images/home.png" width="20" height="20" ></a></li>
-                        <li><a href="#">Agregar</a>
-                            <ul>
-                                <li><a href="../Jugadores/AgregarJugadores.php">Jugadores</a></li>
-                                <li><a href="../Equipos/AgregarEquipos.php">Equipos</a></li>
-                                <li><a href="../Partidos/AgregarPartidoAlCalendario.php">Partidos</a></li>
-                                <li><a href="../Noticias/form_noticias.php">Noticias</a></li>
-                                <li><a href="../Partidos/AgregarResultados.php">Resultados</a></li>
-                                <li><a href="../Amonestaciones/Equipos/AgregarAmonEquipos.php">Amonestaciones Equipos</a></li>
-                                <li><a href="../Jugadores/Profesion.php">Profesión</a></li>
+        <nav class="navbar navbar-default">
+            <div class="container-fluid" style="width: 800px">   
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="../../modulousuariostutorneo.php">
+                        <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+                    </a>
+                </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Jugadores <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="../../Jugadores/AgregarJugadores.php">Nuevo jugador</a></li>
+                                <li><a href="../../Jugadores/ModificarJugadores.php">Editar jugador</a></li>
+                                <li><a href="../../Jugadores/Profesion.php">Nueva profesión</a></li>
                             </ul>
                         </li>
-
-                        <li> <a href="#">Modificar</a>
-                            <ul id="navmodificar">	
-                                <li><a href="../Jugadores/ModificarJugadores.php">Jugadores</a></li>
-                                <li><a href="../Equipos/ModificarEquipos.php">Equipos</a></li>
-                                <li><a href="../Noticias/ModificarNoticias.php">Noticias</a></li>
-                                <li><a href="../Partidos/ModificarResultados.php">Resultados</a></li>
-                                <li><a href="#">Amonestaciones</a>
-                                    <ul id="lista" style="
-                                        display: inline-table;
-                                        margin-top: 10px;
-                                        margin-left: 20px;
-                                        ">
-                                        <li><a>Jugadores</a>
-                                        <ul style="
-                                        margin-top: -50px;
-                                        margin-left: 100px;">                                             
-                                            <li><a href="../Amonestaciones/Jugadores/ModificarAmonestaciones.php">Detalles</a></li>
-                                            <li><a href="../Amonestaciones/Jugadores/ModificarAmonestacionesDePartidos.php" >Por partido</a></li>
-                                        </ul>   
-                                        </li>                                     
-                                        <li ><a>Equipos</a>
-                                        <ul style="
-                                        margin-top: 20px;
-                                        margin-left: 85px;">                                            
-                                            <li ><a href="../Amonestaciones/Equipos/ModificarAmonestacionesEquipo.php">Detalles</a></li>
-                                        </ul>  
-                                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Equipos <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="../../Equipos/AgregarEquipos.php">Nuevo equipo</a></li>
+                                <li><a href="../../Equipos/ModificarEquipos.php">Editar equipo</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Amonestaciones <span class="caret"></span></a>
+                            <ul class="dropdown-menu multi-level" role="menu">                                
+                                <li class="dropdown-submenu">
+                                    <a tabindex="-1" href="#">De jugadores</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="../../Amonestaciones/Jugadores/ModificarAmonestaciones.php">Detalles</a></li>
+                                        <li><a href="../../Amonestaciones/Jugadores/ModificarAmonestacionesDePartidos.php">Por partido</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="../Partidos/ModificarCalendario.php">Calendario</a></li>
-                                <li><a href="../Partidos/ModificarAsistencia.php">Asistencia</a></li>
+                                <li class="dropdown-submenu">
+                                    <a tabindex="-1" href="#">De equipos</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="../../Amonestaciones/Equipos/ModificarAmonestacionesEquipo.php">Detalles</a></li>
+                                    </ul>
+                                </li>
                             </ul>
-
                         </li>
-
-                        
-
-                        <li><a href="../Estadísticas/Estadisticas.html">Estadísticas</a></li>
-
-                        <li><a href="../Transpasos/ModuloTraspasos.html">Traspasos</a></li>
-
-                        <li><a href="#">Informes</a>
-                            <ul>	
-
-                                <li><a href="../Informes/pdf.php">Amonestaciones</a></li>
-                                <li><a href="../Informes/pdf1.php">Ficha técnica</a></li>
-                                <li><a href="../Informes/pdf2.php">Posiciones</a></li>
-                                <li><a href="../Informes/pdf3.php">Goleadores</a></li>
-                                <li><a href="../Informes/ListarProfesiones.php">Listar Profesiones</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Noticias <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="../../Noticias/form_noticias.php">Nueva noticia</a></li>
+                                <li><a href="../../Noticias/ModificarNoticias.php">Editar noticia</a></li>
                             </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Partidos <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="../../Partidos/AgregarPartidoAlCalendario.php">Nuevo partido</a></li>
+                                <li><a href="../../Partidos/AgregarResultados.php">Nuevo resultado</a></li>
+                                <li><a href="../../Partidos/ModificarResultados.php">Editar resultado</a></li>
+                                <li><a href="../../Partidos/ModificarCalendario.php">Editar calendario</a></li>
+                                <li><a href="../../Partidos/ModificarAsistencia.php">Editar asistencia</a></li>
+                            </ul>
+                        </li>
+                        <!--                                        <li class="dropdown disabled">
+                                                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Estadísticas</a>
+                                                                    <ul class="dropdown-menu" role="menu">
+                                                                        <li><a href="#">Jugadores</a></li>
+                                                                        <li><a href="#">Equipos</a></li>
+                                                                        <li><a href="#">Partidos</a></li>
+                                                                    </ul>
+                                                                </li>
+                                                                <li class="dropdown disabled">
+                                                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Traspasos</a>
+                                                                    <ul class="dropdown-menu" role="menu">
+                                                                        <li><a href="#">Jugadores</a></li>
+                                                                        <li><a href="#">Equipos</a></li>
+                                                                        <li><a href="#">Partidos</a></li>
+                                                                    </ul>
+                                                                </li>-->
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Informes <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="../../Informes/pdf.php">Amonestaciones</a></li>
+                                <li><a href="../../Informes/pdf1.php">Ficha técnica</a></li>
+                                <li><a href="../../Informes/pdf2.php">Posiciones</a></li>
+                                <li><a href="../../Informes/pdf3.php">Goleadores</a></li>
+                                <li><a href="../../Informes/ListarProfesiones.php">Profesiones</a></li>
+                            </ul>
+                        </li>
                     </ul>
-                    <div class="cl">&nbsp;</div>
-
-                </div>
-
-                <div id="footer">
-                    <div class="shell">
-                        <div class="cl">&nbsp;</div>
-
-                        <div class="cl">&nbsp;</div>
-                    </div>
                 </div>
             </div>
+        </nav>
+        <script>
+            $(function () {
+                $('.dropdown-toggle').dropdown();
+            })
+
+
+        </script>
     </body>
 </html>

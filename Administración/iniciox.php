@@ -21,12 +21,6 @@ if (isset($_SESSION['admin'])) {
 } else {
     ?>
     <style type="text/css">
-        /*                body{
-                            background: url(../images/footballfan.jpg) no-repeat fixed center;
-                            -webkit-background-size: cover;
-                            -moz-background-size: cover;
-                            -o-background-size: cover;
-                            background-size: cover;}*/
 
         body { 
             background: url('../images/fondo.jpg') no-repeat center center fixed; 

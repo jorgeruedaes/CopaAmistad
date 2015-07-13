@@ -3,7 +3,7 @@
 <?php 
 session_start();
 include('../../../conexion.php');  
-include('../../EncabezadoEspecial.html');
+include('../Encabezado.html');
 include('../../RutinaDeLogueo.php');
 if ($pruebadeinicio==1 or $pruebadeinicio==2) {
 
@@ -20,7 +20,6 @@ $name=$caracteres['id_torneo'];
 <head>
   <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
   <title>Copa Amistad Profesional modulo de Administracion</title>
-  <link rel="stylesheet" href="../../../css/styler.css" type="text/css" media="all" />
 
 </head>
 <style type="text/css">
@@ -43,38 +42,41 @@ $name=$caracteres['id_torneo'];
 }
 </style>
 <body>
-  
+   <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <br>
+            </div>
+            <div class="col-md-8 col-md-offset-2">
+                <br>
+            </div>
+            <div class="col-md-8 col-md-offset-2">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-4 col-md-offset-4">
+                                <form action="ModificarAmonestaciones1.php" method="post">
+                                    <div class="form-group">
+                                        <label>Seleccione el equipo:</label>
+                                        <select class="form-control" name="equipo">
+                                            <?php
+                                            $equipos = mysql_query("SELECT * from tb_equipos ORDER BY nombre_equipo asc");
+                                            while ($listaequipos = mysql_fetch_array($equipos)) {
+                                                ?>
+                                                <option value="<?php echo $listaequipos['id_equipo']; ?>"><?php echo $listaequipos['nombre_equipo']; ?> </option>
 
-    <br><br><br><br><br>
-
-
-<link rel="stylesheet" href="../../../Formularios/formoid15_files/formoid1/formoid-flat-black.css" type="text/css" />
-<script type="text/javascript" src="../../../Formularios/formoid15_files/formoid1/jquery.min.js"></script>
-<form action="ModificarAmonestaciones1.php"class="formoid-flat-black" style="background-color:#FFFFFF;font-size:14px;font-family:'Lato', sans-serif;color:#666666;max-width:480px;min-width:150px" method="post"><center><div class="title"><h2>Selecciona el equipo:</h2></div></center>
-
-  <?php
-
-$consulta= mysql_query("SELECT * FROM tb_equipos where torneo='1'ORDER BY nombre_equipo asc");
-
-if (mysql_num_rows($consulta) > 0)
-  {
-   echo"&nbsp&nbsp Equipo: <select name='equipo'>\n ";
-    while ($temp = mysql_fetch_array($consulta))
-      {
-       print" <option value='".$temp["id_equipo"]."'>".$temp["nombre_equipo"]."</option>\n";
-      }
-   echo" </select>\n";
-  }
-  else
-     {
-      echo"No hay datos";
-     }
-
-
-     ?>
-<div class="submit"><input type="submit" value="Buscar" name="buscar"/></div></form><script type="text/javascript" src="../../../Formularios/formoid15_files/formoid1/formoid-flat-black.js"></script>
-
-
+                                                <?php
+                                            }
+                                            ?>
+                                        </select>
+                                    </div>
+                                    <center><button type="submit" class="btn btn-success" name="buscar">Buscar</button></center>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 </body>
 </html>
 

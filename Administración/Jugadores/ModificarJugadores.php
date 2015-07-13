@@ -26,7 +26,7 @@ if ($pruebadeinicio == 1 or $pruebadeinicio == 2 or $pruebadeinicio == 4) {
             <!-- DataTables -->
             <script type="text/javascript" charset="utf8" src="../../DataTables-1.10.7/media/js/jquery.dataTables.js"></script>
             <script type="text/javascript" charset="utf8" src="../../DataTables-1.10.7/media/js/dataTables.bootstrap.js"></script>
-            
+
             <link rel="stylesheet" href="../../bootstrap/css/bootstrap.css">
             <link rel="stylesheet" href="../../bootstrap/css/bootstrap-theme.css">
             <link rel="stylesheet" href="../../DataTables-1.10.7/media/css/dataTables.bootstrap.css">
@@ -81,8 +81,6 @@ if ($pruebadeinicio == 1 or $pruebadeinicio == 2 or $pruebadeinicio == 4) {
 
                                     <?php
                                     $consulta = mysql_query("SELECT * FROM tb_jugadores WHERE estado_jugador='1' ");
-
-
                                     while ($listajugadores = mysql_fetch_array($consulta)) {
                                         $equipo = $listajugadores["equipo"];
                                         $consultaequipo = mysql_query("SELECT * FROM tb_equipos WHERE id_equipo='$equipo' ");
@@ -93,7 +91,7 @@ if ($pruebadeinicio == 1 or $pruebadeinicio == 2 or $pruebadeinicio == 4) {
                                             <td><?php echo $listajugadores["nombre1"] . " " . $listajugadores["nombre2"] . " " . $listajugadores["apellido1"] . " " . $listajugadores["apellido2"] ?></td>
                                             <td><?php echo $equipos["nombre_equipo"] ?></td>
                                     <input value="<?php echo $listajugadores["id_jugadores"] ?>"type="hidden"/>
-                                    <td><a class="editar">Editar</a></td>
+                                    <td><button id="editar" type="button" class="btn btn-success editar" data-id="<?php echo $listajugadores["id_jugadores"] ?>"  data-toggle="modal" >Editar</button></td>
 
                                     </tr>
 
@@ -113,6 +111,103 @@ if ($pruebadeinicio == 1 or $pruebadeinicio == 2 or $pruebadeinicio == 4) {
                         <div class="col-md-8 col-md-offset-2"><br></div>
                     </div>
                 </div></div>
+
+
+            <div class="modal fade" id="myModal" tabindex="-1" data-jugador="" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">Editar jugador</h4>
+
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <form method="post"> 
+                                        <div class="row">
+                                            <div class="col-md-5 col-md-offset-1">
+                                                <br>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-5 col-md-offset-1"> 
+                                                <label>Primer nombre:</label>
+                                                <input type="text" class="form-control" name="nombre1" required>
+                                            </div>
+                                            <div class="col-md-5 "> 
+                                                <label>Segundo nombre:</label>
+                                                <input type="text" class="form-control" name="nombre2">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-5 col-md-offset-1">
+                                                <br>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-5 col-md-offset-1"> 
+                                                <label>Primer apellido:</label>
+                                                <input type="text" class="form-control" name="apellido1" required>
+                                            </div>
+                                            <div class="col-md-5 "> 
+                                                <label>Segundo apellido:</label>
+                                                <input type="text" class="form-control" name="apellido2">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-5 col-md-offset-1">
+                                                <br>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-5 col-md-offset-1"> 
+                                                <label>Télefono/celular:</label>
+                                                <input type="tel" class="form-control" name="tel">
+                                            </div>
+                                            <div class="col-md-5 "> 
+                                                <label>E-mail:</label>
+                                                <input type="email" class="form-control" name="correo">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-5 col-md-offset-1">
+                                                <br>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-5 col-md-offset-1"> 
+                                                <label>Profesión:</label>
+                                                <select class="form-control" style="" required="required" name="profesion">
+                                                    <option value=""></option>
+                                                </select>
+
+                                            </div>
+                                            <div class="col-md-5"> 
+                                                <label>Estado:</label>
+                                                <select class="form-control" style="" required="required" name="profesion">
+                                                    <option value=""></option>
+                                                </select>
+
+                                            </div>
+                                            <div class="row">
+                                            <div class="col-md-5 col-md-offset-1">
+                                                <br>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                            <button type="button" class="btn btn-success">Guardar cambios</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
 
             <script>
                 $(document).ready(function () {
@@ -135,8 +230,42 @@ if ($pruebadeinicio == 1 or $pruebadeinicio == 2 or $pruebadeinicio == 4) {
                         }
 
                     });
+                    $('.editar').off('click').on('click', function () {
+                        var id = $(this).data('id');
+
+                        $.ajax({
+                            url: 'PeticionesJugadores.php',
+                            type: 'POST',
+                            data: {
+                                Bandera: "MostrarJugador",
+                                id: id
+                            },
+                            success: function (resp) {
+                                $('.modal').modal('show');
+                                var resp = $.parseJSON(resp);
+                                console.log(resp);
+                            }
+
+                        });
+                    });
+
+
+                    $('.dataTables_paginate').off('click').on('click', function () {
+                        jugadores.recargarEventos();
+                    });
 
                 });
+                var jugadores = {
+                    recargarEventos: function () {
+                        $('.editar').off('click').on('click', function () {
+                            var id = $(this).data('id');
+                            $('.id').val(id);
+                            $('.modal').modal('show');
+                        });
+
+
+                    }
+                };
 
 
             </script>

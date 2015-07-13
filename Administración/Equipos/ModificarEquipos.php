@@ -72,7 +72,7 @@ if ($pruebadeinicio == 1 or $pruebadeinicio == 2) {
                                                     <tr>
                                                         <th>#</th>
                                                         <th>Equipo</th>
-                                                        <th>Opciones</th>
+                                                        <th style="width:80px">Opciones</th>
 
                                                     </tr>
                                                 </thead>
@@ -87,7 +87,7 @@ if ($pruebadeinicio == 1 or $pruebadeinicio == 2) {
                                                             <th scope="row"><?php echo $i ?></th> 
                                                             <td><?php echo $listaequipos["nombre_equipo"] ?></td>
                                                             <input value="<?php echo $listaequipos["id_equipo"] ?>"type="hidden"/>
-                                                            <td><a class="editar">Editar</a></td>
+                                                            <td><button id="editar" type="button" class="btn btn-success editar" data-toggle="modal" >Editar</button></td>
 
                                                         </tr>
                                                         <?php

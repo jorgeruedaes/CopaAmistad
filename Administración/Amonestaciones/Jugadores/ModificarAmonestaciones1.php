@@ -1,125 +1,300 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-
-<?php 
+<?php
 session_start();
-include('../../../conexion.php');  
-include('../../EncabezadoEspecial.html');
+include('../../../conexion.php');
+include('../Encabezado.html');
 include('../../RutinaDeLogueo.php');
-if ($pruebadeinicio==1 or $pruebadeinicio==2) {
+if ($pruebadeinicio == 1 or $pruebadeinicio == 2) {
 
-$letras=$_SESSION['admin'];
-$numeros=mysql_query("SELECT * from tb_torneo where usuario='$letras'")or die(mysql_error());
-$caracteres=mysql_fetch_array($numeros);
-$name=$caracteres['id_torneo'];
-?>
+    $letras = $_SESSION['admin'];
+    $numeros = mysql_query("SELECT * from tb_torneo where usuario='$letras'")or die(mysql_error());
+    $caracteres = mysql_fetch_array($numeros);
+    $name = $caracteres['id_torneo'];
+    ?>
 
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-  <title>Copa Amistad Profesional modulo de Administracion</title>
-  <link rel="stylesheet" href="../../../css/styler.css" type="text/css" media="all" />
-  <script type="text/javascript" src="../../../Formularios/formoid14_files/formoid1/formoid-flat-black.js"></script>
-  <link rel="stylesheet" href="../../../Formularios/formoid14_files/formoid1/formoid-flat-black.css" type="text/css" />
-<script type="text/javascript" src="../../../Formularios/formoid14_files/formoid1/jquery.min.js"></script>
-  <!--[if lte IE 6]><link rel="stylesheet" href="css/ie6.css" type="text/css" media="all" /><![endif]-->
-</head>
-<style type="text/css">
-#bienvenido{
+    <head>
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+        <title>Copa Amistad Profesional modulo de Administracion</title>
 
-    width: auto;
-    margin-left: 0px;
-    margin-right: 15px;
-    margin-top: 0px;
-    float: right;
-    color: black;
+        <script type="text/javascript" src="../../js/jquery-1.3.2.min.js"></script>
+        <script type="text/javascript" charset="utf8" src="../../DataTables-1.10.7/media/js/jquery.js"></script>
+        <!-- DataTables -->
+        <script type="text/javascript" charset="utf8" src="../../DataTables-1.10.7/media/js/jquery.dataTables.js"></script>
+        <script type="text/javascript" charset="utf8" src="../../DataTables-1.10.7/media/js/dataTables.bootstrap.js"></script>
+        <link rel="stylesheet" href="../../bootstrap/css/bootstrap.css">
+        <link rel="stylesheet" href="../../bootstrap/css/bootstrap-theme.css">
+        <link rel="stylesheet" href="../../DataTables-1.10.7/media/css/dataTables.bootstrap.css">
+        <script src="../../bootstrap/js/bootstrap.min.js"></script>
+    </head>
+    <style type="text/css">
+        #bienvenido{
 
+            width: auto;
+            margin-left: 0px;
+            margin-right: 15px;
+            margin-top: 0px;
+            float: right;
+            color: black;
+
+        }
+        .cerrar{
+
+            color: #000000;
+            float: right;
+            clear: right;
+            padding-right:  15px;
+        }
+
+    </style>
+    <body>
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+      <ul class="nav nav-tabs" role="tablist" id="principal">
+            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Amonestaciones vigentes</a></li>
+            <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Amonestaciones antiguas</a></li>
+        </ul>
+
+             <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="home">
+          
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2"><br></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2"><br></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <table id="tablaasistencia" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                            <thead>
+                                <tr>
+                                    <th>Jugador</th>
+                                    <th>Amonestación</th>
+                                    <th>Fecha</th>
+                                    <th style="width:100px">Opciones</th>
+                                    <th>Pagada</th>
+                                </tr>
+                            </thead>
+                            <tbody> 
+                                <?php
+                                $i = 1;
+                                if (isset($_POST["buscar"])) {
+                                    $equipo = $_POST["equipo"];
+
+
+                                    $consultajugadoresdelequipo = mysql_query("SELECT * FROM tb_jugadores where equipo=$equipo");
+
+                                    while ($res = mysql_fetch_array($consultajugadoresdelequipo)) {
+
+                                        $idjugador = $res['id_jugadores'];
+
+                                        $consultaamon = mysql_query("SELECT * FROM tr_amonestacionesxjugador WHERE jugador = $idjugador and estado_amonestacion='1' and amonestacion !='5'");
+
+                                        while ($res1 = mysql_fetch_array($consultaamon)) {
+
+                                            $idjugadoramon = $res1['jugador'];
+                                            $idamon = $res1['amonestacion'];
+                                            $idestado = $res1['estado_amonestacion'];
+                                            $jornada = $res1['jornada_amonestacion'];
+
+
+                                            $consultanomamon = mysql_query("SELECT * FROM tb_jugadores WHERE id_jugadores = $idjugadoramon");
+                                            $consultanomamon1 = mysql_query("SELECT * FROM tb_amonestaciones WHERE id_amonestacion = $idamon");
+                                            $consultanomamon2 = mysql_query("SELECT * FROM tb_estados_amonestacion WHERE id_estado = $idestado");
+
+                                            $res3 = mysql_fetch_array($consultanomamon1);
+                                            $res4 = mysql_fetch_array($consultanomamon2);
+
+                                            while ($res2 = mysql_fetch_array($consultanomamon)) {
+                                                ?>
+
+                                                <tr class="default caja">
+                                                    <td><?php echo $res2['nombre1']." ".$res2['nombre2']." ".$res2['apellido1']." ".$res2['apellido2']?></td>
+                                                    <td><?php echo $res3['nombre']?></td>
+                                                    <td><?php echo $jornada ?></td>
+                                                    <td>  <center><div class="dropdown">
+                                                    <button id="editar" class="dropdown-toggle btn btn-default" data-toggle="dropdown" type="button" data-toggle="modal" > <span class="glyphicon glyphicon-cog" aria-hidden="true"></span></button>
+                                                    <ul class="dropdown-menu" role="menu">
+                                                        <li><a href="">Comentario</a></li>
+                                                        <li><a href="">Duración</a></li>
+                                                    </ul>
+                                                </div></center></td>
+                                                <td><center><input type="checkbox"/></center></td>
+                                            </tr>
+
+                    <?php
+                    $i++;
+                }
+            }
+        }
+    }
+    ?>
+                            </tbody>
+
+                        </table>
+                    </div></div>
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2"><br></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2"><br></div>
+                </div>
+            </div></div>
+            </div>
+          <div role="tabpanel" class="tab-pane" id="profile">
+                    
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2"><br></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2"><br></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <table id="tablaasistencia1" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                            <thead>
+                                <tr>
+                                    <th>Jugador</th>
+                                    <th>Amonestación</th>
+                                    <th>Fecha</th>
+                                    <th style="width:100px">Opciones</th>
+                                    <th>Vigente</th>
+                                </tr>
+                            </thead>
+                            <tbody> 
+                                <?php
+                                $i = 1;
+                                if (isset($_POST["buscar"])) {
+                                    $equipo = $_POST["equipo"];
+
+
+                                    $consultajugadoresdelequipo = mysql_query("SELECT * FROM tb_jugadores where equipo=$equipo");
+
+                                    while ($res = mysql_fetch_array($consultajugadoresdelequipo)) {
+
+                                        $idjugador = $res['id_jugadores'];
+
+                                        $consultaamon = mysql_query("SELECT * FROM tr_amonestacionesxjugador WHERE jugador = $idjugador and estado_amonestacion='2' and amonestacion !='5'");
+
+                                        while ($res1 = mysql_fetch_array($consultaamon)) {
+
+                                            $idjugadoramon = $res1['jugador'];
+                                            $idamon = $res1['amonestacion'];
+                                            $idestado = $res1['estado_amonestacion'];
+                                            $jornada = $res1['jornada_amonestacion'];
+
+
+                                            $consultanomamon = mysql_query("SELECT * FROM tb_jugadores WHERE id_jugadores = $idjugadoramon");
+                                            $consultanomamon1 = mysql_query("SELECT * FROM tb_amonestaciones WHERE id_amonestacion = $idamon");
+                                            $consultanomamon2 = mysql_query("SELECT * FROM tb_estados_amonestacion WHERE id_estado = $idestado");
+
+                                            $res3 = mysql_fetch_array($consultanomamon1);
+                                            $res4 = mysql_fetch_array($consultanomamon2);
+
+                                            while ($res2 = mysql_fetch_array($consultanomamon)) {
+                                                ?>
+
+                                                <tr class="default caja">
+                                                    <td><?php echo $res2['nombre1']." ".$res2['nombre2']." ".$res2['apellido1']." ".$res2['apellido2']?></td>
+                                                    <td><?php echo $res3['nombre']?></td>
+                                                    <td><?php echo $jornada ?></td>
+                                                    <td>  <center><div class="dropdown">
+                                                    <button id="editar" class="dropdown-toggle btn btn-default" data-toggle="dropdown" type="button" data-toggle="modal" > <span class="glyphicon glyphicon-cog" aria-hidden="true"></span></button>
+                                                    <ul class="dropdown-menu" role="menu">
+                                                        <li><a href="">Comentario</a></li>
+                                                        <li><a href="">Duración</a></li>
+                                                    </ul>
+                                                </div></center></td>
+                                                <td><center><input type="checkbox"/></center></td>
+                                            </tr>
+
+                    <?php
+                    $i++;
+                }
+            }
+        }
+    }
+    ?>
+                            </tbody>
+
+                        </table>
+                    </div></div>
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2"><br></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2"><br></div>
+                </div>
+            </div></div>
+              
+              
+         </div>
+             </div>
+            </div></div>
+        <script>
+            $(document).ready(function () {
+                $('#tablaasistencia').DataTable({
+                    "language": {
+                        "lengthMenu": "Mostrar _MENU_",
+                        "search": "Buscar:",
+                        "info": "Mostrando _START_ a _END_ de _TOTAL_ entradas",
+                        "loadingRecords": "Cargando...",
+                        "processing": "Procesando...",
+                        "zeroRecords": "No se encontraron resultados",
+                        "infoEmpty": "Mostrando 0 a 0 de 0 entradas",
+                        "infoFiltered": "(filtrado de _MAX_ entradas)",
+                        "paginate": {
+                            "first": "Primera",
+                            "last": "Última",
+                            "next": "Siguiente",
+                            "previous": "Anterior"
+                        }
+                    }
+
+                });
+                 $('#tablaasistencia1').DataTable({
+                    "language": {
+                        "lengthMenu": "Mostrar _MENU_",
+                        "search": "Buscar:",
+                        "info": "Mostrando _START_ a _END_ de _TOTAL_ entradas",
+                        "loadingRecords": "Cargando...",
+                        "processing": "Procesando...",
+                        "zeroRecords": "No se encontraron resultados",
+                        "infoEmpty": "Mostrando 0 a 0 de 0 entradas",
+                        "infoFiltered": "(filtrado de _MAX_ entradas)",
+                        "paginate": {
+                            "first": "Primera",
+                            "last": "Última",
+                            "next": "Siguiente",
+                            "previous": "Anterior"
+                        }
+                    }
+
+                });
+                  $('#principal').tab();
+
+            });
+
+
+        </script>
+    <?php
+} else {
+    ?>
+        <!-- CUANDO EL PERSONAJE NO ESTA AUTORIZADO PARA EL INGRESO-->
+        <br><br>
+    <center>
+        <div>
+            <label>Lo sentimos pero usted no tiene autorización para estar en este lugar.</label>
+        </div>
+    </center>
+    <center><button  type="submit" ><a href="iniciox.php">Volver</a></button></center>
+    <?php
 }
-.cerrar{
-
-  color: #000000;
-  float: right;
-  clear: right;
-  padding-right:  15px;
-}
-
-</style>
-<body>
-  
-    <br><br><br><br><br>
-<?php
-
- $equipo = $_POST['equipo'];
-
- $cons=mysql_query("SELECT nombre_equipo from tb_equipos where id_equipo=$equipo");
- $result=mysql_fetch_array($cons);
-
 ?>
-
-<center><div class="title"><h2><?php echo $result['nombre_equipo']?></h2></div></center>
-<div>
-<br><br>
-
-<center><div class="title"><h2>Amonestaciones de jugadores</h2></div></center>
-<br>
-<?php
-
-}
-  $equipo = $_POST['equipo'];
-
-$consultajugadoresdelequipo= mysql_query("SELECT * FROM tb_jugadores where equipo=$equipo");
-$i=0;
-while($res=mysql_fetch_array($consultajugadoresdelequipo)){
-
-$idjugador=$res['id_jugadores'];
-
-$consultaamon = mysql_query("SELECT * FROM tr_amonestacionesxjugador WHERE jugador = $idjugador and estado_amonestacion='1' and amonestacion !='5' ORDER BY jornada_amonestacion desc");
-
-while($res1=mysql_fetch_array($consultaamon)){
-
-  $idjugadoramon=$res1['jugador'];
-  $idamon = $res1['amonestacion'];
-  $idestado=$res1['estado_amonestacion'];
-  $jornada=$res1['jornada_amonestacion'];
-
-
-  $consultanomamon = mysql_query("SELECT * FROM tb_jugadores WHERE id_jugadores = $idjugadoramon");
-  $consultanomamon1= mysql_query("SELECT * FROM tb_amonestaciones WHERE id_amonestacion = $idamon");
-  $consultanomamon2= mysql_query("SELECT * FROM tb_estados_amonestacion WHERE id_estado = $idestado");
-
-$res3= mysql_fetch_array($consultanomamon1);
-$res4 = mysql_fetch_array($consultanomamon2);
-
-while($res2=mysql_fetch_array($consultanomamon)){
-
-?>
-
-
-
-<div>
-<form action="ModificarAmonestaciones2.php" class="formoid-flat-black" style="background-color:#FFFFFF;font-size:14px;font-family:'Lato', sans-serif;color:#666666;max-width:480px;min-width:150px" method="post">
-  <div class="element-input"><label style="font-weight: bolder;" class="title">Nombre jugador:</label><?php echo $res2['nombre1']." ".$res2['nombre2']." ".$res2['apellido1']." ".$res2['apellido2']?></div>
-  <div class="element-input"><label style="font-weight: bolder;" class="title">Amonestación de la fecha :  <?php echo $jornada ?></label><?php echo $res3['nombre']?></div>
-   <div class="element-input"><label style="font-weight: bolder;" class="title">Comentario:</label><cite>Esta información saldra en el informe de las amonestaciones.</cite><input style="height: 56px;"class="large" type="text" name="comentario<?php echo $i ?>" value="<?php echo  $res1['comentario'];?>" /></div>
-  <div class="element-input"><label style="font-weight: bolder;" class="title">Duración:</label><cite>Numero de fechas de suspención.*Si es amarilla no aplica</cite><input class="large" type="number" name="duracion<?php echo $i ?>" value="<?php echo $res1['duracion']; ?>" /></div>
- <input type="hidden" value="<?php echo $res2['id_jugadores']; ?>" name="jugador<?php echo $i ?>" />
-  <input type="hidden" value="<?php echo $res1['jornada_amonestacion'];; ?>" name="jornada<?php echo $i ?>" />
-   <center><input style="margin-left:20px"type="checkbox"  name="vigencia<?php echo $i ?>" value="antigua"/ ><span style="margin-left:25px">Marcar como antigua</span></center>
-<div>
-
 </body>
 </html>
-
-<br><br>
-<?php
-$i=$i+1;
-}}
-}
-?>
-<input type="hidden" value="<?php  echo $equipo?>" name="equipo">
-<input type="hidden" value="<?php echo $i ?>" name="numerodejugadores"/>
-<center><input type="submit" value="Guardar" name="guardar" /></center>
-</form></div>
-

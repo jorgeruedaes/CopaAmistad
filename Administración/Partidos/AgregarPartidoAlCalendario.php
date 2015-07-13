@@ -50,18 +50,22 @@ if ($pruebadeinicio == 1 or $pruebadeinicio == 2) {
                             </div>
                             <div class="row">
                                 <div class="col-md-4 col-md-offset-2"> 
-                                    <label>Fecha:</label>
-                                    <input type="date" class="form-control" name="fecha" required>
-
-                                </div>
-                                <div class="col-md-4"> 
-                                    <label>Hora:</label>
-                                    <input type="time" class="form-control" name="hora" required>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-8 col-md-offset-2">
-                                    <br>
+                                    <div class="control-group">
+                                        <label class="control-label" for="fechaInicio1">Fecha:</label>
+                                        <div class="controls">
+                                            <div data-date="" class="input-append date datepicker" id="dp" style="padding-left:0px">
+                                                <input type="text" format="AAAA-MM-DD" class="span4 form-control inicio" value="" name="fecha" id="fechaInicio" required="required"/>	
+                                                <span class="add-on"><i class="icon-calendar"></i></span>
+                                            </div>
+                                        </div>				
+                                    </div>                                         
+                                </div>   
+                                <div class="col-md-4">
+                                     <label>Hora:</label>
+                                    <div class="input-append bootstrap-timepicker">
+                                        <input name="hora" id="timepicker1" style="width:100px;margin-top: 5px" type="text" readonly="readonly" value="12:00 PM" required="required"/>
+                                        <span class="add-on"><i class="glyphicon glyphicon-time"></i></span>                                    
+                                    </div>
                                 </div>
                             </div>
                             <div class="row">
@@ -141,7 +145,7 @@ if ($pruebadeinicio == 1 or $pruebadeinicio == 2) {
                                 </div>
                                 <div class="col-md-4"> 
                                     <label>Número de la fecha:</label>
-                                    <input type="text" class="form-control" name="fechatorneo" required>
+                                    <input type="number" style="width:90px" class="form-control" name="fechatorneo" required>
                                 </div>
                             </div>
                             <div class="row">
@@ -179,51 +183,76 @@ if ($pruebadeinicio == 1 or $pruebadeinicio == 2) {
                     </div>
                 </div>
             </div>
+        <link rel="stylesheet" href="../../datepicker/css/datepicker.css"/>
+        <link rel="stylesheet" href="../../timepicker/css/bootstrap-timepicker.css"/>
+        <script type="text/javascript" src="../../datepicker/js/bootstrap-datepicker.js"></script>
+        <script type="text/javascript" src="../../timepicker/js/bootstrap-timepicker.js"></script>
+        <script src="../../datepicker/js/locales/bootstrap-datepicker.es.js" charset="UTF-8"></script>
+        <script>
+            $(document).ready(function () {
+                $(function () {
+                    $("#dp").datepicker({
+                        format: "yyyy/mm/dd",
+                        language: "es",
+                        autoclose: true
+                 
+                    });
+                    $("#dp").datepicker().on('changeDate', function (ev)
+                    {
+                        fdp2 = new Date(ev.date);
+                        $('#fechainicio').text($('#dp').data('date'));
+                        $('#dp').datepicker('hide');
+                    });
+                });
+                $('#timepicker1').timepicker();
 
-            <?php
-            if (isset($_POST['enviar'])) {
-                if ($_POST['equipo1'] == $_POST['equipo2']) {
-                   echo "<script language='JavaScript' type='text/javascript'>
+            });
+
+        </script>
+        <?php
+        if (isset($_POST['enviar'])) {
+            if ($_POST['equipo1'] == $_POST['equipo2']) {
+                echo "<script language='JavaScript' type='text/javascript'>
 alert('Los partidos deben ser entre equipos diferentes.');
 </script>
                     ";
-                } else {
+            } else {
 
-                    $pal = $_POST['equipo1'];
-                    $pal1 = $_POST['equipo2'];
-                    $pal3 = $_POST['fecha'];
-                    $pal4 = $_POST['hora'];
-                    $pal5 = $_POST['lugar'];
-                    $pal8 = $_POST['fechatorneo'];
-                    $pal9 = $_POST['juez'];
-                    $guardar = mysql_query("INSERT INTO `tb_partidos`(`id_partido`, `equipo1`, `equipo2`, `resultado1`, `resultado2`, `fecha`, `numero_fecha`, `Lugar`, `Estado`, `Juez`,`hora`) VALUES (NULL,'$pal','$pal1',0,0,'$pal3','$pal8','$pal5','1','$pal9','$pal4');")or die(mysql_error());
-                    if ($guardar == TRUE) {
-                        echo "<script language='JavaScript' type='text/javascript'>
+                $pal = $_POST['equipo1'];
+                $pal1 = $_POST['equipo2'];
+                $pal3 = $_POST['fecha'];
+                $pal4 = $_POST['hora'];
+                $pal5 = $_POST['lugar'];
+                $pal8 = $_POST['fechatorneo'];
+                $pal9 = $_POST['juez'];
+                $guardar = mysql_query("INSERT INTO `tb_partidos`(`id_partido`, `equipo1`, `equipo2`, `resultado1`, `resultado2`, `fecha`, `numero_fecha`, `Lugar`, `Estado`, `Juez`,`hora`) VALUES (NULL,'$pal','$pal1',0,0,'$pal3','$pal8','$pal5','1','$pal9','$pal4');")or die(mysql_error());
+                if ($guardar == TRUE) {
+                    echo "<script language='JavaScript' type='text/javascript'>
 alert('Partido creado.');
 </script>
                     ";
-                    } else {
-                        echo "<script language='JavaScript' type='text/javascript'>
+                } else {
+                    echo "<script language='JavaScript' type='text/javascript'>
 alert('Hubo un error y el partido no fue creado.');
 </script>";
-                    }
                 }
             }
-        } else {
-            ?>
-            <!-- CUANDO EL PERSONAJE NO ESTA AUTORIZADO PARA EL INGRESO-->
-            <br><br>
-            <center>
-                <div>
-                    <label>Lo sentimos pero usted no tiene autorización para estar en este lugar.</label>
-                </div>
-            </center>
-            <center><button  type="submit" ><a href="iniciox.php">Volver</a></button></center>
-            <?php
         }
+    } else {
         ?>
+        <!-- CUANDO EL PERSONAJE NO ESTA AUTORIZADO PARA EL INGRESO-->
+        <br><br>
+        <center>
+            <div>
+                <label>Lo sentimos pero usted no tiene autorización para estar en este lugar.</label>
+            </div>
+        </center>
+        <center><button  type="submit" ><a href="iniciox.php">Volver</a></button></center>
+        <?php
+    }
+    ?>
 
 
 
-    </body>
+</body>
 </html>
