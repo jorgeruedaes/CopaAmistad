@@ -45,7 +45,7 @@
                                 <a style="font-size:15px;font-family: sans-serif"class="cerrar" href="cerrarsesion.php">Cerrar sesión 
                                         <span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
 
-                                <div><img src="../images/Logo.png" style="padding-left: 30px;width: 100px;height: 100px;padding-right: 400px"/></div>
+                                <div><img src="../images/Logo.png" style="padding-left: 20px;width: 120px;height: 100px"/></div>
                         </div>
 
                         <nav class="navbar navbar-default">
