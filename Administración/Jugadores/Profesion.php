@@ -23,6 +23,9 @@ if ($pruebadeinicio == 1 or $pruebadeinicio == 2) {
             <link rel="stylesheet" href="../../bootstrap/css/bootstrap.css">
             <link rel="stylesheet" href="../../bootstrap/css/bootstrap-theme.css">
             <script src="../../bootstrap/js/bootstrap.min.js"></script>
+            <!-- ALERTS -->
+              <script src="../../dist/sweetalert.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../../dist/sweetalert.css">
         </head>
         <style type="text/css">
             #bienvenido{
@@ -90,13 +93,24 @@ if ($pruebadeinicio == 1 or $pruebadeinicio == 2) {
         $insertar = mysql_query($query);
         if ($insertar == true) {
 
-            echo "<script language='JavaScript' type='text/javascript'>
-alert('Profesión creada.');
-</script>";
+            ?>
+                                            <script>
+
+                                                  swal("", "Profesion creada exitosamente", "success");
+
+                                            </script>
+
+                                            <?php
         } else {
-            echo "<script language='JavaScript' type='text/javascript'>
-alert('Hubo un Error y la profesion no fue creada.');
-</script>";
+        
+            ?>
+                                            <script>
+
+                                                  swal("", "La profesion no se ha podido crear, intenta nuevamente", "error");
+
+                                            </script>
+
+                                            <?php
         }
     }
 } else {

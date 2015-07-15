@@ -20,6 +20,10 @@ if ($pruebadeinicio == 1 or $pruebadeinicio == 2) {
             <link rel="stylesheet" href="../../bootstrap/css/bootstrap.css">
             <link rel="stylesheet" href="../../bootstrap/css/bootstrap-theme.css">
             <script src="../../bootstrap/js/bootstrap.min.js"></script>
+            
+            <!--ALERTs -->
+        <script src="../../dist/sweetalert.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../../dist/sweetalert.css">
         </head>
         <style type="text/css">
             #bienvenido{
@@ -108,12 +112,23 @@ if (isset($_POST['enviar'])) {
     $guardaramonestacion = mysql_query("INSERT INTO `tb_equipos`(`id_equipo`, `nombre_equipo`, `tecnico1`, `tecnico2`, `puntos`, `torneo`, `imagen_escudo`) 
 	VALUES (NULL,'$nombre','$tecnico1','$tecnico2','0','$torneo','xx')");
 if($guardaramonestacion==TRUE){
-    echo "<script language='JavaScript' type='text/javascript'>
-alert('Equipo Creado.');
-</script>";}else{
-     echo "<script language='JavaScript' type='text/javascript'>
-alert('Hubo un error y el equipo no fue creado.');
-</script>";
+     ?>
+                                            <script>
+
+                                                  swal("", "El equipo se ha agregado exitosamente", "success");
+
+                                            </script>
+
+                                            <?php
+}else{
+              ?>
+                                            <script>
+
+                                                  swal("", "Ha ocurrido un error y el equipo no se ha podido crear,intenta nuevamente", "error");
+
+                                            </script>
+
+                                            <?php
 }
 }
 ?>

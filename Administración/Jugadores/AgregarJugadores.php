@@ -20,8 +20,11 @@ if ($pruebadeinicio == 1 or $pruebadeinicio == 2 or $pruebadeinicio == 4) {
             <script type="text/javascript" src="../../js/jquery-1.3.2.min.js"></script>
             <link rel="stylesheet" href="../../bootstrap/css/bootstrap.css">
                 <link rel="stylesheet" href="../../bootstrap/css/bootstrap-theme.css">
-
+  
                     <script src="../../bootstrap/js/bootstrap.min.js"></script>
+<!-- ALERTS-->
+          <script src="../../dist/sweetalert.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../../dist/sweetalert.css">
 
 
                     </head>
@@ -243,12 +246,12 @@ if ($pruebadeinicio == 1 or $pruebadeinicio == 2 or $pruebadeinicio == 4) {
 	'$correo','$equipo','" . 'xxx' . "','$fechainsc','1','$tel','$profesion')");
 
                                         if ($guardarjugador === FALSE) {
-                                            alert("No se pudo agregar el jugador.");
+                                          swal("", "No se ha podido agregar el jugador", "error");
                                         } else {
                                             ?>
                                             <script>
 
-                                                alert("Jugador agregado.");
+                                                  swal("", "Jugador agregado", "success");
 
                                             </script>
 

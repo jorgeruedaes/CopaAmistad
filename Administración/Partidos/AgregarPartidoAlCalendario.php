@@ -16,6 +16,9 @@ if ($pruebadeinicio == 1 or $pruebadeinicio == 2) {
             <link rel="stylesheet" href="../../bootstrap/css/bootstrap.css">
             <link rel="stylesheet" href="../../bootstrap/css/bootstrap-theme.css">
             <script src="../../bootstrap/js/bootstrap.min.js"></script>
+            <!--  ALERTAS-->
+            <script src="../../dist/sweetalert.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../../dist/sweetalert.css">
         </head>
         <style type="text/css">
             #bienvenido{
@@ -212,10 +215,14 @@ if ($pruebadeinicio == 1 or $pruebadeinicio == 2) {
         <?php
         if (isset($_POST['enviar'])) {
             if ($_POST['equipo1'] == $_POST['equipo2']) {
-                echo "<script language='JavaScript' type='text/javascript'>
-alert('Los partidos deben ser entre equipos diferentes.');
-</script>
-                    ";
+                     ?>
+                                            <script>
+
+                                                  swal("", "Los equipos deben ser diferentes", "error");
+
+                                            </script>
+
+                                            <?php
             } else {
 
                 $pal = $_POST['equipo1'];
@@ -227,14 +234,23 @@ alert('Los partidos deben ser entre equipos diferentes.');
                 $pal9 = $_POST['juez'];
                 $guardar = mysql_query("INSERT INTO `tb_partidos`(`id_partido`, `equipo1`, `equipo2`, `resultado1`, `resultado2`, `fecha`, `numero_fecha`, `Lugar`, `Estado`, `Juez`,`hora`) VALUES (NULL,'$pal','$pal1',0,0,'$pal3','$pal8','$pal5','1','$pal9','$pal4');")or die(mysql_error());
                 if ($guardar == TRUE) {
-                    echo "<script language='JavaScript' type='text/javascript'>
-alert('Partido creado.');
-</script>
-                    ";
+                     ?>
+                                            <script>
+
+                                                  swal("", "El partido se ha agregado exitosamente", "success");
+
+                                            </script>
+
+                                            <?php
                 } else {
-                    echo "<script language='JavaScript' type='text/javascript'>
-alert('Hubo un error y el partido no fue creado.');
-</script>";
+                       ?>
+                                            <script>
+
+                                                  swal("", "El partido no se ha podido agregar, intenta nuevamente", "error");
+
+                                            </script>
+
+                                            <?php
                 }
             }
         }

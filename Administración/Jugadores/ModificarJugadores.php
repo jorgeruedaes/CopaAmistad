@@ -306,7 +306,16 @@ if ($pruebadeinicio == 1 or $pruebadeinicio == 2 or $pruebadeinicio == 4) {
                                         success: function (resp) {
                                         var resp = $.parseJSON(resp);
                                                 if (resp.Salida === true && resp.Mensaje === true) {
-                                       swal("", "El jugador se ha modificado exitosamente", "success");
+                                    swal({   title: "", 
+                                        text: "El jugador se ha modificado exitosamente!",  
+                                        type: "success", 
+                                        showCancelButton: false,  
+                                        confirmButtonColor: "rgb(174, 222, 244)", 
+                                        confirmButtonText: "Ok",  
+                                        closeOnConfirm: false
+                                    }, function(isConfirm){   if (isConfirm) {   
+                                           window.location.reload();
+                                        } });
                                                 $('.modal').modal('hide');
                                         } else{
                                         alert("Ha ocurrido un error y no ha podido modificar el jugador, intenta nuevamente");

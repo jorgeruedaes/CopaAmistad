@@ -24,6 +24,9 @@ if ($pruebadeinicio == 1 or $pruebadeinicio == 2) {
             <link rel="stylesheet" href="../../bootstrap/css/bootstrap.css">
             <link rel="stylesheet" href="../../bootstrap/css/bootstrap-theme.css">
             <script src="../../bootstrap/js/bootstrap.min.js"></script>
+            <!-- ALERTS-->
+          <script src="../../dist/sweetalert.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../../dist/sweetalert.css">
         </head>
         <style type="text/css">
             #bienvenido{
@@ -138,12 +141,19 @@ if ($pruebadeinicio == 1 or $pruebadeinicio == 2) {
 
         if ($guardarnoticia === FALSE) {
 
-            echo "fallo el ingreso de la noticia.";
+            ?>
+                                            <script>
+
+                                                  swal("", "No se ha podido agregar la noticia,intentalo nuevamente", "error");
+
+                                            </script>
+
+                                            <?php
         } else {
             ?>
             <script>
 
-                alert("La noticia se guardo exitosamente.")
+                   swal("", "La noticia se agrego exitosamente", "success");
 
             </script>
 
