@@ -16,11 +16,21 @@ if (isset($_SESSION['admin'])) {
     <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
     <html xmlns="http://www.w3.org/1999/xhtml">
         <head>
-            <!--<meta http-equiv="Content-type" content="text/html; charset=utf-8" />-->
             <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
             <title>Copa Amistad Profesional modulo de Administracion</title>
             <link rel="stylesheet" href="../../css/styler.css" type="text/css" media="all" />
-            <!--[if lte IE 6]><link rel="stylesheet" href="css/ie6.css" type="text/css" media="all" /><![endif]-->
+            <script type="text/javascript" src="../../js/jquery-1.3.2.min.js"></script>
+
+
+            <script type="text/javascript" charset="utf8" src="../../DataTables-1.10.7/media/js/jquery.js"></script>
+
+            <!-- DataTables -->
+            <script type="text/javascript" charset="utf8" src="../../DataTables-1.10.7/media/js/jquery.dataTables.js"></script>
+            <script type="text/javascript" charset="utf8" src="../../DataTables-1.10.7/media/js/dataTables.bootstrap.js"></script>
+            <link rel="stylesheet" href="../../bootstrap/css/bootstrap.css">
+            <link rel="stylesheet" href="../../bootstrap/css/bootstrap-theme.css">
+            <link rel="stylesheet" href="../../DataTables-1.10.7/media/css/dataTables.bootstrap.css">
+            <script src="../../bootstrap/js/bootstrap.min.js"></script>
         </head>
         <style type="text/css">
             #bienvenido{
@@ -37,39 +47,52 @@ if (isset($_SESSION['admin'])) {
 
         </style>
         <body>
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2"><br></div>
+            </div>
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2"><br></div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-md-offset-4">
+                    <table id="tablaprofesiones" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th>Profesión</th>
+                            </tr>
+                        </thead>
+                        <tbody>
 
-            <br><br><br><br><br>
-        <link rel="stylesheet" href="../../Formularios/formoid5_files/formoid1/formoid-solid-dark.css" type="text/css" />
-        <script type="text/javascript" src="../../Formularios/formoid5_files/formoid1/jquery.min.js"></script>
+                            <?php
+                            $consulta = mysql_query("SELECT * FROM `tb_profesiones` ORDER BY nombre asc");
+                            while ($listaprofesiones = mysql_fetch_array($consulta)) {
+                                ?>
 
-        <script type="text/javascript" src="../../Formularios/formoid5_files/formoid1/formoid-solid-dark.js"></script>
+                                <tr class="default caja">
+                                    <td><?php echo $listaprofesiones["nombre"] ?></td>
+                                </tr>
 
-        <form  id="principal"
-               class="formoid-solid-dark" style="background-color:#FFFFFF;font-size:14px;font-family:'Roboto',
-               Arial,Helvetica,sans-serif;color:#34495E;max-width:800px;min-width:150px" method="POST">
-            <br>
-            <b><label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspProfesiones&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label></b>
-            <br>
+                            </tbody>
+                            <?php
+                        }
+                        ?>
+                    </table>
+
+                </div></div>
+
             <?php
-            $consulta1 = mysql_query("SELECT * FROM `tb_profesiones` ORDER BY nombre asc ");
-            while ($resultado1 = mysql_fetch_array($consulta1)) {
-                ?>
-
-                <input style="margin-left: 40px;" class="medium" style="margin-left:2px"type="text" name="jugador<?php echo $i ?>" readonly="readonly" value="<?php echo $resultado1['nombre'] ?>"/>
-                <?php
-            }
+        } else {
             ?>
+            <!-- CUANDO EL PERSONAJE NO ESTA AUTORIZADO PARA EL INGRESO-->
             <br><br>
-            <br>
-        </form>
-
-        <br><br>
+            <center>
+                <div>
+                    <label>Lo sentimos pero usted no tiene autorización para estar en este lugar.</label>
+                </div>
+            </center>
+            <center><button  type="submit" ><a href="iniciox.php">Volver</a></button></center>
+            <?php
+        }
+        ?>
     </body>
-    </html>
-    <?php
-}
-?>
+</html>
