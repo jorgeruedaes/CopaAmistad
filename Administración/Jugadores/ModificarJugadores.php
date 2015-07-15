@@ -31,7 +31,9 @@ if ($pruebadeinicio == 1 or $pruebadeinicio == 2 or $pruebadeinicio == 4) {
             <link rel="stylesheet" href="../../bootstrap/css/bootstrap-theme.css">
             <link rel="stylesheet" href="../../DataTables-1.10.7/media/css/dataTables.bootstrap.css">
             <script src="../../bootstrap/js/bootstrap.min.js"></script>
-
+            <!--  ALERTAS-->
+            <script src="../../dist/sweetalert.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../../dist/sweetalert.css">
         </head>
         <style type="text/css">
             #bienvenido{
@@ -277,7 +279,7 @@ if ($pruebadeinicio == 1 or $pruebadeinicio == 2 or $pruebadeinicio == 4) {
                                                 $('.profesion  option[value="' + resp.jugador.profesion + '"]').attr('selected', 'selected');
                                                 $('.estado  option[value="' + resp.jugador.estado + '"]').attr('selected', 'selected');
                                         } else {
-                                        alert("Ha habido un error,intenta nuevamente");
+                                                   swal("", "Ha habido un error,intenta nuevamente", "error");
                                         }
                                         }
                                 });
@@ -304,7 +306,7 @@ if ($pruebadeinicio == 1 or $pruebadeinicio == 2 or $pruebadeinicio == 4) {
                                         success: function (resp) {
                                         var resp = $.parseJSON(resp);
                                                 if (resp.Salida === true && resp.Mensaje === true) {
-                                        alert('El jugador se edito exitosamente');
+                                       swal("", "El jugador se ha modificado exitosamente", "success");
                                                 $('.modal').modal('hide');
                                         } else{
                                         alert("Ha ocurrido un error y no ha podido modificar el jugador, intenta nuevamente");
@@ -323,13 +325,13 @@ if ($pruebadeinicio == 1 or $pruebadeinicio == 2 or $pruebadeinicio == 4) {
                                     return true;
                                 } else{
                                 $('#apellido1').focus();
-                                     alert("Debe ingresar un apellido");
+                                       swal("", "Debes ingresar un apellido", "error");
                                         return false;
                                 }
                                 
                                 } else{
                                 $('#nombre1').focus();
-                                alert("Debe ingresar un nombre");
+                                  swal("", "Debes ingresar un nombre", "error");
                                         return false;
                                 }
                                 }
