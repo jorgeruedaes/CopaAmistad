@@ -124,7 +124,7 @@ if ($pruebadeinicio == 1 or $pruebadeinicio == 2 or $pruebadeinicio == 4) {
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <form method="post"> 
+                                    <form > 
                                         <div class="row">
                                             <div class="col-md-5 col-md-offset-1">
                                                 <br>
@@ -133,11 +133,11 @@ if ($pruebadeinicio == 1 or $pruebadeinicio == 2 or $pruebadeinicio == 4) {
                                         <div class="row">
                                             <div class="col-md-5 col-md-offset-1"> 
                                                 <label>Primer nombre:</label>
-                                                <input type="text" class="form-control" name="nombre1" required>
+                                                <input type="text" class="form-control" name="nombre1" required  id="nombre1">
                                             </div>
                                             <div class="col-md-5 "> 
                                                 <label>Segundo nombre:</label>
-                                                <input type="text" class="form-control" name="nombre2">
+                                                <input type="text" class="form-control" name="nombre2"  id="nombre2">
                                             </div>
                                         </div>
                                         <div class="row">
@@ -148,11 +148,11 @@ if ($pruebadeinicio == 1 or $pruebadeinicio == 2 or $pruebadeinicio == 4) {
                                         <div class="row">
                                             <div class="col-md-5 col-md-offset-1"> 
                                                 <label>Primer apellido:</label>
-                                                <input type="text" class="form-control" name="apellido1" required>
+                                                <input type="text" class="form-control" name="apellido1" required  id="apellido1" >
                                             </div>
                                             <div class="col-md-5 "> 
                                                 <label>Segundo apellido:</label>
-                                                <input type="text" class="form-control" name="apellido2">
+                                                <input type="text" class="form-control" name="apellido2"  id="apellido2">
                                             </div>
                                         </div>
                                         <div class="row">
@@ -163,11 +163,11 @@ if ($pruebadeinicio == 1 or $pruebadeinicio == 2 or $pruebadeinicio == 4) {
                                         <div class="row">
                                             <div class="col-md-5 col-md-offset-1"> 
                                                 <label>Télefono/celular:</label>
-                                                <input type="tel" class="form-control" name="tel">
+                                                <input type="tel" class="form-control" name="tel" id="telefono">
                                             </div>
                                             <div class="col-md-5 "> 
                                                 <label>E-mail:</label>
-                                                <input type="email" class="form-control" name="correo">
+                                                <input type="email" class="form-control" name="correo" id="email" >
                                             </div>
                                         </div>
                                         <div class="row">
@@ -178,31 +178,42 @@ if ($pruebadeinicio == 1 or $pruebadeinicio == 2 or $pruebadeinicio == 4) {
                                         <div class="row">
                                             <div class="col-md-5 col-md-offset-1"> 
                                                 <label>Profesión:</label>
-                                                <select class="form-control" style="" required="required" name="profesion">
-                                                    <option value=""></option>
+                                                <select class="form-control profesion" style="" required="required" name="profesion">
+                                                    <?php
+                                                    $query = mysql_query("SELECT * FROM tb_profesiones order by nombre asc");
+                                                    while ($query1 = mysql_fetch_array($query)) {
+                                                        ?>
+                                                        <option value="<?php echo $query1['id_profesion'] ?>"><?php echo $query1['nombre'] ?></option>
+                                                    <?php } ?>
                                                 </select>
 
                                             </div>
                                             <div class="col-md-5"> 
                                                 <label>Estado:</label>
-                                                <select class="form-control" style="" required="required" name="profesion">
-                                                    <option value=""></option>
+                                                <select class="form-control estado" style="" required="required" name="estado">
+                                                    <?php
+                                                    $query = mysql_query("SELECT * FROM tb_estados_jugador order by id_estado asc");
+                                                    while ($query1 = mysql_fetch_array($query)) {
+                                                        ?>
+                                                        <option value="<?php echo $query1['id_estado'] ?>"><?php echo $query1['nombre'] ?></option>
+                                                    <?php } ?>
                                                 </select>
 
                                             </div>
                                             <div class="row">
-                                            <div class="col-md-5 col-md-offset-1">
-                                                <br>
+                                                <div class="col-md-5 col-md-offset-1">
+                                                    <br>
+                                                </div>
                                             </div>
-                                        </div>
                                         </div>
                                     </form>
                                 </div>
                             </div>
                         </div>
                         <div class="modal-footer">
+                            <input type="hidden" id="identificador"/>
                             <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                            <button type="button" class="btn btn-success">Guardar cambios</button>
+                            <button type="button" class="btn btn-success guardar">Guardar cambios</button>
                         </div>
                     </div>
                 </div>
@@ -210,62 +221,119 @@ if ($pruebadeinicio == 1 or $pruebadeinicio == 2 or $pruebadeinicio == 4) {
 
 
             <script>
-                $(document).ready(function () {
-                    $('#tablajugadores').DataTable({
+                        $(document).ready(function () {
+                jugadores.inicio();
+                });
+                        var jugadores = {
+                        inicio: function () {
+                        $('#tablajugadores').DataTable({
                         "language": {
-                            "lengthMenu": "Mostrar _MENU_",
-                            "search": "Buscar:",
-                            "info": "Mostrando _START_ a _END_ de _TOTAL_ entradas",
-                            "loadingRecords": "Cargando...",
-                            "processing": "Procesando...",
-                            "zeroRecords": "No se encontraron resultados",
-                            "infoEmpty": "Mostrando 0 a 0 de 0 entradas",
-                            "infoFiltered": "(filtrado de _MAX_ entradas)",
-                            "paginate": {
+                        "lengthMenu": "Mostrar _MENU_",
+                                "search": "Buscar:",
+                                "info": "Mostrando _START_ a _END_ de _TOTAL_ entradas",
+                                "loadingRecords": "Cargando...",
+                                "processing": "Procesando...",
+                                "zeroRecords": "No se encontraron resultados",
+                                "infoEmpty": "Mostrando 0 a 0 de 0 entradas",
+                                "infoFiltered": "(filtrado de _MAX_ entradas)",
+                                "paginate": {
                                 "first": "Primera",
-                                "last": "Última",
-                                "next": "Siguiente",
-                                "previous": "Anterior"
-                            }
+                                        "last": "Última",
+                                        "next": "Siguiente",
+                                        "previous": "Anterior"
+                                }
                         }
 
-                    });
-                    $('.editar').off('click').on('click', function () {
-                        var id = $(this).data('id');
-
-                        $.ajax({
-                            url: 'PeticionesJugadores.php',
-                            type: 'POST',
-                            data: {
-                                Bandera: "MostrarJugador",
-                                id: id
-                            },
-                            success: function (resp) {
-                                $('.modal').modal('show');
-                                var resp = $.parseJSON(resp);
-                                console.log(resp);
-                            }
-
                         });
-                    });
-
-
-                    $('.dataTables_paginate').off('click').on('click', function () {
+                                $('.dataTables_paginate').off('click').on('click', function () {
                         jugadores.recargarEventos();
-                    });
-
-                });
-                var jugadores = {
-                    recargarEventos: function () {
-                        $('.editar').off('click').on('click', function () {
-                            var id = $(this).data('id');
-                            $('.id').val(id);
-                            $('.modal').modal('show');
                         });
+                                jugadores.recargarEventos();
+                        },
+                                recargarEventos: function () {
+                                jugadores.EventoConsultarDatos();
+                                        jugadores.EventoEnviarDatos();
+                                }, EventoConsultarDatos: function () {
+                        $('.editar').off('click').on('click', function () {
+                        var id = $(this).data('id');
+                                $.ajax({
+                                url: 'PeticionesJugadores.php',
+                                        type: 'POST',
+                                        data: {
+                                        Bandera: "MostrarJugador",
+                                                id: id
+                                        },
+                                        success: function (resp) {
+                                        $('.modal').modal('show');
+                                                var resp = $.parseJSON(resp);
+                                                if (resp.Salida === true && resp.Mensaje === true) {
+                                        $('#nombre1').val(resp.jugador.nombre);
+                                                $('#nombre2').val(resp.jugador.nombre2);
+                                                $('#apellido1').val(resp.jugador.apellido);
+                                                $('#apellido2').val(resp.jugador.apellido2);
+                                                $('#email').val(resp.jugador.email);
+                                                $('#identificador').val(resp.jugador.identificador);
+                                                $('#telefono').val(resp.jugador.telefono);
+                                                $('.profesion  option[value="' + resp.jugador.profesion + '"]').attr('selected', 'selected');
+                                                $('.estado  option[value="' + resp.jugador.estado + '"]').attr('selected', 'selected');
+                                        } else {
+                                        alert("Ha habido un error,intenta nuevamente");
+                                        }
+                                        }
+                                });
+                        });
+                        },
+                                EventoEnviarDatos: function () {
+                                $('.guardar').off('click').on('click', function () {
+                                    if(jugadores.ValidarInformacion()){
+                                $.ajax({
+                                url: 'PeticionesJugadores.php',
+                                        type: 'POST',
+                                        data: {
+                                        Bandera: "EditarJugador",
+                                                nombre: $('#nombre1').val(),
+                                                nombre2: $('#nombre2').val(),
+                                                apellido: $('#apellido1').val(),
+                                                apellido2: $('#apellido2').val(),
+                                                email: $('#email').val(),
+                                                telefono: $('#telefono').val(),
+                                                profesion: $('.profesion').val(),
+                                                estado: $('.estado').val(),
+                                                id:$('#identificador').val()
+                                        },
+                                        success: function (resp) {
+                                        var resp = $.parseJSON(resp);
+                                                if (resp.Salida === true && resp.Mensaje === true) {
+                                        alert('El jugador se edito exitosamente');
+                                                $('.modal').modal('hide');
+                                        } else{
+                                        alert("Ha ocurrido un error y no ha podido modificar el jugador, intenta nuevamente");
+                                        }
+                                        }
 
-
-                    }
-                };
+                                });
+                            }
+                                });
+                                
+                            
+                                },
+                                ValidarInformacion: function(){
+                                if (/\w/gi.test($('#nombre1').val())){
+                                if (/\w/gi.test($('#apellido1').val())){
+                                    return true;
+                                } else{
+                                $('#apellido1').focus();
+                                     alert("Debe ingresar un apellido");
+                                        return false;
+                                }
+                                
+                                } else{
+                                $('#nombre1').focus();
+                                alert("Debe ingresar un nombre");
+                                        return false;
+                                }
+                                }
+                                };
 
 
             </script>
