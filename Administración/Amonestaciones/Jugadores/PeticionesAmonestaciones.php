@@ -1,51 +1,84 @@
 <?php
 
 session_start();
-include '../../conexion.php';
-include('../RutinaDeLogueo.php');
+include '../../../conexion.php';
+include('../../RutinaDeLogueo.php');
 if ($pruebadeinicio == 1 or $pruebadeinicio == 2 or $pruebadeinicio == 4) {
     $resultado = '{"Salida":true,';
     $Bandera = $_POST['Bandera'];
-    if ($Bandera === "MostrarJugador") {
-        $jugador = $_POST['id'];
-        $query = mysql_query("SELECT * FROM tb_jugadores WHERE id_jugadores='$jugador'");
+    if ($Bandera === "MostrarAmonestacion") {
+        $id = $_POST['id'];
+        $query = mysql_query("SELECT * FROM tr_amonestacionesxjugador WHERE id_amonestacioxjugador='$id'");
         $datos = mysql_fetch_array($query);
-        $nombre1 = $datos['nombre1'];
-        $nombre2 = $datos['nombre2'];
-        $apellido1 = $datos['apellido1'];
-        $apellido2 = $datos['apellido2'];
-        $nacimiento = $datos['fecha_nacimiento'];
-        $email = $datos['email'];
-        $equipo = $datos['equipo'];
-        $ingreso = $datos['fecha_ingreso'];
-        $estado = $datos['estado_jugador'];
-        $telf = $datos['telefono'];
-        $id = $datos['id_jugadores'];
-        $profesion = $datos['profesion'];
+        $comentario = $datos['comentario'];
+        $duracion = $datos['duracion'];
+
         if ($query) {
-            $resultado.='"jugador":{"identificador": "' . $id . '","nombre": "' . $nombre1 . '","nombre2": "' . $nombre2 . '","apellido": "' . $apellido1 . '","apellido2": "' . $apellido2 . '","nacimiento": "' . $nacimiento . '","email":" ' . $email . '","ingreso": "' . $ingreso . '","telefono": "' . $telf . '","estado": "' . $estado . '","profesion": "' . $profesion . '"}';
+            $resultado.='"datos":{"comentario": "' . $comentario . '","duracion": "' . $duracion . '"}';
             $resultado.=',"Mensaje":true';
         } else {
             $resultado.='"Mensaje":false';
         }
-    } else if ($Bandera === "EditarJugador") {
-        $nombre1 = $_POST['nombre'];
-        $nombre2 = $_POST['nombre2'];
-        $apellido1 = $_POST['apellido'];
-        $apellido2 = $_POST['apellido2'];
-        $email = $_POST['email'];
-        $estado = $_POST['estado'];
-        $telf = $_POST['telefono'];
+    } else if ($Bandera === "EditarAmonestacion") {
+        $comentario = $_POST['comentario'];
+        $duracion = $_POST['duracion'];
         $id = $_POST['id'];
-        $profesion = $_POST['profesion'];
-        $query = mysql_query("UPDATE tb_jugadores SET nombre1='$nombre1',nombre2='$nombre2',apellido1='$apellido1',apellido2='$apellido2',email='$email',estado_jugador='$estado',telefono='$telf',profesion='$profesion' WHERE  id_jugadores=$id");
+
+        $query = mysql_query("UPDATE tr_amonestacionesxjugador SET duracion='$duracion',comentario='$comentario'WHERE  id_amonestacioxjugador=$id");
         if ($query) {
             $resultado.='"Mensaje":true';
         } else {
             $resultado.='"Mensaje":false';
         }
+    } else if ($Bandera === "PagarAmonestacion") {
+        $id = $_POST['id'];
+
+        $query = mysql_query("UPDATE tr_amonestacionesxjugador SET estado_amonestacion='2' WHERE  id_amonestacioxjugador=$id");
+        if ($query) {
+            $resultado.='"Mensaje":true';
+        } else {
+            $resultado.='"Mensaje":false';
+        }
+    } else if ($Bandera === "EliminarAmonestacion") {
+        $id = $_POST['id'];
+// CONSULTA DE ELIMINAR
+        $query = mysql_query("SELECT partido,tr_amonestacionesxjugador.jugador FROM tr_amonestacionesxjugador,tr_jugadoresxpartido  "
+                . "WHERE id_amonestacioxjugador=$id and tr_amonestacionesxjugador.jugador=tr_jugadoresxpartido.jugador and partido "
+                . "IN (SELECT partido FROM tb_partidos WHERE numero_fecha=jornada_amonestacion) and tr_jugadoresxpartido.amonestacion!=5 "
+                . "and tr_jugadoresxpartido.amonestacion = tr_amonestacionesxjugador.amonestacion and estado_amonestacion=1");
+        if ($query) {
+            $eliminar = mysql_fetch_array($query);
+            $partido=$eliminar['partido'];
+            $jugador=$eliminar['jugador'];
+            $query2 = mysql_query("UPDATE `tr_jugadoresxpartido` SET `amonestacion`=5 WHERE partido=$partido and jugador=$jugador");
+            if ($query2) {
+                $query1 = mysql_query("DELETE FROM `tr_amonestacionesxjugador` WHERE `id_amonestacioxjugador`=$id");
+                if ($query1) {
+                    $resultado.='"Mensaje":true';
+                } else {
+                    $resultado.='"Mensaje":false';
+                }
+            } else {
+                $resultado.='"Mensaje":false';
+            }
+        } else {
+            $resultado.='"Mensaje":false';
+        }
     }
-} else {
+    else if ($Bandera === "RestaurarAmonestacion") {
+        $id = $_POST['id'];
+// CONSULTA DE ELIMINAR
+
+                $query1 = mysql_query("UPDATE `tr_amonestacionesxjugador` SET `estado_amonestacion`=1 WHERE id_amonestacioxjugador=$id");
+                if ($query1) {
+                    $resultado.='"Mensaje":true';
+                } else {
+                    $resultado.='"Mensaje":false';
+                }
+        
+       
+    
+} }else {
     $resultado = '{"Salida":false,';
 }
 $resultado.='}';
