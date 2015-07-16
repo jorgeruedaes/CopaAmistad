@@ -33,7 +33,7 @@ if ($pruebadeinicio == 1 or $pruebadeinicio == 2 or $pruebadeinicio == 4) {
             <script src="../../bootstrap/js/bootstrap.min.js"></script>
             <!--  ALERTAS-->
             <script src="../../dist/sweetalert.min.js"></script>
-<link rel="stylesheet" type="text/css" href="../../dist/sweetalert.css">
+            <link rel="stylesheet" type="text/css" href="../../dist/sweetalert.css">
         </head>
         <style type="text/css">
             #bienvenido{
@@ -223,14 +223,14 @@ if ($pruebadeinicio == 1 or $pruebadeinicio == 2 or $pruebadeinicio == 4) {
 
 
             <script>
-                        $(document).ready(function () {
-                jugadores.inicio();
+                $(document).ready(function () {
+                    jugadores.inicio();
                 });
-                        var jugadores = {
-                        inicio: function () {
+                var jugadores = {
+                    inicio: function () {
                         $('#tablajugadores').DataTable({
-                        "language": {
-                        "lengthMenu": "Mostrar _MENU_",
+                            "language": {
+                                "lengthMenu": "Mostrar _MENU_",
                                 "search": "Buscar:",
                                 "info": "Mostrando _START_ a _END_ de _TOTAL_ entradas",
                                 "loadingRecords": "Cargando...",
@@ -239,127 +239,138 @@ if ($pruebadeinicio == 1 or $pruebadeinicio == 2 or $pruebadeinicio == 4) {
                                 "infoEmpty": "Mostrando 0 a 0 de 0 entradas",
                                 "infoFiltered": "(filtrado de _MAX_ entradas)",
                                 "paginate": {
-                                "first": "Primera",
-                                        "last": "Última",
-                                        "next": "Siguiente",
-                                        "previous": "Anterior"
+                                    "first": "Primera",
+                                    "last": "Última",
+                                    "next": "Siguiente",
+                                    "previous": "Anterior"
                                 }
-                        }
+                            }
 
                         });
-                                $('.dataTables_paginate').off('click').on('click', function () {
+                        $('.dataTables_paginate').off('click').on('click', function () {
+                            jugadores.recargarEventos();
+                        });
                         jugadores.recargarEventos();
-                        });
-                                jugadores.recargarEventos();
-                        },
-                                recargarEventos: function () {
-                                jugadores.EventoConsultarDatos();
-                                        jugadores.EventoEnviarDatos();
-                                }, EventoConsultarDatos: function () {
+                    },
+                    recargarEventos: function () {
+                        jugadores.EventoConsultarDatos();
+                        jugadores.EventoEnviarDatos();
+                    }, EventoConsultarDatos: function () {
                         $('.editar').off('click').on('click', function () {
-                        var id = $(this).data('id');
-                                $.ajax({
+                            var id = $(this).data('id');
+                            $.ajax({
                                 url: 'PeticionesJugadores.php',
-                                        type: 'POST',
-                                        data: {
-                                        Bandera: "MostrarJugador",
-                                                id: id
-                                        },
-                                        success: function (resp) {
-                                        $('.modal').modal('show');
-                                                var resp = $.parseJSON(resp);
-                                                if (resp.Salida === true && resp.Mensaje === true) {
+                                type: 'POST',
+                                data: {
+                                    Bandera: "MostrarJugador",
+                                    id: id
+                                },
+                                success: function (resp) {
+                                    $('.modal').modal('show');
+                                    var resp = $.parseJSON(resp);
+                                    if (resp.Salida === true && resp.Mensaje === true) {
                                         $('#nombre1').val(resp.jugador.nombre);
-                                                $('#nombre2').val(resp.jugador.nombre2);
-                                                $('#apellido1').val(resp.jugador.apellido);
-                                                $('#apellido2').val(resp.jugador.apellido2);
-                                                $('#email').val(resp.jugador.email);
-                                                $('#identificador').val(resp.jugador.identificador);
-                                                $('#telefono').val(resp.jugador.telefono);
-                                                $('.profesion  option[value="' + resp.jugador.profesion + '"]').attr('selected', 'selected');
-                                                $('.estado  option[value="' + resp.jugador.estado + '"]').attr('selected', 'selected');
-                                        } else {
-                                                   swal("", "Ha habido un error,intenta nuevamente", "error");
-                                        }
-                                        }
-                                });
+                                        $('#nombre2').val(resp.jugador.nombre2);
+                                        $('#apellido1').val(resp.jugador.apellido);
+                                        $('#apellido2').val(resp.jugador.apellido2);
+                                        $('#email').val(resp.jugador.email);
+                                        $('#identificador').val(resp.jugador.identificador);
+                                        $('#telefono').val(resp.jugador.telefono);
+                                        $('.profesion  option[value="' + resp.jugador.profesion + '"]').attr('selected', 'selected');
+                                        $('.estado  option[value="' + resp.jugador.estado + '"]').attr('selected', 'selected');
+                                    } else {
+                                        swal("", "Ha habido un error,intenta nuevamente", "error");
+                                    }
+                                }
+                            });
                         });
-                        },
-                                EventoEnviarDatos: function () {
-                                $('.guardar').off('click').on('click', function () {
-                                    if(jugadores.ValidarInformacion()){
+                    },
+                    EventoEnviarDatos: function () {
+                        $('.guardar').off('click').on('click', function () {
+                            if (jugadores.ValidarInformacion()) {
                                 $.ajax({
-                                url: 'PeticionesJugadores.php',
-                                        type: 'POST',
-                                        data: {
+                                    url: 'PeticionesJugadores.php',
+                                    type: 'POST',
+                                    data: {
                                         Bandera: "EditarJugador",
-                                                nombre: $('#nombre1').val(),
-                                                nombre2: $('#nombre2').val(),
-                                                apellido: $('#apellido1').val(),
-                                                apellido2: $('#apellido2').val(),
-                                                email: $('#email').val(),
-                                                telefono: $('#telefono').val(),
-                                                profesion: $('.profesion').val(),
-                                                estado: $('.estado').val(),
-                                                id:$('#identificador').val()
-                                        },
-                                        success: function (resp) {
+                                        nombre: $('#nombre1').val(),
+                                        nombre2: $('#nombre2').val(),
+                                        apellido: $('#apellido1').val(),
+                                        apellido2: $('#apellido2').val(),
+                                        email: $('#email').val(),
+                                        telefono: $('#telefono').val(),
+                                        profesion: $('.profesion').val(),
+                                        estado: $('.estado').val(),
+                                        id: $('#identificador').val()
+                                    },
+                                    success: function (resp) {
                                         var resp = $.parseJSON(resp);
-                                                if (resp.Salida === true && resp.Mensaje === true) {
-                                    swal({   title: "", 
-                                        text: "El jugador se ha modificado exitosamente!",  
-                                        type: "success", 
-                                        showCancelButton: false,  
-                                        confirmButtonColor: "rgb(174, 222, 244)", 
-                                        confirmButtonText: "Ok",  
-                                        closeOnConfirm: false
-                                    }, function(isConfirm){   if (isConfirm) {   
-                                           window.location.reload();
-                                        } });
-                                                $('.modal').modal('hide');
-                                        } else{
-                                        alert("Ha ocurrido un error y no ha podido modificar el jugador, intenta nuevamente");
+                                        if (resp.Salida === true && resp.Mensaje === true) {
+                                            swal({title: "",
+                                                text: "El jugador se ha modificado exitosamente!",
+                                                type: "success",
+                                                showCancelButton: false,
+                                                confirmButtonColor: "rgb(174, 222, 244)",
+                                                confirmButtonText: "Ok",
+                                                closeOnConfirm: false
+                                            }, function (isConfirm) {
+                                                if (isConfirm) {
+                                                    window.location.reload();
+                                                }
+                                            });
+                                            $('.modal').modal('hide');
+                                        } else {
+                                             swal("", "Ha habido un error,intenta nuevamente", "error");
                                         }
-                                        }
+                                    }
 
                                 });
                             }
-                                });
-                                
-                            
-                                },
-                                ValidarInformacion: function(){
-                                if (/\w/gi.test($('#nombre1').val())){
-                                if (/\w/gi.test($('#apellido1').val())){
-                                    return true;
-                                } else{
+                        });
+
+
+                    },
+                    ValidarInformacion: function () {
+                        if (/\w/gi.test($('#nombre1').val())) {
+                            if (/\w/gi.test($('#apellido1').val())) {
+                                return true;
+                            } else {
                                 $('#apellido1').focus();
-                                       swal("", "Debes ingresar un apellido", "error");
-                                        return false;
-                                }
-                                
-                                } else{
-                                $('#nombre1').focus();
-                                  swal("", "Debes ingresar un nombre", "error");
-                                        return false;
-                                }
-                                }
-                                };
+                                swal("", "Debes ingresar un apellido", "error");
+                                return false;
+                            }
+
+                        } else {
+                            $('#nombre1').focus();
+                            swal("", "Debes ingresar un nombre", "error");
+                            return false;
+                        }
+                    }
+                };
 
 
             </script>
             <?php
         } else {
-            ?>
-            <!-- CUANDO EL PERSONAJE NO ESTA AUTORIZADO PARA EL INGRESO-->
-            <br><br>
-            <center>
-                <div>
-                    <label>Lo sentimos pero usted no tiene autorización para estar en este lugar.</label>
-                </div>
-            </center>
-            <center><button  type="submit" ><a href="iniciox.php">Volver</a></button></center>
-            <?php
+        ?>
+                    <!-- CUANDO EL PERSONAJE NO ESTA AUTORIZADO PARA EL INGRESO-->
+                             <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
+                <link rel="stylesheet" href="../bootstrap/css/bootstrap-theme.css">
+                    <script src="../bootstrap/js/bootstrap.min.js"></script>
+                            <center>
+                                <div class="row">
+                                    <div class="col-md-10 col-md-offset-1"><br>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-10 col-md-offset-1">
+                                    <div class="alert alert-danger" role="alert">Lo sentimos pero usted no tiene autorización para estar en este lugar.</div>
+                                    </div>
+                                </div>
+                            </center>
+                            <center>
+                            <button type="button" class="btn btn-success"><a href="iniciox.php" style="color: white">Volver</a></button></center>
+                            <?php
         }
         ?>
 

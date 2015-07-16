@@ -26,6 +26,10 @@ if ($pruebadeinicio == 1 or $pruebadeinicio == 2) {
         <link rel="stylesheet" href="../../bootstrap/css/bootstrap-theme.css">
         <link rel="stylesheet" href="../../DataTables-1.10.7/media/css/dataTables.bootstrap.css">
         <script src="../../bootstrap/js/bootstrap.min.js"></script>
+        <!-- ALERTS-->
+          <script src="../../../dist/sweetalert.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../../../dist/sweetalert.css">
+
     </head>
     <style type="text/css">
         #bienvenido{
@@ -75,7 +79,7 @@ if ($pruebadeinicio == 1 or $pruebadeinicio == 2) {
                                     <th>Amonestación</th>
                                     <th>Fecha</th>
                                     <th style="width:100px">Opciones</th>
-                                    <th>Pagada</th>
+
                                 </tr>
                             </thead>
                             <tbody> 
@@ -118,11 +122,11 @@ if ($pruebadeinicio == 1 or $pruebadeinicio == 2) {
                                                     <td>  <center><div class="dropdown">
                                                     <button id="editar" class="dropdown-toggle btn btn-default" data-toggle="dropdown" type="button" data-toggle="modal" > <span class="glyphicon glyphicon-cog" aria-hidden="true"></span></button>
                                                     <ul class="dropdown-menu" role="menu">
-                                                        <li><a href="">Comentario</a></li>
-                                                        <li><a href="">Duración</a></li>
+                                                        <li><a class="detalles">Agregar Detalles</a></li>
+                                                        <li><a href="">Pagar</a></li>
+                                                        <li><a href="">Eliminar</a></li>
                                                     </ul>
                                                 </div></center></td>
-                                                <td><center><input type="checkbox"/></center></td>
                                             </tr>
 
                     <?php
@@ -206,8 +210,8 @@ if ($pruebadeinicio == 1 or $pruebadeinicio == 2) {
                                                     <td>  <center><div class="dropdown">
                                                     <button id="editar" class="dropdown-toggle btn btn-default" data-toggle="dropdown" type="button" data-toggle="modal" > <span class="glyphicon glyphicon-cog" aria-hidden="true"></span></button>
                                                     <ul class="dropdown-menu" role="menu">
-                                                        <li><a href="">Comentario</a></li>
-                                                        <li><a href="">Duración</a></li>
+                                                        <li><a >Comentario</a></li>
+                                                        <li><a >Duración</a></li>
                                                     </ul>
                                                 </div></center></td>
                                                 <td><center><input type="checkbox"/></center></td>
@@ -236,9 +240,73 @@ if ($pruebadeinicio == 1 or $pruebadeinicio == 2) {
          </div>
              </div>
             </div></div>
+        <div class="modal fade" id="myModal" tabindex="-1" data-jugador="" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">Editar jugador</h4>
+
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <form > 
+                                        <div class="row">
+                                            <div class="col-md-5 col-md-offset-1">
+                                                <br>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-5 col-md-offset-1"> 
+                                                <label>Duración:</label>
+                                                <input type="number" class="form-control" value="0" name="nombre1" required  id="duracion">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-5 col-md-offset-1">
+                                                <br>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-5 col-md-offset-1"> 
+                                                <label>Comentario:</label>
+                                                <textarea class="form-control" name="apellido1" required  id="comentario"></textarea>
+                                            </div>
+                                         
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-5 col-md-offset-1">
+                                                <br>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="row">
+                                            <div class="col-md-5 col-md-offset-1">
+                                                <br>
+                                            </div>
+                                        </div>
+                                        
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="hidden" id="identificador"/>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                            <button type="button" class="btn btn-success guardar">Guardar cambios</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         <script>
             $(document).ready(function () {
-                $('#tablaasistencia').DataTable({
+            amonestacion.inicio();
+
+            });
+            var amonestacion = {
+               inicio: function (){
+                   $('#tablaasistencia').DataTable({
                     "language": {
                         "lengthMenu": "Mostrar _MENU_",
                         "search": "Buscar:",
@@ -277,23 +345,57 @@ if ($pruebadeinicio == 1 or $pruebadeinicio == 2) {
 
                 });
                   $('#principal').tab();
-
-            });
-
+                  amonestacion.RecargarEventos();
+               },
+               RecargarEventos: function (){
+                   amonestacion.EventosConsultarDetalles();
+               },
+               EventosConsultarDetalles: function (){
+                       $('.detalles').off('click').on('click', function () {
+                            var id = $(this).data('id');
+                            $.ajax({
+                                url: 'PeticionesAmonestaciones.php',
+                                type: 'POST',
+                                data: {
+                                    Bandera: "MostrarAmonestacion",
+                                    id: id
+                                },
+                                success: function (resp) {
+                                    $('.modal').modal('show');
+                                    var resp = $.parseJSON(resp);
+                                    if (resp.Salida === true && resp.Mensaje === true) {
+                                 
+                                    } else {
+                                        swal("", "Ha habido un error,intenta nuevamente", "error");
+                                    }
+                                }
+                            });
+                        });
+               }
+            };
 
         </script>
     <?php
 } else {
-    ?>
-        <!-- CUANDO EL PERSONAJE NO ESTA AUTORIZADO PARA EL INGRESO-->
-        <br><br>
-    <center>
-        <div>
-            <label>Lo sentimos pero usted no tiene autorización para estar en este lugar.</label>
-        </div>
-    </center>
-    <center><button  type="submit" ><a href="iniciox.php">Volver</a></button></center>
-    <?php
+      ?>
+                    <!-- CUANDO EL PERSONAJE NO ESTA AUTORIZADO PARA EL INGRESO-->
+                             <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
+                <link rel="stylesheet" href="../bootstrap/css/bootstrap-theme.css">
+                    <script src="../bootstrap/js/bootstrap.min.js"></script>
+                            <center>
+                                <div class="row">
+                                    <div class="col-md-10 col-md-offset-1"><br>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-10 col-md-offset-1">
+                                    <div class="alert alert-danger" role="alert">Lo sentimos pero usted no tiene autorización para estar en este lugar.</div>
+                                    </div>
+                                </div>
+                            </center>
+                            <center>
+                            <button type="button" class="btn btn-success"><a href="iniciox.php" style="color: white">Volver</a></button></center>
+                            <?php
 }
 ?>
 </body>
