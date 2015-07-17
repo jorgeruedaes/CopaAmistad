@@ -79,7 +79,7 @@ if (isset($_SESSION['admin'])) {
                                     </div>
                                 </form>
                             </div>
-                            <div class="panel-footer">Olvidaste tu contraseña? <a href="#" class="">Click aquí</a>
+                            <div class="panel-footer">Olvidaste tu contraseña? <a href="Editarcontraseña.php" class="">Click aquí</a>
                             </div>
                         </div>
                     </div>
