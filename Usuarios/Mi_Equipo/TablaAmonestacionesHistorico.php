@@ -77,8 +77,7 @@ $id = $_GET['id'];
                                     ?>
                                     <td> <?php echo $fe['nombre1'] . " " . $fe['apellido1']; ?> </td>
                                     <td> <?php
-                            $Cantidad = mysql_fetch_array(mysql_query("SELECT COUNT(amonestacion)AS Numero,Max(jornada_amonestacion)as jornada_amonestacion FROM tr_amonestacionesxjugador WHERE  amonestacion!='5' AND "
-                                            . "amonestacion='1' AND jugador=$col"));
+                            $Cantidad = mysql_fetch_array(mysql_query("SELECT COUNT(amonestacion)AS Numero,MAX(numero_fecha) as jornada_amonestacion FROM tr_jugadoresxpartido,tb_partidos WHERE id_partido=partido and jugador=$col and amonestacion!=5 and Estado=2 and amonestacion='1'"));
                  
                             if($Cantidad['Numero']<5){
                             echo $Cantidad['Numero'];
@@ -106,9 +105,8 @@ $id = $_GET['id'];
                                     </td>
                                     <td> 
                                         <?php
-                                        $Cantidad1 = mysql_fetch_array(mysql_query("SELECT COUNT(amonestacion)AS Numero1 from tr_amonestacionesxjugador WHERE  amonestacion!=5 "
-                                                        . "AND amonestacion='2' AND jugador=$col"));
-                                        echo $Cantidad1['Numero1'];
+                                        $Cantidad1 = mysql_fetch_array(mysql_query("SELECT COUNT(amonestacion)AS Numero,MAX(numero_fecha) as jornada_amonestacion FROM tr_jugadoresxpartido,tb_partidos WHERE id_partido=partido and jugador=$col and amonestacion!=5 and Estado=2 and amonestacion='2'"));
+                                        echo $Cantidad1['Numero'];
                                         ?>
                                     </td>
 

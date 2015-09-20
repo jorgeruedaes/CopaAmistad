@@ -1,6 +1,7 @@
 <?php
 include('conexion.php');
 date_default_timezone_set('America/Bogota');
+setlocale(LC_ALL,"es_CO");
 ?>
 
 <html>
@@ -262,27 +263,118 @@ date_default_timezone_set('America/Bogota');
                 </ul>
                 <?php
                   $nametor = mysql_query("SELECT * FROM tb_partidos WHERE fecha BETWEEN '$primerafecha2' and '$lafechadehoy' AND Estado='2'  ORDER BY fecha desc,hora desc")or die(mysql_error());
+                 
                   if(mysql_num_rows($nametor)>0){
                   ?>
                 <div align="center" data-role="list-divider" style="color: black;height: 30px;margin-top: 3px;padding-top: 5px; font-family: sans-serif;
-                     font-weight: 700;" >Resultados de la última fecha</div>
+                     font-weight: 700;" >Últimos resultados</div>
                      <?php
                      }
                      ?>
-                <ul data-role="listview" data-inset="true">
-
-                    <?php
-                    /*
-                     * ******************************************************************************************
-                     * ************INICIO RESULTADOS DE LA FECHA*************************************************
-                     * ******************************************************************************************
-                     */
-
-                    $nametor = mysql_query("SELECT * FROM tb_partidos WHERE fecha BETWEEN '$primerafecha2' and '$lafechadehoy' AND Estado='2'  ORDER BY fecha desc,hora desc")or die(mysql_error());
-                    while ($tor = mysql_fetch_array($nametor)) {
-                        ?>
-
+                 <?php
+                /// INICIO RESULTADOS POR EQUIPO
+// consulta los partidos de la fecha
+                                     $numerodelafecha = mysql_query("SELECT DISTINCT fecha FROM `tb_partidos` WHERE fecha BETWEEN '$primerafecha2' and '$lafechadehoy' AND   Estado='2' ORDER BY fecha desc,hora asc");
+                                     while ($vacas = mysql_fetch_array($numerodelafecha)){
+                                         $numerodelafecha1 = $vacas['fecha'];
+               
+                    ?>
+                    <ul data-role="listview" data-inset="true">
+                        <div align="center" data-role="list-divider" style="color: grey;height: 30px;margin-top: 3px;padding-top: 5px;
+                             " ><?php
+                                 date_default_timezone_set('America/Bogota');
+                                 $diadelasemana = date("w");
+                                 $sum = date("Ymd") . "<br>";
+                                 $jornada = $numerodelafecha1;
+                                 $fechareal = date("Ymd", strtotime($jornada));
+                                 $nuevo = date("w", strtotime($jornada));
+                                 $resta = $fechareal - $sum;
+                                 if ($resta == 1) {
+                                     ?>
+                                <span style="font-size: larger; color: black;
+                                      font-weight: bold;"><?php echo "Mañana"; ?></span>
+                                <br><span style="font-size: small;"><?php echo date("d-M", strtotime($jornada)); ?></span>
+                                <?php
+                            } elseif ($resta == 0) {
+                                ?>
+                                <span style="font-size: larger; color: black;
+                                      font-weight: bold;"><?php echo "Hoy"; ?></span>  
+                                <br><span style="font-size: small;"><?php echo date("d-M", strtotime($jornada)); ?></span>
+                                <?php
+                            } else {
+                                switch ($nuevo) {
+                                    case '0':
+                                        ?>
+                                        <span style="font-size: larger; color: black;
+                                              font-weight: bold;"><?php echo "Domingo"; ?></span>
+                                        <?php ?><br>
+                                        <span style="font-size: small;"><?php echo date("d-M", strtotime($jornada)); ?></span>
+                                        <?php
+                                        break;
+                                    case '1':
+                                        ?>
+                                        <span style="font-size: larger; color: black;
+                                              font-weight: bold;"><?php echo "Lunes"; ?></span>
+                                              <?php
+                                              ?><br>
+                                        <span style="font-size: small;"><?php echo date("d-M", strtotime($jornada)); ?></span>
+                                        <?php
+                                        break;
+                                    case '2':
+                                        ?>
+                                        <span style="font-size: larger; color: black;
+                                              font-weight: bold;"><?php echo "Martes"; ?></span>
+                                              <?php
+                                              ?><br>
+                                        <span style="font-size: small;"><?php echo date("d-M", strtotime($jornada)); ?></span>
+                                        <?php
+                                        break;
+                                    case '3':
+                                        ?>
+                                        <span style="font-size: larger; color: black;
+                                              font-weight: bold;"><?php echo "Miércoles"; ?></span>
+                                              <?php
+                                              ?><br>
+                                        <span style="font-size: small;"><?php echo date("d-M", strtotime($jornada)); ?></span>
+                                        <?php
+                                        break;
+                                    case '4':
+                                        ?>
+                                        <span style="font-size: larger; color: black;
+                                              font-weight: bold;"><?php echo "Jueves"; ?></span>
+                                              <?php
+                                              ?><br>
+                                        <span style="font-size: small;"><?php echo date("d-M", strtotime($jornada)); ?></span>
+                                        <?php
+                                        break;
+                                    case '5':
+                                        ?>
+                                        <span style="font-size: larger; color: black;
+                                              font-weight: bold;"><?php echo "Viernes"; ?></span>
+                                              <?php
+                                              ?><br>
+                                        <span style="font-size: small;"><?php echo date("d-M", strtotime($jornada)); ?></span>
+                                        <?php
+                                        break;
+                                    case '6':
+                                        ?>
+                                        <span style="font-size: larger; color: black;
+                                              font-weight: bold; "><?php echo "Sábado"; ?></span>
+                                              <?php
+                                              ?>
+                                        <br>
+                                        <span style="font-size: small;"><?php echo date("d-M", strtotime($jornada)); ?></span>
+                                        <?php
+                                        break;
+                                    default:
+                                        echo "Proxima Semana";
+                                        break;
+                                }
+                            }
+                            ?> </div> 
                         <?php
+                         $nametor = mysql_query("SELECT * FROM tb_partidos where  fecha='$numerodelafecha1' AND   Estado='2'  ORDER BY fecha desc")or die(mysql_error());
+                while ($tor = mysql_fetch_array($nametor)) {
                         $nombre = $tor['equipo1'];
                         $nom = mysql_query("select nombre_equipo from tb_equipos where id_equipo=$nombre");
                         $nome = mysql_fetch_array($nom);
@@ -290,6 +382,7 @@ date_default_timezone_set('America/Bogota');
                         $nom1 = mysql_query("select nombre_equipo from tb_equipos where id_equipo=$nombre1");
                         $nome1 = mysql_fetch_array($nom1);
                         ?>
+                        <BR>
                         <div  align="center" data-role="collapsible" data-collapsed-icon="arrow-d" data-expanded-icon="arrow-u" data-iconpos="right">
                             <h1  style="font-size: small " align: "center" >
                                  <table width="100%" aling="center"  style="font-size: small ">
@@ -322,6 +415,7 @@ date_default_timezone_set('America/Bogota');
                                             $afectadas = mysql_num_rows($query);
                                             while ($consulta2 = mysql_fetch_array($query)) {
                                                 ?>
+
                                                 <?php
                                                 $jugador1 = $consulta2['jugador'];
                                                 if ($afectadas != 0) {
@@ -355,7 +449,7 @@ date_default_timezone_set('America/Bogota');
 
                                         <?php
                                         $jugador1 = $consulta2['jugador'];
-                                        if ($afectadas > 0) {
+                                        if ($afectadas != 0) {
                                             $consulta12 = mysql_query("SELECT nombre1,apellido1 FROM tb_jugadores WHERE id_jugadores=$jugador1  AND equipo=$id_equipo2");
                                             while ($consultar = mysql_fetch_array($consulta12)) {
                                                 ?>
@@ -376,23 +470,20 @@ date_default_timezone_set('America/Bogota');
                                 </tr>
                                 </tbody>
                             </table>
-
                             <!----    Fin primera tabla   -->
 
-                            <!----    Empieza Amonestaciones                                     ---------------------------------------->
+                            <!----    Empieza Amonestaciones  -->
 
                             <table style="font-size: smaller ;" width="100%" >
                                 <thead>
-
                                     <tr>
                                         <th>Amonestaciones</th>
                                         <th>Amonestaciones</th>
                                     </tr>
-
                                 </thead>
                                 <tbody>
                                     <tr width="100%">
-                                        <!--  GOLES TABLA DE GOLES TABLA DE GoLES -->
+                                        <!--  GOLES TABLA DE GOLES TABLA DE GOLES -->
                                         <td width="50%">
                                             <?php
                                             $id_partido = $tor['id_partido'];
@@ -415,11 +506,11 @@ date_default_timezone_set('America/Bogota');
                                                             </span><span width="50%" style="font-size: larger;font-weight: bold; "><?php
                                                                 if ($amonestacio4 == 1) {
                                                                     ?>
-                                                                    <span><img src="images/amarilla.png" style="width: 15px;"></span>
+                                                                    <span><img src="../../images/amarilla.png" style="width: 15px;"></span>
                                                                     <?php
                                                                 } elseif ($amonestacio4 == 2) {
                                                                     ?>
-                                                                    <span><img src="images/roja.png" style="width: 15px;"></span>
+                                                                    <span><img src="../../images/roja.png" style="width: 15px;"></span>
                                                                     <?php
                                                                 }
                                                                 ?></span></div>
@@ -457,14 +548,14 @@ date_default_timezone_set('America/Bogota');
                                                     </span><span width="50%" style="font-size: larger;font-weight: bold; "><?php
                                                         if ($amonestacio4 == 1) {
                                                             ?>
-                                                            <span><img src="images/amarilla.png" style="width: 15px;"></span>
+                                                            <span><img src="../../images/amarilla.png" style="width: 15px;"></span>
                                                             <?php
                                                         } elseif ($amonestacio4 == 2) {
                                                             ?>
-                                                            <span><img src="images/roja.png" style="width: 15px;"></span>
-                                                            <?php
-                                                        }
-                                                        ?></span></div>
+                                                            <span><img src="../../images/roja.png" style="width: 15px;"></span>
+                                                                <?php
+                                                            }
+                                                            ?>                                    </span></div>
                                                     <?php
                                                 }
                                                 ?>
@@ -480,18 +571,19 @@ date_default_timezone_set('America/Bogota');
                                 </tr>
                                 </tbody>
                             </table>
+                            <!---  fin segunda tabla   -->
                             </p>
                         </div>
-
-                        <?php
-                        /*
-                         * ****************************************************************************************
-                          FIN DE RESLTADOS POR EQUIPO
-                         * *****************************************************************************************
-                         */
-                    }
-                    ?>
-                </ul>  
+                   
+                    <?php
+                    /// fin de resultados por EQUIPO
+                }
+                ?>
+                         </ul>  
+                <?PHP
+                }
+                ?>
+                
                 <?php
                 $lafechadehoy = date("Y-m-d");
                 $primerafecha1 = date("Y-m-d");

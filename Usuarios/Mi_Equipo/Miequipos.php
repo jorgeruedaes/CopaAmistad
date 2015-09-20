@@ -1,6 +1,7 @@
 <?php
 session_start();
 include('../../conexion.php');
+setlocale(LC_ALL,"es_CO");
 $id = $_GET['id'];
 ?>
 
