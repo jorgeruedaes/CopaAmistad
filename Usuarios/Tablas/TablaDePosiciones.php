@@ -188,8 +188,37 @@ for ($i = 0; $i < $numerodeequiposparaeltamañodelamatriz; $i++) {
                             $variable7 = $matriz[$i]['3'];  // goles a favor
                             $variable8 = $matriz[$i]['4'];  // goles en contra
                             $variable9 = $matriz[$i]['9'];  // diferencia de Gol
-
-
+                                //SITUACIONES ESPECIALES
+                            if($matriz[$i]['0']==24){ // UIS B
+                                $variable5=$variable5-1;//empates
+                                $variable4 =$variable4 +1;//ganados
+                                $variable2=$variable2+1;// puntos
+                            }
+                            if($matriz[$i]['0']==22){ //CODEUIS
+                                 $variable5=$variable5-1;
+                                 $variable6=$variable6+1;//perdidos
+                                    $variable2=$variable2-1;
+                            }
+                             if($matriz[$i]['0']==18){ //AMIGOS DE FUTTBOL
+                                 $variable5=$variable5-1;
+                                 $variable4=$variable4+1;//ganados
+                                    $variable2=$variable2+1;
+                            } if($matriz[$i]['0']==17){ //REAL 
+                                 $variable5=$variable5-1;
+                                 $variable6=$variable6+1;//perdidos
+                                    $variable2=$variable2-1;
+                            }
+                             if($matriz[$i]['0']==8){ //UTS
+                                 $variable5=$variable5-1;
+                                 $variable4=$variable4+1;//ganados
+                                    $variable2=$variable2+1;
+                            } if($matriz[$i]['0']==23){ //FANATICOS 
+                                 $variable5=$variable5-1;
+                                 $variable6=$variable6+1;//perdidos
+                                    $variable2=$variable2-1;
+                            }
+                            
+                                // FIN SITUACIONES ESPECIALES
 
                             mysql_query("INSERT INTO `te_posiciones`(`equipo`, `puntos`, `pj`, `pg`, `pe`, `pp`, `gf`, `gc`, `dg`)
   VALUES ('$variable1','$variable2','$variable3','$variable4','$variable5','$variable6','$variable7','$variable8','$variable9');")or die(mysql_error());

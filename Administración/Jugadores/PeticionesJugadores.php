@@ -23,7 +23,7 @@ if ($pruebadeinicio == 1 or $pruebadeinicio == 2 or $pruebadeinicio == 4) {
         $id = $datos['id_jugadores'];
         $profesion = $datos['profesion'];
         if ($query) {
-            $resultado.='"jugador":{"identificador": "' . $id . '","nombre": "' . $nombre1 . '","nombre2": "' . $nombre2 . '","apellido": "' . $apellido1 . '","apellido2": "' . $apellido2 . '","nacimiento": "' . $nacimiento . '","email":" ' . $email . '","ingreso": "' . $ingreso . '","telefono": "' . $telf . '","estado": "' . $estado . '","profesion": "' . $profesion . '"}';
+            $resultado.='"jugador":{"identificador": "' . $id . '","nombre": "' . $nombre1 . '","nombre2": "' . $nombre2 . '","apellido": "' . $apellido1 . '","apellido2": "' . $apellido2 . '","nacimiento": "' . $nacimiento . '","email":" ' . $email . '","ingreso": "' . $ingreso . '","telefono": "' . $telf . '","estado": "' . $estado . '","profesion": "' . $profesion . ' "}';
             $resultado.=',"Mensaje":true';
         } else {
             $resultado.='"Mensaje":false';

@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-include '../../conexion.php';
+include ('../../conexion.php');
 include('../RutinaDeLogueo.php');
 if ($pruebadeinicio == 1 or $pruebadeinicio == 2 or $pruebadeinicio == 4) {
     $resultado = '{"Salida":true,';
@@ -104,10 +104,29 @@ if ($pruebadeinicio == 1 or $pruebadeinicio == 2 or $pruebadeinicio == 4) {
                 $resultado.='"Mensaje":true';
         }
          
+    } else if ($Bandera === "ModificarAsistencia") {
+       $partido=$_POST['partido'];
+       $jugador=$_POST['jugador'];
+       $fecha=$_POST['fecha'];
+        $querydeprueba=mysql_query("SELECT * FROM tr_jugadoresxpartido WHERE jugador='$jugador' and partido='$partido' ");
+        if(mysql_num_rows($querydeprueba)>0){
+            $variable = mysql_query("DELETE FROM tr_jugadoresxpartido WHERE jugador='$jugador' and partido='$partido' "); 
+            mysql_query("DELETE FROM `tr_amonestacionesxjugador` WHERE jugador='$jugador' AND jornada_amonestacion='$fecha' ");
+        }else{
+          $variable=  mysql_query("INSERT INTO `tr_jugadoresxpartido`(`jugador`, `partido`, `amonestacion`, `goles`) "
+                    . "VALUES ('$jugador','$partido',5,0)");
+        }
+        if($variable){
+                $resultado.='"Mensaje":true';
+        }else{
+              $resultado.='"Mensaje":false';
+        }
+         
     }
 } else {
     $resultado = '{"Salida":false,';
 }
 $resultado.='}';
 echo ($resultado);
+mysql_close($con);
 ?>

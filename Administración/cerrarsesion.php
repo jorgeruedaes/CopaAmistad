@@ -1,6 +1,5 @@
 <?php
 session_start();
-include('../conexion.php');  
 if(!isset($_SESSION['admin']))
 	
    {
@@ -11,9 +10,6 @@ if(!isset($_SESSION['admin']))
    else
    { 
      session_destroy();
-       //echo "Has cerrado la sesion";
 header("location:../Administración/iniciox.php");
-       
    }
-
 ?>

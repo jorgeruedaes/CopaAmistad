@@ -5,7 +5,7 @@
 session_start();
 include('../conexion.php');
 if (isset($_SESSION['admin'])) {
-    include('RutinaDeLogue.php');
+    include('RutinaDeLogueo.php');
     if ($_SESSION['tipo_usuario'] == 1) {
         header("location:modulosuperadmin.php");
     } elseif ($_SESSION['tipo_usuario'] == 2) {
@@ -90,7 +90,5 @@ if (isset($_SESSION['admin'])) {
     </html>
     <?php
 
-}if (isset($_SESSION['error'])) {
-    header("location:index.php");
 }
 ?>

@@ -134,7 +134,7 @@ if ($identificarsituacion == "off") {
   $numero= mysql_num_rows($querydeprueba);
   if ($numero >0) {
   mysql_query("DELETE FROM `tr_jugadoresxpartido` WHERE jugador=$identificarjugador and partido=$partido"); 
-  mysql_query("DELETE FROM `tr_amonestacionesxjugador` WHERE jugador=$identificarjugador AND jornada_amonestacion=$jornada")
+  mysql_query("DELETE FROM `tr_amonestacionesxjugador` WHERE jugador=$identificarjugador AND jornada_amonestacion=$jornada");
   ?>
 <?php
 
